@@ -1,6 +1,9 @@
 ﻿namespace Dominio
 {
-    internal class EstadoSolicitud
+    public enum EstadoSolicitud
     {
+        PENDIENTE_APROBACION,
+        APROBADA,
+        RECHAZADA
     }
 }

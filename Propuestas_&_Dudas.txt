@@ -1,0 +1,14 @@
+
+
+*************** PROPUESTAS ***************
+
+Poner solo nombre, no nombre y apellido.
+
+Cambiar en Astah la palabra Amigo por Miembro
+en la listaDeAmigos en Miembro
+
+Agregar todos los _ a Astah
+
+Cambiar el enum EstadoSolicitud en Astah quitando los int
+
+*********************************************

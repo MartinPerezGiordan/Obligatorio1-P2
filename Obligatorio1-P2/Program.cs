@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Dominio;
 
-Console.WriteLine("Hello, World!");
 
 
 Sistema sistema = new Sistema();
@@ -33,3 +32,33 @@ sistema.AgregarMiembro(Jose);
 
 #endregion
 
+#region Menu
+
+int opcion = -1;
+while (opcion != 0)
+{
+    try
+    {
+        Console.WriteLine("************* SOCIAL NETWORK *************");
+
+        Console.WriteLine("0 - Salir");
+        Console.WriteLine("1 - Ver Miembros");
+        opcion = int.Parse(Console.ReadLine());
+        switch (opcion)
+        {
+            case 1:
+                foreach (Miembro unMiembro in sistema.GetMiembros())
+                {
+                    Console.WriteLine(unMiembro.GetNombre());
+                }
+                break;
+        }
+    }
+    catch (Exception)
+    {
+        Console.WriteLine("Opcion Incorrecta.");
+        opcion = -1;
+    }
+}
+
+#endregion

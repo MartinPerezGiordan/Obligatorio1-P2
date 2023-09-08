@@ -1,0 +1,18 @@
+
+*************** NOMENCLATURA ***************
+
+
+Clases --> PascalCase
+
+atributos privados --> _ + camelCase
+
+atributos privados y estaticos --> s_ + camelCase
+
+metodos --> PascalCase
+
+atributo publico --> PascalCase
+
+atributos de la instancia --> this.
+
+
+*********************************************
