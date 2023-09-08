@@ -12,6 +12,7 @@ namespace Dominio
         #region Atributos
         private List<Miembro> _miembros;
         private List<Administrador> _administradores;
+        private List<Invitacion> _invitaciones;
         //private List<Publicacion> _publicaciones;
 
         #endregion
@@ -21,6 +22,7 @@ namespace Dominio
         { 
             this._miembros = new List<Miembro>();
             this._administradores = new List<Administrador>();
+            this._invitaciones = new List<Invitacion>();
         }
         #endregion
 
@@ -34,6 +36,11 @@ namespace Dominio
         public List<Administrador> GetAdministradores()
         {
             return this._administradores;
+        }
+
+        public List<Invitacion> GetInvitaciones()
+        {
+            return this._invitaciones;
         }
 
         #endregion
@@ -53,6 +60,15 @@ namespace Dominio
         public void AgregarAdministrador(Administrador administrador)
         {
             this._administradores.Add(administrador);
+        }
+
+        #endregion
+
+        #region Metodos Invitacion
+
+        public void AgregarInvitacion(Invitacion invitacion)
+        {
+            this._invitaciones.Add(invitacion);
         }
 
         #endregion
