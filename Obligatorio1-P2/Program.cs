@@ -38,6 +38,12 @@ Administrador Lucas = new Administrador("correo@admin.com", "adminContrasenia1")
 sistema.AgregarAdministrador(Lucas);
 #endregion
 
+#region Invitaciones
+Invitacion invitacion1 = new Invitacion(Juan, Laura, EstadoSolicitud.PENDIENTE_APROBACION, new DateOnly(2023, 08, 08) );
+
+sistema.AgregarInvitacion(invitacion1);
+#endregion
+
 #endregion
 
 #region Menu
@@ -48,13 +54,14 @@ while (opcion != 0)
     try
     {
         Console.WriteLine("************* SOCIAL NETWORK *************");
-
         Console.WriteLine("0 - Salir");
+       /* Lista de Menu
         Console.WriteLine("1 - Registrarse a Social NetWork");
         Console.WriteLine("2 - Buscar Publicaciones de Miembros por Email");
         Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
         Console.WriteLine("4 - Buscar Posts por rango de fechas");
         Console.WriteLine("5 - Mostrar Miembro con mayor cantidad de Publicaiones");
+       */
         Console.WriteLine("1 - Ver Miembros");
         Console.WriteLine("2 - Ver Administradores");
         opcion = int.Parse(Console.ReadLine());
