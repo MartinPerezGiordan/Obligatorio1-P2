@@ -64,6 +64,7 @@ while (opcion != 0)
        */
         Console.WriteLine("1 - Ver Miembros");
         Console.WriteLine("2 - Ver Administradores");
+        Console.WriteLine("3 - Registrarse a Social NetWork");
         opcion = int.Parse(Console.ReadLine());
         switch (opcion)
         {
@@ -79,7 +80,20 @@ while (opcion != 0)
                     Console.WriteLine(unAdministrador.GetId());
                 }
                 break;
+            case 3:
+                Console.WriteLine("Ingrese Nombre y Apellido");
+                string nombre = Console.ReadLine();
+                Console.WriteLine("Ingrese Email");
+                string email = Console.ReadLine();
+                Console.WriteLine("Ingrese contraseña");
+                string contrasenia = Console.ReadLine();
+                Console.WriteLine("Ingrese Fecha de Nacimiento");
+                DateOnly fechaDeNacimiento = DateOnly.Parse(Console.ReadLine());
 
+                Miembro nuevoMiembro = new Miembro(email, contrasenia, nombre, fechaDeNacimiento, false);
+                sistema.AgregarMiembro(nuevoMiembro);
+                Console.WriteLine("Miembro registrado con exito");
+                break;
 
 
 

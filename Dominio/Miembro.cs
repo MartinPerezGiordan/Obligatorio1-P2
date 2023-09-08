@@ -90,7 +90,10 @@ namespace Dominio
 
         #region Metodos
 
+        public void enviarInvitacion(Invitacion invitacion)
+        {
 
+        }
 
         #endregion
 
