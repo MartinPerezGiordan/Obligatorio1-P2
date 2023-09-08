@@ -8,6 +8,7 @@ Sistema sistema = new Sistema();
 
 #region Precarga de Datos
 
+#region Miembros
 Miembro Juan = new Miembro("correo1@example.com", "contrasenia1", "Juan Perez", new DateTime(1990, 1, 1), false);
 Miembro Ana = new Miembro("correo2@example.com", "contrasenia2", "Ana Gomez", new DateTime(1985, 3, 15), false);
 Miembro Luis = new Miembro("correo3@example.com", "contrasenia3", "Luis Rodriguez", new DateTime(1995, 5, 20), true);
@@ -29,6 +30,7 @@ sistema.AgregarMiembro(Laura);
 sistema.AgregarMiembro(Carlos);
 sistema.AgregarMiembro(Marta);
 sistema.AgregarMiembro(Jose);
+#endregion
 
 #endregion
 
@@ -59,6 +61,6 @@ while (opcion != 0)
         Console.WriteLine("Opcion Incorrecta.");
         opcion = -1;
     }
-}
+}Console.WriteLine("-- ¡Hasta pronto! --");
 
 #endregion

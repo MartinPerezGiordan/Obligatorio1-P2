@@ -23,7 +23,7 @@ namespace Dominio
         }
         #endregion
 
-        #region GET Y SET
+        #region Get Y Set
 
         public List<Miembro> GetMiembros()
         {
