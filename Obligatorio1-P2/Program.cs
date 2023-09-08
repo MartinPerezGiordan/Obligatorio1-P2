@@ -32,6 +32,12 @@ sistema.AgregarMiembro(Marta);
 sistema.AgregarMiembro(Jose);
 #endregion
 
+#region Administradores
+Administrador Lucas = new Administrador("correo@admin.com", "adminContrasenia1");
+
+sistema.AgregarAdministrador(Lucas);
+#endregion
+
 #endregion
 
 #region Menu
@@ -45,6 +51,7 @@ while (opcion != 0)
 
         Console.WriteLine("0 - Salir");
         Console.WriteLine("1 - Ver Miembros");
+        Console.WriteLine("2 - Ver Administradores");
         opcion = int.Parse(Console.ReadLine());
         switch (opcion)
         {
@@ -53,6 +60,19 @@ while (opcion != 0)
                 {
                     Console.WriteLine(unMiembro.GetNombre());
                 }
+                break;
+            case 2:
+                foreach (Administrador unAdministrador in sistema.GetAdministradores())
+                {
+                    Console.WriteLine(unAdministrador.GetId());
+                }
+                break;
+
+
+
+
+            default:
+                Console.WriteLine("Opcion Incorrecta");
                 break;
         }
     }

@@ -10,7 +10,7 @@ namespace Dominio
     {
         #region Atributos
 
-        private static int _ultimoId;
+        private static int _ultimoId = 1;
         private int _id;
         private string _email;
         private string _contrasenia;
