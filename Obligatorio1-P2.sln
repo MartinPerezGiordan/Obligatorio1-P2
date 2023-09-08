@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obligatorio1-P2", "Obligato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{27A64688-F35A-4F69-8C29-E18BF34C8D8B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{55705672-DFEF-4300-8A0B-DDD9EB03437D}"
+	ProjectSection(SolutionItems) = preProject
+		Nomenclatura.txt = Nomenclatura.txt
+		Propuestas_&_Dudas.txt = Propuestas_&_Dudas.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
