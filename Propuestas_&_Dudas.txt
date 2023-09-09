@@ -11,4 +11,8 @@ Agregar todos los _ a Astah
 
 Cambiar el enum EstadoSolicitud en Astah quitando los int
 
+Sacar titulo de clases Post y Comentario y moverlo a la clase padre Publicacion
+
+En la clase publicacion cambiar el nombre de el atributo de "texto" a "contenido"
+
 *********************************************

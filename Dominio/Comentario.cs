@@ -1,6 +1,9 @@
 ﻿namespace Dominio
 {
-    internal class Comentario
+    public class Comentario : Publicacion
     {
+        public Comentario(Miembro autor, string texto) : base(autor, texto)
+        {
+        }
     }
 }

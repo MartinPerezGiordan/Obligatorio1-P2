@@ -1,0 +1,19 @@
+
+
+*************** HACER ***************
+
+MENU:
+
+--- Alta de Miembro
+
+--- Listar publicaciones de un miembro
+
+--- Listar posts en los que haya comentado un miembro
+(solo el post, no el comentario)
+
+--- Dadas dos fechas listar los posts realizados entres esas fechas inclusive
+
+--- Obtener los miembros que hayan realizado mas publicaciones de 
+cualquier tipo
+
+*********************************************

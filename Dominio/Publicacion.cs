@@ -7,6 +7,7 @@ namespace Dominio
 
         private static int s_ultimoId = 1;
         private int _id;
+        private string _titulo;
         private Miembro _autor;
         private string _texto;
         private DateTime _fecha;

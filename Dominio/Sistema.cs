@@ -13,7 +13,7 @@ namespace Dominio
         private List<Miembro> _miembros;
         private List<Administrador> _administradores;
         private List<Invitacion> _invitaciones;
-        //private List<Publicacion> _publicaciones;
+        private List<Publicacion> _publicaciones;
 
         #endregion
 
@@ -23,6 +23,7 @@ namespace Dominio
             this._miembros = new List<Miembro>();
             this._administradores = new List<Administrador>();
             this._invitaciones = new List<Invitacion>();
+            this._publicaciones = new List<Publicacion>();
         }
         #endregion
 
@@ -69,6 +70,15 @@ namespace Dominio
         public void AgregarInvitacion(Invitacion invitacion)
         {
             this._invitaciones.Add(invitacion);
+        }
+
+        #endregion
+
+        #region Metodos Publicacion
+
+        public void AgregarPublicacion(Publicacion publicacion)
+        {
+            this._publicaciones.Add(publicacion);
         }
 
         #endregion

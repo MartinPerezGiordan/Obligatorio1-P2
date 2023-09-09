@@ -44,6 +44,25 @@ Invitacion invitacion1 = new Invitacion(Juan, Laura, EstadoSolicitud.PENDIENTE_A
 sistema.AgregarInvitacion(invitacion1);
 #endregion
 
+#region Publicaciones
+
+#region Comentarios
+Comentario comentario1 = new Comentario(Marta, "Gracias por avisar <3");
+List<Comentario> comentarios1 = new List<Comentario>();
+comentarios1.Add(comentario1);
+
+#endregion
+
+#region Post
+Post post1 = new Post(Marta, "Me gusta la paella!", "paella.jpg");
+Post post2 = new Post(Jose, "Esta lloviendo, lleven paragua!!", "diaNublado.jpg",comentarios1);
+
+sistema.AgregarPublicacion(post1);
+#endregion
+
+
+#endregion
+
 #endregion
 
 #region Menu
