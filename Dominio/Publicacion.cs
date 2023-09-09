@@ -9,6 +9,7 @@ namespace Dominio
         private int _id;
         private Miembro _autor;
         private string _texto;
+        private DateTime _fecha;
 
         #endregion
 
@@ -19,6 +20,7 @@ namespace Dominio
             this._id = s_ultimoId++;
             this._autor = autor;
             this._texto = texto;
+            this._fecha = DateTime.Now;
         }
 
         #endregion

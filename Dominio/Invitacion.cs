@@ -11,7 +11,7 @@ namespace Dominio
 
         #region Atributos
 
-        private static int s_ultimoId;
+        private static int s_ultimoId=0;
         private int _id;
         private Miembro _miembroSolicitante;
         private Miembro _miembroSolicitado;
