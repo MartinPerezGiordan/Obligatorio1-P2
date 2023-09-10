@@ -75,7 +75,6 @@ while (opcion != 0)
         Console.WriteLine("************* SOCIAL NETWORK *************");
         Console.WriteLine("0 - Salir");
        /* Lista de Menu
-        Console.WriteLine("1 - Registrarse a Social NetWork");
         Console.WriteLine("2 - Buscar Publicaciones de Miembros por Email");
         Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
         Console.WriteLine("4 - Buscar Posts por rango de fechas");
