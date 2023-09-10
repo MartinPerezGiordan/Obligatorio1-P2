@@ -36,6 +36,25 @@ namespace Dominio
 
         #endregion
 
+        #region Get y Set
+
+        public int GetId()
+        {
+            return this._id;
+        }
+
+        public bool GetCensurado()
+        {
+            return _censurado;
+        }
+
+        public void SetCensurado(bool censurar)
+        {
+            this._censurado = censurar;
+        }
+
+        #endregion
+
         #region Metodos
 
         #endregion

@@ -13,7 +13,7 @@ namespace Dominio
         private List<Miembro> _miembros;
         private List<Administrador> _administradores;
         private List<Invitacion> _invitaciones;
-        private List<Publicacion> _publicaciones;
+        private List<Post> _posts;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace Dominio
             this._miembros = new List<Miembro>();
             this._administradores = new List<Administrador>();
             this._invitaciones = new List<Invitacion>();
-            this._publicaciones = new List<Publicacion>();
+            this._posts = new List<Post>();
         }
         #endregion
 
@@ -44,6 +44,10 @@ namespace Dominio
             return this._invitaciones;
         }
 
+        public List<Post> GetPosts()
+        {
+            return this._posts;
+        }
         #endregion
 
         #region Metodos
@@ -63,6 +67,33 @@ namespace Dominio
             this._administradores.Add(administrador);
         }
 
+        //Duda como accedo a la lista de miembros del sistema, desde la clase administrador?
+
+        // Metod que permite bloquear o desbloquear a un miembro
+        public void BloquearMiembro(int idMiembro, bool bloquear)
+        {
+            foreach (Miembro unMiembro in this.GetMiembros())
+            {
+                if(unMiembro.GetId() == idMiembro)
+                {
+                    unMiembro.SetBloqueado(bloquear);
+                }
+            }
+        }
+
+       
+
+        //Metod que permite cambiar el valor del atributo censurado de un post
+        public void CensurarPost(int idPost, bool censurar)
+        {
+            foreach (Post unPost in this.GetPosts())
+            {
+                if (unPost.GetId() == idPost)
+                {
+                    unPost.SetCensurado(censurar);
+                }
+            }
+        }
         #endregion
 
         #region Metodos Invitacion
@@ -76,9 +107,9 @@ namespace Dominio
 
         #region Metodos Publicacion
 
-        public void AgregarPublicacion(Publicacion publicacion)
+        public void AgregarPost(Post post)
         {
-            this._publicaciones.Add(publicacion);
+            this._posts.Add(post);
         }
 
         #endregion

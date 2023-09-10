@@ -57,13 +57,22 @@ comentarios1.Add(comentario1);
 Post post1 = new Post(Marta, "Me gusta la paella!", "paella.jpg");
 Post post2 = new Post(Jose, "Esta lloviendo, lleven paragua!!", "diaNublado.jpg",comentarios1);
 
-sistema.AgregarPublicacion(post1);
+sistema.AgregarPost(post1);
 #endregion
 
 
 #endregion
 
 #endregion
+
+//Probando bloquear miembro
+sistema.BloquearMiembro(1, true);
+Console.WriteLine(Juan.GetBloqueado());
+
+sistema.CensurarPost(2, true);
+Console.WriteLine(post1.GetCensurado());
+
+
 
 #region Menu
 

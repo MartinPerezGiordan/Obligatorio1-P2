@@ -40,6 +40,16 @@ namespace Dominio
         }
 
         #endregion
+
+        #region Metodos
+
+        public void BloquearMiembro(int idMiembro)
+        {
+            
+        }
+
+        #endregion
+
     }
 }
 
