@@ -67,7 +67,6 @@ namespace Dominio
             this._administradores.Add(administrador);
         }
 
-        //Duda como accedo a la lista de miembros del sistema, desde la clase administrador?
 
         // Metod que permite bloquear o desbloquear a un miembro
         public void BloquearMiembro(int idMiembro, bool bloquear)
@@ -93,6 +92,19 @@ namespace Dominio
                     unPost.SetCensurado(censurar);
                 }
             }
+        }
+
+        public void AgregarPostMiembro(int idMiembro, string texto, string nombreImagen)
+        {
+            foreach (Miembro unMiembro in this.GetMiembros())
+            {
+                if (unMiembro.GetId() == idMiembro)
+                {
+                    Post nuevoPost = new Post(unMiembro, texto, nombreImagen);
+                    AgregarPost(nuevoPost);
+                }
+            }
+            
         }
         #endregion
 

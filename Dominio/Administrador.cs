@@ -43,11 +43,6 @@ namespace Dominio
 
         #region Metodos
 
-        public void BloquearMiembro(int idMiembro)
-        {
-            
-        }
-
         #endregion
 
     }

@@ -57,7 +57,11 @@ comentarios1.Add(comentario1);
 Post post1 = new Post(Marta, "Me gusta la paella!", "paella.jpg");
 Post post2 = new Post(Jose, "Esta lloviendo, lleven paragua!!", "diaNublado.jpg",comentarios1);
 
-sistema.AgregarPost(post1);
+sistema.AgregarPostMiembro(1, "hola", "hola.jpg");
+foreach (Post unPost in sistema.GetPosts())
+{
+    Console.WriteLine(unPost.GetAutorNombre());
+}
 #endregion
 
 

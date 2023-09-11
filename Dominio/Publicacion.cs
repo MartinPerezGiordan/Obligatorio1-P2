@@ -47,6 +47,10 @@ namespace Dominio
         {
             return this._autor;
         }
+        public string GetAutorNombre()
+        {
+            return this._autor.GetNombre();
+        }
 
         public DateTime GetFecha()
         {

@@ -15,8 +15,6 @@ namespace Dominio
         private string _email;
         private string _contrasenia;
         private string _nombre;
-        //DEJAR APELLIDO??
-        //private string _apellido;
         private DateOnly _fechaDeNacimiento;
         private List<Miembro> _listaDeAmigos;
         private List<Invitacion> _invitaciones;
@@ -32,8 +30,8 @@ namespace Dominio
             this._contrasenia = contrasenia;
             this._nombre = nombre;
             this._fechaDeNacimiento = fechaDeNacimiento;
-            this._listaDeAmigos = new List<Miembro>(); //Empieza la lista de amigos vacia
-            this._invitaciones = new List<Invitacion>(); // Supongo que los miembros van a tener una lista de invitacios para aceptar o rechazar
+            this._listaDeAmigos = new List<Miembro>(); 
+            this._invitaciones = new List<Invitacion>();
             this._bloqueado = bloqueado;
         }
 
@@ -90,10 +88,6 @@ namespace Dominio
 
         #region Metodos
 
-        public void enviarInvitacion(Invitacion invitacion)
-        {
-
-        }
 
         #endregion
 
