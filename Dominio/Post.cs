@@ -45,7 +45,7 @@ namespace Dominio
 
         public bool GetCensurado()
         {
-            return _censurado;
+            return this._censurado;
         }
 
         public void SetCensurado(bool censurar)
@@ -53,9 +53,19 @@ namespace Dominio
             this._censurado = censurar;
         }
 
+        public List<Comentario> GetComentarios()
+        {
+            return this._comentarios;
+        }
+
         #endregion
 
         #region Metodos
+
+        public void AgregarComentario(Comentario comentario)
+        {
+            this._comentarios.Add(comentario);
+        }
 
         #endregion
     }

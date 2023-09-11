@@ -62,6 +62,16 @@ foreach (Post unPost in sistema.GetPosts())
 {
     Console.WriteLine(unPost.GetAutorNombre());
 }
+
+sistema.AgregarComentarioPost(4, 2, "que buena foto");
+foreach (Post unPost in sistema.GetPosts())
+{
+    foreach (Comentario unComentario in unPost.GetComentarios())
+    {
+        Console.WriteLine(unComentario.GetAutorNombre());
+    }
+}
+
 #endregion
 
 

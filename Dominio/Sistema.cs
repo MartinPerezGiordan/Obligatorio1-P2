@@ -94,6 +94,7 @@ namespace Dominio
             }
         }
 
+        // Agregar un post con id de miembro
         public void AgregarPostMiembro(int idMiembro, string texto, string nombreImagen)
         {
             foreach (Miembro unMiembro in this.GetMiembros())
@@ -105,6 +106,26 @@ namespace Dominio
                 }
             }
             
+        }
+
+        // Agregar un comentario con id de post y id de miembro que comenta
+        public void AgregarComentarioPost(int idPost, int idMiembro, string texto)
+        {
+            foreach (Post unPost in this.GetPosts())
+            {
+                if (unPost.GetId() == idPost)
+                {
+                    foreach (Miembro unMiembro in this.GetMiembros())
+                    {
+                        if (unMiembro.GetId() == idMiembro)
+                        {
+                            Comentario nuevoComentario = new Comentario(unMiembro, texto);
+                            unPost.AgregarComentario(nuevoComentario);
+                        }
+                    }
+                }
+            }
+
         }
         #endregion
 
