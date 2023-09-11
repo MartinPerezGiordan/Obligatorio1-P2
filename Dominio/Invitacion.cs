@@ -13,23 +13,24 @@ namespace Dominio
 
         private static int s_ultimoId=0;
         private int _id;
-        private Miembro _miembroSolicitante;
-        private Miembro _miembroSolicitado;
+        private int _idMiembroSolicitante;
+        private int _idMiembroSolicitado;
         private EstadoSolicitud _estado;
-        private DateOnly _fechaDeSolicitud;
+        private DateTime _fechaDeSolicitud;
 
         #endregion
 
         #region Constructor
 
-        public Invitacion(Miembro miembroSolicitante, Miembro miembroSolicitado, EstadoSolicitud estado, DateOnly fechaDeSolicitud)
+        public Invitacion(int idMiembroSolicitante, int idMiembroSolicitado, DateTime fechaDeSolicitud)
         {
             this._id = s_ultimoId++;
-            this._miembroSolicitante = miembroSolicitante;
-            this._miembroSolicitado = miembroSolicitado;
-            this._estado = estado;
+            this._idMiembroSolicitante = idMiembroSolicitante;
+            this._idMiembroSolicitado = idMiembroSolicitado;
+            this._estado = EstadoSolicitud.PENDIENTE_APROBACION;
             this._fechaDeSolicitud = fechaDeSolicitud;
         }
+
 
         #endregion
 
@@ -40,14 +41,14 @@ namespace Dominio
             return this._id;
         }
 
-        public Miembro GetMiembroSolicitante()
+        public int GetIdMiembroSolicitante()
         {
-            return this._miembroSolicitante;
+            return this._idMiembroSolicitante;
         }
 
-        public Miembro GetMiembroSolicitado()
+        public int GetIdMiembroSolicitado()
         {
-            return this._miembroSolicitado;
+            return this._idMiembroSolicitado;
         }
 
         public EstadoSolicitud GetEstadoSolicitud()
@@ -55,7 +56,7 @@ namespace Dominio
             return this._estado;
         }
 
-        public DateOnly GetFechaDeSolicitud()
+        public DateTime GetFechaDeSolicitud()
         {
             return this._fechaDeSolicitud;
         }

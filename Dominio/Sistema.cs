@@ -54,6 +54,23 @@ namespace Dominio
             //Falta agregar Validacion
             this._miembros.Add(miembro);
         }
+
+        public Miembro GetMiembroById(int id)
+        {
+            return this._miembros[id - 1];
+        }
+
+        public List<Invitacion> VerInvitacionesEnviadas(Miembro miembro)
+        {
+            return miembro.GetInvitacionesEnviadas();
+        }
+
+        public List<Invitacion> VerInvitacionesRecibidas(Miembro miembro)
+        {
+            return miembro.GetInvitacionesRecibidas();
+        }
+
+
         #endregion
 
         #region Metodos Administrador
@@ -71,6 +88,9 @@ namespace Dominio
         {
             this._invitaciones.Add(invitacion);
         }
+
+
+
 
         #endregion
 

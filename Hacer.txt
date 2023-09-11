@@ -2,6 +2,27 @@
 
 *************** HACER ***************
 
+ASTAH:
+
+--- Agregar metodo VA a Publicacion (hecho)
+
+METODOS
+
+--- Miembro - Solicitud de amistad enviar invitacion * MARTIN * LISTO
+
+--- Miembro - Aceptar Invitacion * MARTIN * LISTO
+
+--- Administrador - Bloquear Miembro * PEDRO *
+
+--- Miembro - realizar Publicacion * PEDRO *
+
+--- Administrador - Censurar Publicacion * PEDRO *
+
+--- (Miembro - Hacer Comentario????)
+
+--- Miembro - Likear una Publicacion
+
+
 MENU:
 
 --- Alta de Miembro
@@ -18,5 +39,9 @@ cualquier tipo
 
 --- Hacer TODOS los overrides
 
-
 *********************************************
+
+
+PRECARGA
+
+---

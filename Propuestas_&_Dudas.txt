@@ -16,3 +16,11 @@ Sacar titulo de clases Post y Comentario y moverlo a la clase padre Publicacion
 En la clase publicacion cambiar el nombre de el atributo de "texto" a "contenido"
 
 *********************************************
+
+CAMBIOS
+
+Agregue Invitacioens enviadas y recibidas en los atributos del miembro, cambiarlo en Astah!
+
+PREGUNTAR AL PROFE
+
+Hacer una referencia a Sistema en Miembro, tiene sentido??
