@@ -47,26 +47,58 @@ sistema.AgregarInvitacion(invitacionDeLaura);
 #region Publicaciones
 
 #region Comentarios
-Comentario comentario1 = new Comentario(Marta, "Gracias por avisar <3");
-List<Comentario> comentarios1 = new List<Comentario>();
-comentarios1.Add(comentario1);
+//Comentario comentario1 = new Comentario(Marta, "Gracias por avisar <3");
+//List<Comentario> comentarios1 = new List<Comentario>();
+//comentarios1.Add(comentario1);
 
 #endregion
 
 #region Post
 Post post1 = new Post(Marta, "Me gusta la paella!", "paella.jpg");
-Post post2 = new Post(Jose, "Esta lloviendo, lleven paragua!!", "diaNublado.jpg",comentarios1);
-
 sistema.AgregarPublicacion(post1);
-#endregion
+Post post2 = new Post(Jose, "Esta lloviendo, lleven paragua!!", "diaNublado.jpg");
+sistema.AgregarPublicacion(post2);
+
+sistema.AgregarPostMiembro(1, "hola", "hola.jpg");
+//foreach (Post unPost in sistema.GetPosts())
+//{
+//    Console.WriteLine(unPost.GetAutorNombre());
+//}
+
+sistema.AgregarComentarioPost(1, 6, "que buena foto");
+foreach (Post unPost in sistema.GetPosts())
+{
+    foreach (Comentario unComentario in unPost.GetComentarios())
+    {
+        Console.WriteLine(unComentario.GetAutorNombre());
+    }
+}
+
+foreach (Publicacion publicacion in sistema.GetPublicaciones())
+{
+    
+   Console.WriteLine(publicacion.GetAutorNombre());
+    
+}
 
 
 #endregion
 
+
 #endregion
 
-#region Tests
-//Mostrar Miembros
+#endregion
+
+//Probando bloquear miembro
+sistema.BloquearMiembro(1, true);
+Console.WriteLine(Juan.GetBloqueado());
+
+sistema.CensurarPost(2, true);
+Console.WriteLine(post1.GetCensurado());
+
+
+
+#region Menu
 
 //ListarMiembros();
 
