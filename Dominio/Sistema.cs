@@ -68,7 +68,7 @@ namespace Dominio
 
         public Miembro GetMiembroById(int id)
         {
-            return this._miembros[id - 1];
+            return this._miembros[id];
         }
 
         public List<Invitacion> VerInvitacionesEnviadas(Miembro miembro)
@@ -80,6 +80,63 @@ namespace Dominio
         {
             return miembro.GetInvitacionesRecibidas();
         }
+
+        public void EnviarInvitacion(int idMiembroSolicitante, int idMiembroSolicitado)
+        {
+            Invitacion nuevaInvitacion = new Invitacion(idMiembroSolicitante, idMiembroSolicitado, DateTime.Now);
+            this.AgregarInvitacion(nuevaInvitacion);
+        }
+
+        //Recibe un objeto invitacion y agrega al solicitante de la invitacion a la lista de amigos
+        //Cambia el estado de la invitacion a aceptada.
+        public void AceptarInvitacion(Invitacion invitacion)
+        {
+            int idSolicitante = invitacion.GetIdMiembroSolicitante();
+            Miembro solicitante = GetMiembroById(idSolicitante);
+
+            int idSolicitado = invitacion.GetIdMiembroSolicitado();
+            Miembro solicitado = GetMiembroById(idSolicitado);
+            solicitado.AgregarAmigo(solicitante);
+
+            invitacion.SetEstadoSolicitud(EstadoSolicitud.APROBADA);
+
+        }
+
+
+        //Cambia el estado de la invitacion a Rechazada.
+        public void RechazarInvitacion(Invitacion invitacion)
+        {
+            invitacion.SetEstadoSolicitud(EstadoSolicitud.RECHAZADA);
+        }
+
+        //Ve en la lista de invitaciones que existen en el sistema, si alguna de las 
+        //invitaciones pertenece a al miembro la agrega a su lista de invitaciones recibidas.
+        public void ActualizarListaDeInvitaciones(Miembro miembro)
+        {
+            foreach (Invitacion invitacion in this._invitaciones)
+            {
+                if (invitacion.GetIdMiembroSolicitado() == miembro.GetId())
+                {
+                    miembro.AgregarInvitacionRecibida(invitacion);
+                }
+            }
+        }
+
+        //Ve la lista de invitaciones del sistema. Si alguna de las invitaciones las envio el miembro y estan con estado aceptado
+        //entonces se agrega al miembro solicitado a los amigos del solicitante
+        public void ActualizarListaDeAmigos(Miembro miembro)
+        {
+            foreach (Invitacion invitacion in this._invitaciones)
+            {
+                if (invitacion.GetIdMiembroSolicitante() == miembro.GetId() && invitacion.GetEstadoSolicitud() == EstadoSolicitud.APROBADA)
+                {
+                    int idMiembroSolicitado = invitacion.GetIdMiembroSolicitado();
+                    Miembro miembroSolicitado = GetMiembroById(idMiembroSolicitado);
+                    miembro.AgregarAmigo(miembroSolicitado);
+                }
+            }
+        }
+
 
 
         #endregion

@@ -9,10 +9,8 @@ namespace Dominio
     public class Miembro
     {
         #region Atributos
-        //ESTO ESTA RARO, PREGUNTAR!
-        private Sistema _sistema;
 
-        private static int s_ultimoId = 1;
+        private static int s_ultimoId = 0;
         private int _id;
         private string _email;
         private string _contrasenia;
@@ -26,9 +24,8 @@ namespace Dominio
         #endregion
 
         #region Constructor
-        public Miembro(Sistema sistema, string email, string contrasenia, string nombre, DateOnly fechaDeNacimiento, bool bloqueado)
+        public Miembro(string email, string contrasenia, string nombre, DateOnly fechaDeNacimiento, bool bloqueado)
         {
-            this._sistema = sistema;
             this._id = s_ultimoId++;
             this._email = email;
             this._contrasenia = contrasenia;
@@ -98,62 +95,19 @@ namespace Dominio
 
         #region Metodos
 
-        public void EnviarInvitacion(int idMiembroSolicitado)
+        public void AgregarAmigo(Miembro miembro)
         {
-            Invitacion nuevaInvitacion = new Invitacion(this._id, idMiembroSolicitado, DateTime.Now);
-            this._sistema.AgregarInvitacion(nuevaInvitacion);
+            this._listaDeAmigos.Add(miembro);
         }
 
-
-        //Recibe un objeto invitacion y agrega al solicitante de la invitacion a la lista de amigos
-        //Cambia el estado de la invitacion a aceptada.
-        //Saca la invitacion de la lista de invitaciones recibidas del Miembro.
-        public void AceptarInvitacion(Invitacion invitacion)
+        public void AgregarInvitacionRecibida(Invitacion invitacion)
         {
-            int idSolicitante = invitacion.GetIdMiembroSolicitante();
-            Miembro solicitante = this._sistema.GetMiembroById(idSolicitante);
-            this._listaDeAmigos.Add(solicitante);
-
-            invitacion.SetEstadoSolicitud(EstadoSolicitud.APROBADA);
-
-            this._invitacionesRecibidas.Remove(invitacion);
+            this._invitacionesRecibidas.Add(invitacion);
         }
 
-        //Cambia el estado de la invitacion a Rechazada.
-        //Saca la invitacion de la lista de invitaciones recibidas del Miembro.
-        public void RechazarInvitacion(Invitacion invitacion) 
+        public void AgregarInvitacionEnviada(Invitacion invitacion)
         {
-            invitacion.SetEstadoSolicitud(EstadoSolicitud.RECHAZADA);
-            this._invitacionesRecibidas.Remove(invitacion);
-        }
-
-
-        //Ve en la lista de invitaciones que existen en el sistema, si alguna de las 
-        //invitaciones pertenece a al miembro la agrega a su lista de invitaciones recibidas.
-        public void ActualizarListaDeInvitaciones()
-        {
-            foreach(Invitacion invitacion in this._sistema.GetInvitaciones())
-            {
-                if (invitacion.GetIdMiembroSolicitado() == this._id)
-                {
-                    this._invitacionesRecibidas.Add(invitacion);
-                }
-            }
-        }
-
-        //Ve la lista de invitaciones del sistema. Si alguna de las invitaciones las envio el miembro y estan con estado aceptado
-        //entonces se agrega al miembro solicitado a los amigos del solicitante
-        public void ActualizarListaDeAmigos()
-        {
-            foreach (Invitacion invitacion in this._sistema.GetInvitaciones())
-            {
-                if (invitacion.GetIdMiembroSolicitante() == this._id && invitacion.GetEstadoSolicitud() == EstadoSolicitud.APROBADA)
-                {
-                    int idMiembroSolicitado = invitacion.GetIdMiembroSolicitado();
-                    Miembro miembroSolicitado = _sistema.GetMiembroById(idMiembroSolicitado);
-                    this._listaDeAmigos.Add(miembroSolicitado);
-                }
-            }
+            this._invitacionesEnviadas.Add(invitacion);
         }
 
 
