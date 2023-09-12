@@ -4,13 +4,13 @@
 
 ASTAH:
 
---- Agregar metodo VA a Publicacion (hecho)
+--- Agregar metodo VA a Publicacion |LISTO|
 
 METODOS
 
---- Miembro - Solicitud de amistad enviar invitacion * MARTIN * LISTO
+--- Miembro - Solicitud de amistad enviar invitacion * MARTIN * |LISTO|
 
---- Miembro - Aceptar Invitacion * MARTIN * LISTO
+--- Miembro - Aceptar Invitacion * MARTIN * |LISTO|
 
 --- Administrador - Bloquear Miembro * PEDRO *
 

@@ -71,7 +71,7 @@ sistema.AgregarPublicacion(post1);
 //ListarMiembros();
 
 
-//Pruebas con Invitaciones. Funciona Enviar Invitacion, 
+//Pruebas con Invitaciones. Funciona: Enviar Invitacion, Rechazar Invitacion y las listas de amigos y de invitaciones
 
 ListarAmigos(Juan);
 Luis.EnviarInvitacion(Juan.GetId());
