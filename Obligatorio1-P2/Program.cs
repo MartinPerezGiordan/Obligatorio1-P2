@@ -55,12 +55,12 @@ sistema.AgregarInvitacion(invitacion1);
 
 #region Post
 Post post1 = new Post(Marta, "Me gusta la paella!", "paella.jpg");
-sistema.AgregarPost(post1);
+sistema.AgregarPublicacion(post1);
 Post post2 = new Post(Jose, "Esta lloviendo, lleven paragua!!", "diaNublado.jpg");
-sistema.AgregarPost(post2);
+sistema.AgregarPublicacion(post2);
 
 sistema.AgregarPostMiembro(1, "hola", "hola.jpg");
-sistema.AgregarComentarioPost(1, 6, "que buena foto");
+sistema.AgregarComentarioPost(0, 6, "que buena foto");
 
 foreach (Publicacion publicacion in sistema.GetPublicaciones())
 {
@@ -79,11 +79,18 @@ foreach (Publicacion publicacion in sistema.GetPublicaciones())
 #endregion
 
 //Probando bloquear miembro
-sistema.BloquearMiembro(1, true);
+Console.WriteLine(Juan.GetBloqueado());
+sistema.BloquearMiembro(0, true);
 Console.WriteLine(Juan.GetBloqueado());
 
-sistema.CensurarPost(2, true);
-Console.WriteLine(post1.GetCensurado());
+foreach(Comentario comentario in post1.GetComentarios())
+{
+    Console.WriteLine(comentario.GetAutorNombre());
+}
+
+
+//sistema.CensurarPost(2, true);
+//Console.WriteLine(post1.GetCensurado());
 
 
 

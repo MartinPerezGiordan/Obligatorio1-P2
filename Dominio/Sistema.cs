@@ -93,32 +93,21 @@ namespace Dominio
         // Metod que permite bloquear o desbloquear a un miembro
         public void BloquearMiembro(int idMiembro, bool bloquear)
         {
-            foreach (Miembro unMiembro in this.GetMiembros())
-            {
-                if(unMiembro.GetId() == idMiembro)
-                {
-                    unMiembro.SetBloqueado(bloquear);
-                }
-            }
+            this.GetMiembroById(idMiembro).SetBloqueado(bloquear);
         }
 
         //Metod que permite cambiar el valor del atributo censurado de un post
         public void CensurarPost(int idPost, bool censurar)
         {
-            foreach (Post unPost in this.GetPosts())
-            {
-                if (unPost.GetId() == idPost)
-                {
-                    unPost.SetCensurado(censurar);
-                }
-            }
+            this.GetPostById(idPost).SetCensurado(censurar);
         }
 
         // Agregar un post con id de miembro
         public void AgregarPostMiembro(int idMiembro, string texto, string nombreImagen)
         {
             Post nuevoPost = new Post(this.GetMiembroById(idMiembro), texto, nombreImagen);
-            this.AgregarPublicacion(nuevoPost);  
+            this.AgregarPublicacion(nuevoPost);
+            this.AgregarPost(nuevoPost);
         }
 
         // Agregar un comentario con id de post y id de miembro que comenta
@@ -126,7 +115,7 @@ namespace Dominio
         {
             Comentario nuevoComentario = new Comentario(this.GetMiembroById(idMiembro), texto);
             this.GetPostById(idPublicacion).AgregarComentario(nuevoComentario);
-
+            this.AgregarPublicacion(nuevoComentario);
         }
 
 
