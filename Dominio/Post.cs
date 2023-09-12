@@ -38,19 +38,14 @@ namespace Dominio
 
         #region Get y Set
 
-        //public int GetId()
-        //{
-        //    return this._id;
-        //}
+        public int GetId()
+        {
+            return this._id;
+        }
 
         public bool GetCensurado()
         {
             return this._censurado;
-        }
-
-        public void SetCensurado(bool censurar)
-        {
-            this._censurado = censurar;
         }
 
         public List<Comentario> GetComentarios()
@@ -65,6 +60,11 @@ namespace Dominio
         public void AgregarComentario(Comentario comentario)
         {
             this._comentarios.Add(comentario);
+        }
+
+        public void SetCensurado(bool censurar)
+        {
+            this._censurado = censurar;
         }
 
         #endregion

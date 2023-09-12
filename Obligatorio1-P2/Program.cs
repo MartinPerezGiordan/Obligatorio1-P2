@@ -61,14 +61,15 @@ sistema.AgregarPublicacion(post2);
 
 sistema.AgregarPostMiembro(1, "hola", "hola.jpg");
 sistema.AgregarComentarioPost(0, 6, "que buena foto");
+sistema.AgregarComentarioPost(0, 1, "Hola");
 
-foreach (Publicacion publicacion in sistema.GetPublicaciones())
-{
-    
-   Console.WriteLine(publicacion.GetAutorNombre());
-   
-    
-}
+//foreach (Publicacion publicacion in sistema.GetPublicaciones())
+//{
+
+//   Console.WriteLine(publicacion.GetAutorNombre());
+
+
+//}
 
 
 #endregion
@@ -83,14 +84,17 @@ Console.WriteLine(Juan.GetBloqueado());
 sistema.BloquearMiembro(0, true);
 Console.WriteLine(Juan.GetBloqueado());
 
-foreach(Comentario comentario in post1.GetComentarios())
+//Probando ver comentarios en un post
+foreach (Comentario comentario in sistema.GetPostById(0).GetComentarios())
 {
-    Console.WriteLine(comentario.GetAutorNombre());
+    Console.WriteLine(comentario.GetTexto());
 }
 
+//Probando censurar Post
+Console.WriteLine(sistema.GetPostById(0).GetCensurado());
+sistema.CensurarPost(0, true);
+Console.WriteLine(sistema.GetPostById(0).GetCensurado());
 
-//sistema.CensurarPost(2, true);
-//Console.WriteLine(post1.GetCensurado());
 
 
 
