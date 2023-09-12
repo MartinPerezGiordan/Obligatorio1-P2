@@ -38,10 +38,10 @@ namespace Dominio
 
         #region Get y Set
 
-        public int GetId()
-        {
-            return this._id;
-        }
+        //public int GetId()
+        //{
+        //    return this._id;
+        //}
 
         public bool GetCensurado()
         {

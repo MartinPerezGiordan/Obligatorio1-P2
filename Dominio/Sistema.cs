@@ -12,6 +12,7 @@ namespace Dominio
         #region Atributos
         private List<Miembro> _miembros;
         private List<Administrador> _administradores;
+        private List<Publicacion> _publicaciones;
         private List<Invitacion> _invitaciones;
         private List<Post> _posts;
 
@@ -23,6 +24,7 @@ namespace Dominio
             this._miembros = new List<Miembro>();
             this._administradores = new List<Administrador>();
             this._invitaciones = new List<Invitacion>();
+            this._publicaciones = new List<Publicacion>();
             this._posts = new List<Post>();
         }
         #endregion
@@ -47,6 +49,11 @@ namespace Dominio
         public List<Post> GetPosts()
         {
             return this._posts;
+        }
+
+        public List<Publicacion> GetPublicaciones()
+        {
+            return this._publicaciones;
         }
         #endregion
 
@@ -102,31 +109,61 @@ namespace Dominio
                 if (unMiembro.GetId() == idMiembro)
                 {
                     Post nuevoPost = new Post(unMiembro, texto, nombreImagen);
-                    AgregarPost(nuevoPost);
+                    this.AgregarPublicacion(nuevoPost);
                 }
             }
             
         }
 
         // Agregar un comentario con id de post y id de miembro que comenta
+        //public void AgregarComentarioPost(int idPost, int idMiembro, string texto)
+        //{
+        //    foreach (Post unPost in this.GetPosts())
+        //    {
+        //        if (unPost.GetId() == idPost)
+        //        {
+        //            Console.WriteLine("hola");
+        //            foreach (Miembro unMiembro in this.GetMiembros())
+        //            {
+        //                if (unMiembro.GetId() == idMiembro)
+        //                {
+        //                    Comentario nuevoComentario = new Comentario(unMiembro, texto);
+        //                    Console.WriteLine("hola");
+
+        //                    unPost.AgregarComentario(nuevoComentario);
+        //                    this.AgregarPublicacion(nuevoComentario);
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //}
         public void AgregarComentarioPost(int idPost, int idMiembro, string texto)
         {
             foreach (Post unPost in this.GetPosts())
             {
                 if (unPost.GetId() == idPost)
                 {
+                    Console.WriteLine("hola");
                     foreach (Miembro unMiembro in this.GetMiembros())
                     {
                         if (unMiembro.GetId() == idMiembro)
                         {
                             Comentario nuevoComentario = new Comentario(unMiembro, texto);
+                            Console.WriteLine("hola");
+
                             unPost.AgregarComentario(nuevoComentario);
+                            this.AgregarPublicacion(nuevoComentario);
                         }
                     }
                 }
             }
 
         }
+
+
+        // miSistema.CrearInvitacion(usuarioSolicitante, usuarioSolicitado)
+
         #endregion
 
         #region Metodos Invitacion
@@ -140,10 +177,23 @@ namespace Dominio
 
         #region Metodos Publicacion
 
-        public void AgregarPost(Post post)
+        //public void AgregarPost(Post post)
+        //{
+        //    this._posts.Add(post);
+        //    //this._publicaciones.Add(post);
+        //}
+
+        //public void AgregarComment(Comentario comentario)
+        //{
+        //    this._publicaciones.Add(comentario);
+        //}
+
+        public void AgregarPublicacion(Publicacion publicacion)
         {
-            this._posts.Add(post);
+            this._publicaciones.Add(publicacion);
         }
+
+
 
         #endregion
 

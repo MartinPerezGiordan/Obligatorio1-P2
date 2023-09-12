@@ -47,23 +47,25 @@ sistema.AgregarInvitacion(invitacion1);
 #region Publicaciones
 
 #region Comentarios
-Comentario comentario1 = new Comentario(Marta, "Gracias por avisar <3");
-List<Comentario> comentarios1 = new List<Comentario>();
-comentarios1.Add(comentario1);
+//Comentario comentario1 = new Comentario(Marta, "Gracias por avisar <3");
+//List<Comentario> comentarios1 = new List<Comentario>();
+//comentarios1.Add(comentario1);
 
 #endregion
 
 #region Post
 Post post1 = new Post(Marta, "Me gusta la paella!", "paella.jpg");
-Post post2 = new Post(Jose, "Esta lloviendo, lleven paragua!!", "diaNublado.jpg",comentarios1);
+sistema.AgregarPublicacion(post1);
+Post post2 = new Post(Jose, "Esta lloviendo, lleven paragua!!", "diaNublado.jpg");
+sistema.AgregarPublicacion(post2);
 
 sistema.AgregarPostMiembro(1, "hola", "hola.jpg");
-foreach (Post unPost in sistema.GetPosts())
-{
-    Console.WriteLine(unPost.GetAutorNombre());
-}
+//foreach (Post unPost in sistema.GetPosts())
+//{
+//    Console.WriteLine(unPost.GetAutorNombre());
+//}
 
-sistema.AgregarComentarioPost(4, 2, "que buena foto");
+sistema.AgregarComentarioPost(1, 6, "que buena foto");
 foreach (Post unPost in sistema.GetPosts())
 {
     foreach (Comentario unComentario in unPost.GetComentarios())
@@ -71,6 +73,14 @@ foreach (Post unPost in sistema.GetPosts())
         Console.WriteLine(unComentario.GetAutorNombre());
     }
 }
+
+foreach (Publicacion publicacion in sistema.GetPublicaciones())
+{
+    
+   Console.WriteLine(publicacion.GetAutorNombre());
+    
+}
+
 
 #endregion
 

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Dominio
 {
-	public class Publicacion
+	public abstract class Publicacion
 	{
         #region Atributos
 
