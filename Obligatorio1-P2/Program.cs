@@ -55,29 +55,18 @@ sistema.AgregarInvitacion(invitacion1);
 
 #region Post
 Post post1 = new Post(Marta, "Me gusta la paella!", "paella.jpg");
-sistema.AgregarPublicacion(post1);
+sistema.AgregarPost(post1);
 Post post2 = new Post(Jose, "Esta lloviendo, lleven paragua!!", "diaNublado.jpg");
-sistema.AgregarPublicacion(post2);
+sistema.AgregarPost(post2);
 
 sistema.AgregarPostMiembro(1, "hola", "hola.jpg");
-//foreach (Post unPost in sistema.GetPosts())
-//{
-//    Console.WriteLine(unPost.GetAutorNombre());
-//}
-
 sistema.AgregarComentarioPost(1, 6, "que buena foto");
-foreach (Post unPost in sistema.GetPosts())
-{
-    foreach (Comentario unComentario in unPost.GetComentarios())
-    {
-        Console.WriteLine(unComentario.GetAutorNombre());
-    }
-}
 
 foreach (Publicacion publicacion in sistema.GetPublicaciones())
 {
     
    Console.WriteLine(publicacion.GetAutorNombre());
+   
     
 }
 

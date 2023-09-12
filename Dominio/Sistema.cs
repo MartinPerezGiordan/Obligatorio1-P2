@@ -65,7 +65,22 @@ namespace Dominio
             //Falta agregar Validacion
             this._miembros.Add(miembro);
         }
+
+        public Miembro GetMiembroById(int id)
+        {
+            return this._miembros[id];
+        }
         #endregion
+
+        public Publicacion GetPublicacionById(int id)
+        {
+            return this._publicaciones[id];
+        }
+
+        public Post GetPostById(int id)
+        {
+            return this._posts[id];
+        }
 
         #region Metodos Administrador
 
@@ -87,8 +102,6 @@ namespace Dominio
             }
         }
 
-       
-
         //Metod que permite cambiar el valor del atributo censurado de un post
         public void CensurarPost(int idPost, bool censurar)
         {
@@ -104,60 +117,15 @@ namespace Dominio
         // Agregar un post con id de miembro
         public void AgregarPostMiembro(int idMiembro, string texto, string nombreImagen)
         {
-            foreach (Miembro unMiembro in this.GetMiembros())
-            {
-                if (unMiembro.GetId() == idMiembro)
-                {
-                    Post nuevoPost = new Post(unMiembro, texto, nombreImagen);
-                    this.AgregarPublicacion(nuevoPost);
-                }
-            }
-            
+            Post nuevoPost = new Post(this.GetMiembroById(idMiembro), texto, nombreImagen);
+            this.AgregarPublicacion(nuevoPost);  
         }
 
         // Agregar un comentario con id de post y id de miembro que comenta
-        //public void AgregarComentarioPost(int idPost, int idMiembro, string texto)
-        //{
-        //    foreach (Post unPost in this.GetPosts())
-        //    {
-        //        if (unPost.GetId() == idPost)
-        //        {
-        //            Console.WriteLine("hola");
-        //            foreach (Miembro unMiembro in this.GetMiembros())
-        //            {
-        //                if (unMiembro.GetId() == idMiembro)
-        //                {
-        //                    Comentario nuevoComentario = new Comentario(unMiembro, texto);
-        //                    Console.WriteLine("hola");
-
-        //                    unPost.AgregarComentario(nuevoComentario);
-        //                    this.AgregarPublicacion(nuevoComentario);
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //}
-        public void AgregarComentarioPost(int idPost, int idMiembro, string texto)
+        public void AgregarComentarioPost(int idPublicacion, int idMiembro, string texto)
         {
-            foreach (Post unPost in this.GetPosts())
-            {
-                if (unPost.GetId() == idPost)
-                {
-                    Console.WriteLine("hola");
-                    foreach (Miembro unMiembro in this.GetMiembros())
-                    {
-                        if (unMiembro.GetId() == idMiembro)
-                        {
-                            Comentario nuevoComentario = new Comentario(unMiembro, texto);
-                            Console.WriteLine("hola");
-
-                            unPost.AgregarComentario(nuevoComentario);
-                            this.AgregarPublicacion(nuevoComentario);
-                        }
-                    }
-                }
-            }
+            Comentario nuevoComentario = new Comentario(this.GetMiembroById(idMiembro), texto);
+            this.GetPostById(idPublicacion).AgregarComentario(nuevoComentario);
 
         }
 
@@ -177,22 +145,15 @@ namespace Dominio
 
         #region Metodos Publicacion
 
-        //public void AgregarPost(Post post)
-        //{
-        //    this._posts.Add(post);
-        //    //this._publicaciones.Add(post);
-        //}
-
-        //public void AgregarComment(Comentario comentario)
-        //{
-        //    this._publicaciones.Add(comentario);
-        //}
 
         public void AgregarPublicacion(Publicacion publicacion)
         {
             this._publicaciones.Add(publicacion);
         }
-
+        public void AgregarPost(Post publicacion)
+        {
+            this._posts.Add(publicacion);
+        }
 
 
         #endregion
