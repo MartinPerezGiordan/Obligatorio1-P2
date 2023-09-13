@@ -170,6 +170,8 @@ namespace Dominio
             this.GetPostById(idPost).SetCensurado(censurar);
         }
 
+        #region Post y Comentario
+
         // Agregar un post con id de miembro
         public void AgregarPostMiembro(int idMiembro, string texto, string nombreImagen)
         {
@@ -187,7 +189,7 @@ namespace Dominio
         }
 
         // Busqueda de publicaciones de un miembro por Email
-        public string GetPublicacionesPorEmail(string email)
+        public List<Publicacion> GetPublicacionesPorEmail(string email)
         {
             List<Publicacion> publicaciones = new List<Publicacion>();
             foreach(Publicacion unaPublicacion in this.GetPublicaciones())
@@ -198,37 +200,34 @@ namespace Dominio
                 }
 
             }
-            string comentarios = this.IdentifyComentarios(publicaciones);
-            string posts = this.IdentifyPosts(publicaciones);
-            string postsYComentarios = $"Las publicaciones del Miembro con email {email} son: {Environment.NewLine}Posts: {Environment.NewLine}{posts} {Environment.NewLine}Comentarios: {Environment.NewLine}{comentarios}"; 
-            return postsYComentarios;
+            return publicaciones;
         }
 
-        // Posible solucion para identificar comentarios en una lista de publicaciones
-        public string IdentifyComentarios(List<Publicacion> publicaciones)
+        // Identificar comentarios en una lista de publicaciones
+        public List<Comentario> IdentificarComentarios(List<Publicacion> publicaciones)
         {
-            string comentarios = "";
+            List<Comentario> comentarios = new List<Comentario>();
             for(int i=0; i < publicaciones.Count; i++)
             {
                 if (publicaciones[i] is Comentario)
                 {
                     Comentario comment = (Comentario)publicaciones[i];
-                    comentarios += comment.ToString();
+                    comentarios.Add(comment);
                 }
             }
             return comentarios;
         }
 
-        // Posible solucion para identificar posts en una lista de publicaciones
-        public string IdentifyPosts(List<Publicacion> publicaciones)
+        // Identificar posts en una lista de publicaciones
+        public List<Post> IdentificarPosts(List<Publicacion> publicaciones)
         {
-            string posts = "";
+            List<Post> posts = new List<Post>();
             for (int i = 0; i < publicaciones.Count; i++)
             {
                 if (publicaciones[i] is Post)
                 {
                     Post post = (Post)publicaciones[i];
-                    posts += post.ToString();
+                    posts.Add(post);
                 }
             }
             return posts;
@@ -260,9 +259,10 @@ namespace Dominio
                 Publicacion publicacion = this.GetPublicacionById(unComentario.GetIdPost());
                 posts.Add(publicacion);
             }
-            return posts;
+            
+            return posts.Distinct().ToList();
         }
-
+        
         public string GetStringPosts(List<Publicacion> posts)
         {
             string postString = "";
@@ -278,6 +278,8 @@ namespace Dominio
             string posts = this.GetStringPosts(this.GetPostPorComentarios(this.GetComentariosPorEmail(email)));
             return posts;
         }
+
+        #endregion
 
 
         // miSistema.CrearInvitacion(usuarioSolicitante, usuarioSolicitado)

@@ -44,77 +44,90 @@ Invitacion invitacionDeLaura = new Invitacion(Laura.GetId(), Juan.GetId(), new D
 sistema.AgregarInvitacion(invitacionDeLaura);
 #endregion
 
-#region Publicaciones
+#region Post y Comentarios
 
-#region Comentarios
-//Comentario comentario1 = new Comentario(Marta, "Gracias por avisar <3");
-//List<Comentario> comentarios1 = new List<Comentario>();
-//comentarios1.Add(comentario1);
+sistema.AgregarPostMiembro(1, "Post 1", "Uno.jpg");
+sistema.AgregarPostMiembro(2, "Post 2", "Dos.jpg");
+sistema.AgregarPostMiembro(2, "Post 3", "tres.jpg");
+sistema.AgregarPostMiembro(3, "Post 4", "cuatro.jpg");
+sistema.AgregarPostMiembro(8, "Post 5", "cinco.jpg");
 
-#endregion
+sistema.AgregarComentarioPost(0, 8, "Comentario 1 post 1");
+sistema.AgregarComentarioPost(0, 1, "Comentario 2 post 1");
+sistema.AgregarComentarioPost(0, 2, "Comentario 3 post 1");
 
-#region Post
-Post post1 = new Post(Marta, "Me gusta la paella!", "paella.jpg");
-Post post3 = new Post(Marta, "222Me gusta la paella!", "paella.jpg");
-Post post4 = new Post(Marta, "333Me gusta la paella!", "paella.jpg");
-sistema.AgregarPublicacion(post1);
-sistema.AgregarPublicacion(post3);
-sistema.AgregarPublicacion(post4);
-Post post2 = new Post(Jose, "Esta lloviendo, lleven paragua!!", "diaNublado.jpg");
-sistema.AgregarPublicacion(post2);
+sistema.AgregarComentarioPost(1, 0, "Comentario 1 post 2");
+sistema.AgregarComentarioPost(1, 1, "Comentario 2 post 2");
+sistema.AgregarComentarioPost(1, 8, "Comentario 3 post 3");
 
-sistema.AgregarPostMiembro(1, "hola", "hola.jpg");
-sistema.AgregarPostMiembro(1, "hola2", "hola.jpg");
-sistema.AgregarComentarioPost(0, 8, "que buena foto");
-sistema.AgregarComentarioPost(0, 8, "Hola");
-sistema.AgregarComentarioPost(1, 8, "9Hola");
-sistema.AgregarComentarioPost(1, 8, "8Hola");
+sistema.AgregarComentarioPost(2, 8, "Comentario 1 post 3");
+sistema.AgregarComentarioPost(2, 4, "Comentario 2 post 3");
+sistema.AgregarComentarioPost(2, 5, "Comentario 3 post 3");
 
+sistema.AgregarComentarioPost(3, 2, "Comentario 1 post 4");
+sistema.AgregarComentarioPost(3, 3, "Comentario 2 post 4");
+sistema.AgregarComentarioPost(3, 8, "Comentario 3 post 4");
 
-
-#endregion
-
+sistema.AgregarComentarioPost(4, 6, "Comentario 1 post 5");
+sistema.AgregarComentarioPost(4, 5, "Comentario 2 post 5");
+sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
 
 #endregion
 
 #endregion
 
-<<<<<<< HEAD
-Console.WriteLine(sistema.menu2("correo9@example.com"));
+#region Pruebas
 
-//Console.WriteLine(sistema.GetPublicacionesPorEmail("correo9@example.com"));
-//// Identificar Comentarios prueba
-//Console.WriteLine(sistema.IdentifyComentarios(sistema.GetPublicacionesPorEmail("correo9@example.com")));
+/* PRUEBA DE GetPublicacionesPorEmail, IdentificarComentarios, IdentificarPosts
 
-//// Identificar Posts prueba
-//Console.WriteLine(sistema.IdentifyPosts(sistema.GetPublicacionesPorEmail("correo9@example.com")));
+foreach(Publicacion publicacion in sistema.GetPublicacionesPorEmail("correo9@example.com"))
+{
+    Console.WriteLine(publicacion.ToString());
+}
+Console.WriteLine("Fin Publicaciones");
 
-////Probando bloquear miembro
-//Console.WriteLine(Juan.GetBloqueado());
-//sistema.BloquearMiembro(0, true);
-//Console.WriteLine(Juan.GetBloqueado());
+foreach (Comentario comentario in sistema.IdentificarComentarios(sistema.GetPublicacionesPorEmail("correo9@example.com")))
+{
+    Console.WriteLine(comentario.ToString());
+}
+Console.WriteLine("Fin Comentarios");
 
-////Probando ver comentarios en un post
-//foreach (Comentario comentario in sistema.GetPostById(1).GetComentarios())
-//{
-//    Console.WriteLine(comentario.GetAutorNombre());
-//}
+foreach (Post post in sistema.IdentificarPosts(sistema.GetPublicacionesPorEmail("correo9@example.com")))
+{
+    Console.WriteLine(post.ToString());
+}
+Console.WriteLine("Fin Posts");
 
-////Probando censurar Post
-//Console.WriteLine(sistema.GetPostById(0).GetCensurado());
-//sistema.CensurarPost(0, true);
-//Console.WriteLine(sistema.GetPostById(0).GetCensurado());
+*/
 
-=======
-//Probando bloquear miembro
-/*sistema.BloquearMiembro(1, true);
+
+/* PRUEBA BloquearMiembro
+
+Console.WriteLine(Juan.GetBloqueado());
+sistema.BloquearMiembro(0, true);
 Console.WriteLine(Juan.GetBloqueado());
 
-sistema.CensurarPost(2, true);
-Console.WriteLine(post1.GetCensurado());
 */
->>>>>>> origin/master
 
+
+/* PRUEBA GetComentarios
+
+foreach (Comentario comentario in sistema.GetPostById(1).GetComentarios())
+{
+    Console.WriteLine(comentario.GetAutorNombre());
+}
+
+*/
+
+/* PRUEBA CensurarPost
+
+Console.WriteLine(sistema.GetPostById(0).GetCensurado());
+sistema.CensurarPost(0, true);
+Console.WriteLine(sistema.GetPostById(0).GetCensurado());
+
+*/
+
+#endregion
 
 #region Menu
 
@@ -135,7 +148,7 @@ ListarInvitaciones(Juan);
 sistema.AceptarInvitacion(invitacionDeLaura);
 ListarAmigos(Juan);
 ListarAmigos(Laura);
-
+Console.ReadLine();
 
 
 #endregion
