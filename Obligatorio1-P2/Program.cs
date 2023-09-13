@@ -79,7 +79,9 @@ sistema.AgregarComentarioPost(1, 8, "8Hola");
 
 #endregion
 
-Console.WriteLine(sistema.GetPublicacionesPorEmail("correo9@example.com"));
+Console.WriteLine(sistema.menu2("correo9@example.com"));
+
+//Console.WriteLine(sistema.GetPublicacionesPorEmail("correo9@example.com"));
 //// Identificar Comentarios prueba
 //Console.WriteLine(sistema.IdentifyComentarios(sistema.GetPublicacionesPorEmail("correo9@example.com")));
 

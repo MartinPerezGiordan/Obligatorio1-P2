@@ -2,8 +2,15 @@
 {
     public class Comentario : Publicacion
     {
-        public Comentario(Miembro autor, string texto) : base(autor, texto)
+        private int _idPost;
+        public Comentario(int idPost, Miembro autor, string texto) : base(autor, texto)
         {
+            this._idPost = idPost;
+        }
+
+        public int GetIdPost()
+        {
+            return this._idPost;
         }
 
         public override string ToString()

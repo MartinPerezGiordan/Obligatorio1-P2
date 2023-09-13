@@ -125,7 +125,7 @@ namespace Dominio
         // Agregar un comentario con id de post y id de miembro que comenta
         public void AgregarComentarioPost(int idPublicacion, int idMiembro, string texto)
         {
-            Comentario nuevoComentario = new Comentario(this.GetMiembroById(idMiembro), texto);
+            Comentario nuevoComentario = new Comentario(idPublicacion, this.GetMiembroById(idMiembro), texto);
             this.GetPostById(idPublicacion).AgregarComentario(nuevoComentario);
             this.AgregarPublicacion(nuevoComentario);
         }
@@ -178,6 +178,50 @@ namespace Dominio
             return posts;
         }
 
+        public List<Comentario> GetComentariosPorEmail(string email)
+        {
+            List<Comentario> comentarios = new List<Comentario>();
+            foreach (Publicacion unaPublicacion in this.GetPublicaciones())
+            {
+                if (unaPublicacion.GetAutor().GetEmail() == email)
+                {
+                    if (unaPublicacion is Comentario)
+                    {
+                        Comentario comment = (Comentario)unaPublicacion;
+                        comentarios.Add(comment);
+                    }
+                }
+
+            }
+            return comentarios;
+        }
+
+        public List<Publicacion> GetPostPorComentarios(List<Comentario> comentarios)
+        {
+            List<Publicacion> posts = new List<Publicacion>();
+            foreach (Comentario unComentario in comentarios)
+            {
+                Publicacion publicacion = this.GetPublicacionById(unComentario.GetIdPost());
+                posts.Add(publicacion);
+            }
+            return posts;
+        }
+
+        public string GetStringPosts(List<Publicacion> posts)
+        {
+            string postString = "";
+            foreach(Publicacion unPost in posts)
+            {
+                postString += unPost.ToString();
+            }
+            return postString;
+        }
+
+        public string menu2(string email)
+        {
+            string posts = this.GetStringPosts(this.GetPostPorComentarios(this.GetComentariosPorEmail(email)));
+            return posts;
+        }
 
 
         // miSistema.CrearInvitacion(usuarioSolicitante, usuarioSolicitado)
