@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Dominio
 {
@@ -24,6 +25,7 @@ namespace Dominio
             this._privado = false;
             this._censurado = false;
             this._comentarios = new List<Comentario>();
+            this._nombreImagen = nombreImagen;
 
         }
 
@@ -32,17 +34,14 @@ namespace Dominio
             this._privado = false;
             this._censurado = false;
             this._comentarios = comentarios;
+            this._nombreImagen = nombreImagen;
         }
 
         #endregion
 
         #region Get y Set
 
-        public int GetId()
-        {
-            return this._id;
-        }
-
+        
         public bool GetCensurado()
         {
             return this._censurado;
@@ -51,6 +50,11 @@ namespace Dominio
         public List<Comentario> GetComentarios()
         {
             return this._comentarios;
+        }
+
+        public string GetNombreImagen()
+        {
+            return this._nombreImagen;
         }
 
         #endregion
@@ -65,6 +69,15 @@ namespace Dominio
         public void SetCensurado(bool censurar)
         {
             this._censurado = censurar;
+        }
+
+        #endregion
+
+        #region Override
+
+        public override string ToString()
+        {
+            return $"Id: {this.GetId()} {Environment.NewLine}Autor: {this.GetAutorNombre()} {Environment.NewLine}Texto: {this.GetTexto()} {Environment.NewLine}Fecha: {this.GetFechaString()} {Environment.NewLine}Nombre Imagen: {this.GetNombreImagen()}{Environment.NewLine}{Environment.NewLine}";
         }
 
         #endregion

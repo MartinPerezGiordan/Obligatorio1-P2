@@ -57,6 +57,11 @@ namespace Dominio
             return this._fecha;
         }
 
+        public string GetFechaString()
+        {
+            return this._fecha.ToString();
+        }
+
         #endregion
     }
 }

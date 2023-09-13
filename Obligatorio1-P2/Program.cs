@@ -78,11 +78,13 @@ sistema.AgregarComentarioPost(1, 8, "8Hola");
 #endregion
 
 #endregion
-// Identificar Comentarios prueba
-Console.WriteLine(sistema.IdentifyComentarios(sistema.GetPublicacionesPorEmail("correo9@example.com")));
 
-// Identificar Posts prueba
-Console.WriteLine(sistema.IdentifyPosts(sistema.GetPublicacionesPorEmail("correo9@example.com")));
+Console.WriteLine(sistema.GetPublicacionesPorEmail("correo9@example.com"));
+//// Identificar Comentarios prueba
+//Console.WriteLine(sistema.IdentifyComentarios(sistema.GetPublicacionesPorEmail("correo9@example.com")));
+
+//// Identificar Posts prueba
+//Console.WriteLine(sistema.IdentifyPosts(sistema.GetPublicacionesPorEmail("correo9@example.com")));
 
 ////Probando bloquear miembro
 //Console.WriteLine(Juan.GetBloqueado());

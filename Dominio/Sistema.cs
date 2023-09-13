@@ -131,7 +131,7 @@ namespace Dominio
         }
 
         // Busqueda de publicaciones de un miembro por Email
-        public List<Publicacion> GetPublicacionesPorEmail(string email)
+        public string GetPublicacionesPorEmail(string email)
         {
             List<Publicacion> publicaciones = new List<Publicacion>();
             foreach(Publicacion unaPublicacion in this.GetPublicaciones())
@@ -142,7 +142,10 @@ namespace Dominio
                 }
 
             }
-            return publicaciones;
+            string comentarios = this.IdentifyComentarios(publicaciones);
+            string posts = this.IdentifyPosts(publicaciones);
+            string postsYComentarios = $"Las publicaciones del Miembro con email {email} son: {Environment.NewLine}Posts: {Environment.NewLine}{posts} {Environment.NewLine}Comentarios: {Environment.NewLine}{comentarios}"; 
+            return postsYComentarios;
         }
 
         // Posible solucion para identificar comentarios en una lista de publicaciones
@@ -154,7 +157,7 @@ namespace Dominio
                 if (publicaciones[i] is Comentario)
                 {
                     Comentario comment = (Comentario)publicaciones[i];
-                    comentarios += comment.GetTexto();
+                    comentarios += comment.ToString();
                 }
             }
             return comentarios;
@@ -169,7 +172,7 @@ namespace Dominio
                 if (publicaciones[i] is Post)
                 {
                     Post post = (Post)publicaciones[i];
-                    posts += post.GetTexto();
+                    posts += post.ToString();
                 }
             }
             return posts;
