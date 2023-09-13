@@ -97,11 +97,11 @@ namespace Dominio
             int idSolicitado = invitacion.GetIdMiembroSolicitado();
             Miembro solicitado = GetMiembroById(idSolicitado);
             solicitado.AgregarAmigo(solicitante);
+            solicitante.AgregarAmigo(solicitado);
 
             invitacion.SetEstadoSolicitud(EstadoSolicitud.APROBADA);
 
         }
-
 
         //Cambia el estado de la invitacion a Rechazada.
         public void RechazarInvitacion(Invitacion invitacion)
@@ -122,20 +122,7 @@ namespace Dominio
             }
         }
 
-        //Ve la lista de invitaciones del sistema. Si alguna de las invitaciones las envio el miembro y estan con estado aceptado
-        //entonces se agrega al miembro solicitado a los amigos del solicitante
-        public void ActualizarListaDeAmigos(Miembro miembro)
-        {
-            foreach (Invitacion invitacion in this._invitaciones)
-            {
-                if (invitacion.GetIdMiembroSolicitante() == miembro.GetId() && invitacion.GetEstadoSolicitud() == EstadoSolicitud.APROBADA)
-                {
-                    int idMiembroSolicitado = invitacion.GetIdMiembroSolicitado();
-                    Miembro miembroSolicitado = GetMiembroById(idMiembroSolicitado);
-                    miembro.AgregarAmigo(miembroSolicitado);
-                }
-            }
-        }
+
 
 
 

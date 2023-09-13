@@ -104,7 +104,6 @@ Console.WriteLine(post1.GetCensurado());
 
 
 //Pruebas con Invitaciones. Funciona: Enviar Invitacion, Rechazar Invitacion y las listas de amigos y de invitaciones
-Console.WriteLine("HOLA");
 ListarAmigos(Juan);
 sistema.EnviarInvitacion(Luis.GetId(), Juan.GetId());
 sistema.EnviarInvitacion(Marta.GetId(), Juan.GetId());
@@ -117,7 +116,6 @@ ListarInvitaciones(Juan);
 
 sistema.AceptarInvitacion(invitacionDeLaura);
 ListarAmigos(Juan);
-sistema.ActualizarListaDeAmigos(Laura);
 ListarAmigos(Laura);
 
 
