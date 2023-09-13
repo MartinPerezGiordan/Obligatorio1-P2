@@ -2,6 +2,27 @@
 
 *************** HACER ***************
 
+ASTAH:
+
+--- Agregar metodo VA a Publicacion |LISTO|
+
+METODOS
+
+--- Miembro - Solicitud de amistad enviar invitacion * MARTIN * |LISTO|
+
+--- Miembro - Aceptar Invitacion * MARTIN * |LISTO|
+
+--- Administrador - Bloquear Miembro * PEDRO *
+
+--- Miembro - realizar Publicacion * PEDRO *
+
+--- Administrador - Censurar Publicacion * PEDRO *
+
+--- (Miembro - Hacer Comentario????)
+
+--- Miembro - Likear una Publicacion
+
+
 MENU:
 
 --- Alta de Miembro
@@ -18,6 +39,7 @@ cualquier tipo
 
 --- Hacer TODOS los overrides
 
+<<<<<<< HEAD
 Semana 3 Lectura letra, entender el problema. Identificar las clases y hacer UML en Astah. Realizar menú con opciones de los se pide.
 
 Semana 4 Actualizar UML con agregaciones y clases de asociación si corresponde. Codificar clases en Dominio con sus métodos de validación.
@@ -30,5 +52,11 @@ Semana 7 Realizar funcionalidades del menú 4 y 5
 
 Semana 8 Finalizar documentación.
 
-
+=======
 *********************************************
+>>>>>>> origin/master
+
+
+PRECARGA
+
+---

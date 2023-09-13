@@ -17,7 +17,8 @@ namespace Dominio
         private string _nombre;
         private DateOnly _fechaDeNacimiento;
         private List<Miembro> _listaDeAmigos;
-        private List<Invitacion> _invitaciones;
+        private List<Invitacion> _invitacionesEnviadas;
+        private List<Invitacion> _invitacionesRecibidas;
         private bool _bloqueado;
 
         #endregion
@@ -30,8 +31,9 @@ namespace Dominio
             this._contrasenia = contrasenia;
             this._nombre = nombre;
             this._fechaDeNacimiento = fechaDeNacimiento;
-            this._listaDeAmigos = new List<Miembro>(); 
-            this._invitaciones = new List<Invitacion>();
+            this._listaDeAmigos = new List<Miembro>(); //Empieza la lista de amigos vacia
+            this._invitacionesEnviadas = new List<Invitacion>();
+            this._invitacionesRecibidas = new List<Invitacion>();
             this._bloqueado = bloqueado;
         }
 
@@ -69,9 +71,14 @@ namespace Dominio
             return this._listaDeAmigos;
         }
 
-        public List<Invitacion> GetInvitaciones()
+        public List<Invitacion> GetInvitacionesEnviadas()
         {
-            return this._invitaciones;
+            return this._invitacionesEnviadas;
+        }
+
+        public List<Invitacion> GetInvitacionesRecibidas()
+        {
+            return this._invitacionesRecibidas;
         }
 
         public bool GetBloqueado()
@@ -88,11 +95,31 @@ namespace Dominio
 
         #region Metodos
 
-        
+        public void AgregarAmigo(Miembro miembro)
+        {
+            this._listaDeAmigos.Add(miembro);
+        }
+
+        public void AgregarInvitacionRecibida(Invitacion invitacion)
+        {
+            this._invitacionesRecibidas.Add(invitacion);
+        }
+
+        public void AgregarInvitacionEnviada(Invitacion invitacion)
+        {
+            this._invitacionesEnviadas.Add(invitacion);
+        }
+
 
         #endregion
 
         #region Override
+
+        public override string ToString()
+        {
+            return $"ID: {_id}, Nombre: {_nombre}";
+        }
+
         #endregion
 
     }

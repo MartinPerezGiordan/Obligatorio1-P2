@@ -70,6 +70,62 @@ namespace Dominio
         {
             return this._miembros[id];
         }
+
+        public List<Invitacion> VerInvitacionesEnviadas(Miembro miembro)
+        {
+            return miembro.GetInvitacionesEnviadas();
+        }
+
+        public List<Invitacion> VerInvitacionesRecibidas(Miembro miembro)
+        {
+            return miembro.GetInvitacionesRecibidas();
+        }
+
+        public void EnviarInvitacion(int idMiembroSolicitante, int idMiembroSolicitado)
+        {
+            Invitacion nuevaInvitacion = new Invitacion(idMiembroSolicitante, idMiembroSolicitado, DateTime.Now);
+            this.AgregarInvitacion(nuevaInvitacion);
+        }
+
+        //Recibe un objeto invitacion y agrega al solicitante de la invitacion a la lista de amigos
+        //Cambia el estado de la invitacion a aceptada.
+        public void AceptarInvitacion(Invitacion invitacion)
+        {
+            int idSolicitante = invitacion.GetIdMiembroSolicitante();
+            Miembro solicitante = GetMiembroById(idSolicitante);
+
+            int idSolicitado = invitacion.GetIdMiembroSolicitado();
+            Miembro solicitado = GetMiembroById(idSolicitado);
+            solicitado.AgregarAmigo(solicitante);
+            solicitante.AgregarAmigo(solicitado);
+
+            invitacion.SetEstadoSolicitud(EstadoSolicitud.APROBADA);
+
+        }
+
+        //Cambia el estado de la invitacion a Rechazada.
+        public void RechazarInvitacion(Invitacion invitacion)
+        {
+            invitacion.SetEstadoSolicitud(EstadoSolicitud.RECHAZADA);
+        }
+
+        //Ve en la lista de invitaciones que existen en el sistema, si alguna de las 
+        //invitaciones pertenece a al miembro la agrega a su lista de invitaciones recibidas.
+        public void ActualizarListaDeInvitaciones(Miembro miembro)
+        {
+            foreach (Invitacion invitacion in this._invitaciones)
+            {
+                if (invitacion.GetIdMiembroSolicitado() == miembro.GetId())
+                {
+                    miembro.AgregarInvitacionRecibida(invitacion);
+                }
+            }
+        }
+
+
+
+
+
         #endregion
 
         public Publicacion GetPublicacionById(int id)
@@ -234,6 +290,9 @@ namespace Dominio
         {
             this._invitaciones.Add(invitacion);
         }
+
+
+
 
         #endregion
 
