@@ -55,46 +55,50 @@ sistema.AgregarInvitacion(invitacion1);
 
 #region Post
 Post post1 = new Post(Marta, "Me gusta la paella!", "paella.jpg");
+Post post3 = new Post(Marta, "222Me gusta la paella!", "paella.jpg");
+Post post4 = new Post(Marta, "333Me gusta la paella!", "paella.jpg");
 sistema.AgregarPublicacion(post1);
+sistema.AgregarPublicacion(post3);
+sistema.AgregarPublicacion(post4);
 Post post2 = new Post(Jose, "Esta lloviendo, lleven paragua!!", "diaNublado.jpg");
 sistema.AgregarPublicacion(post2);
 
 sistema.AgregarPostMiembro(1, "hola", "hola.jpg");
-sistema.AgregarComentarioPost(0, 6, "que buena foto");
-sistema.AgregarComentarioPost(0, 1, "Hola");
+sistema.AgregarPostMiembro(1, "hola2", "hola.jpg");
+sistema.AgregarComentarioPost(0, 8, "que buena foto");
+sistema.AgregarComentarioPost(0, 8, "Hola");
+sistema.AgregarComentarioPost(1, 8, "9Hola");
+sistema.AgregarComentarioPost(1, 8, "8Hola");
 
-//foreach (Publicacion publicacion in sistema.GetPublicaciones())
+
+
+#endregion
+
+
+#endregion
+
+#endregion
+// Identificar Comentarios prueba
+Console.WriteLine(sistema.IdentifyComentarios(sistema.GetPublicacionesPorEmail("correo9@example.com")));
+
+// Identificar Posts prueba
+Console.WriteLine(sistema.IdentifyPosts(sistema.GetPublicacionesPorEmail("correo9@example.com")));
+
+////Probando bloquear miembro
+//Console.WriteLine(Juan.GetBloqueado());
+//sistema.BloquearMiembro(0, true);
+//Console.WriteLine(Juan.GetBloqueado());
+
+////Probando ver comentarios en un post
+//foreach (Comentario comentario in sistema.GetPostById(1).GetComentarios())
 //{
-
-//   Console.WriteLine(publicacion.GetAutorNombre());
-
-
+//    Console.WriteLine(comentario.GetAutorNombre());
 //}
 
-
-#endregion
-
-
-#endregion
-
-#endregion
-
-//Probando bloquear miembro
-Console.WriteLine(Juan.GetBloqueado());
-sistema.BloquearMiembro(0, true);
-Console.WriteLine(Juan.GetBloqueado());
-
-//Probando ver comentarios en un post
-foreach (Comentario comentario in sistema.GetPostById(0).GetComentarios())
-{
-    Console.WriteLine(comentario.GetTexto());
-}
-
-//Probando censurar Post
-Console.WriteLine(sistema.GetPostById(0).GetCensurado());
-sistema.CensurarPost(0, true);
-Console.WriteLine(sistema.GetPostById(0).GetCensurado());
-
+////Probando censurar Post
+//Console.WriteLine(sistema.GetPostById(0).GetCensurado());
+//sistema.CensurarPost(0, true);
+//Console.WriteLine(sistema.GetPostById(0).GetCensurado());
 
 
 

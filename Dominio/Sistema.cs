@@ -77,6 +77,18 @@ namespace Dominio
             return this._publicaciones[id];
         }
 
+        public Miembro GetMiembroByEmail(string email)
+        {
+            foreach(Miembro unMiembro in this.GetMiembros())
+            {
+                if(unMiembro.GetEmail() == email)
+                {
+                    return unMiembro;
+                }
+            }
+            return null;
+        }
+
         public Post GetPostById(int id)
         {
             return this._posts[id];
@@ -117,6 +129,52 @@ namespace Dominio
             this.GetPostById(idPublicacion).AgregarComentario(nuevoComentario);
             this.AgregarPublicacion(nuevoComentario);
         }
+
+        // Busqueda de publicaciones de un miembro por Email
+        public List<Publicacion> GetPublicacionesPorEmail(string email)
+        {
+            List<Publicacion> publicaciones = new List<Publicacion>();
+            foreach(Publicacion unaPublicacion in this.GetPublicaciones())
+            {
+                if(unaPublicacion.GetAutor().GetEmail() == email)
+                {
+                    publicaciones.Add(unaPublicacion);
+                }
+
+            }
+            return publicaciones;
+        }
+
+        // Posible solucion para identificar comentarios en una lista de publicaciones
+        public string IdentifyComentarios(List<Publicacion> publicaciones)
+        {
+            string comentarios = "";
+            for(int i=0; i < publicaciones.Count; i++)
+            {
+                if (publicaciones[i] is Comentario)
+                {
+                    Comentario comment = (Comentario)publicaciones[i];
+                    comentarios += comment.GetTexto();
+                }
+            }
+            return comentarios;
+        }
+
+        // Posible solucion para identificar posts en una lista de publicaciones
+        public string IdentifyPosts(List<Publicacion> publicaciones)
+        {
+            string posts = "";
+            for (int i = 0; i < publicaciones.Count; i++)
+            {
+                if (publicaciones[i] is Post)
+                {
+                    Post post = (Post)publicaciones[i];
+                    posts += post.GetTexto();
+                }
+            }
+            return posts;
+        }
+
 
 
         // miSistema.CrearInvitacion(usuarioSolicitante, usuarioSolicitado)
