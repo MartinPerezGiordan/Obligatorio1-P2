@@ -61,9 +61,16 @@ namespace Dominio
 
         #region Metodos
 
+        // Agregar Comentario al Post
         public void AgregarComentario(Comentario comentario)
         {
-            this._comentarios.Add(comentario);
+            if(this._censurado == false)
+            {
+                this._comentarios.Add(comentario);
+            } else
+            {
+                throw new Exception("Post esta censurado");
+            }
         }
 
         public void SetCensurado(bool censurar)

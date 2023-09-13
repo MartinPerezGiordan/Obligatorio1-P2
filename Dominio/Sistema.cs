@@ -224,7 +224,7 @@ namespace Dominio
             List<Post> posts = new List<Post>();
             for (int i = 0; i < publicaciones.Count; i++)
             {
-                if (publicaciones[i] is Post)
+                if (publicaciones[i] is Post && ((Post)publicaciones[i]).GetCensurado() == false)
                 {
                     Post post = (Post)publicaciones[i];
                     posts.Add(post);

@@ -78,6 +78,8 @@ sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
 
 #region Pruebas
 
+
+
 /* PRUEBA DE GetPublicacionesPorEmail, IdentificarComentarios, IdentificarPosts
 
 foreach(Publicacion publicacion in sistema.GetPublicacionesPorEmail("correo9@example.com"))
@@ -109,7 +111,6 @@ Console.WriteLine(Juan.GetBloqueado());
 
 */
 
-
 /* PRUEBA GetComentarios
 
 foreach (Comentario comentario in sistema.GetPostById(1).GetComentarios())
@@ -121,11 +122,15 @@ foreach (Comentario comentario in sistema.GetPostById(1).GetComentarios())
 
 /* PRUEBA CensurarPost
 
-Console.WriteLine(sistema.GetPostById(0).GetCensurado());
-sistema.CensurarPost(0, true);
-Console.WriteLine(sistema.GetPostById(0).GetCensurado());
+sistema.AgregarPostMiembro(8, "Post 6", "cinco.jpg");
+Console.WriteLine(sistema.GetPostById(5).GetCensurado());
+sistema.CensurarPost(5, true);
+Console.WriteLine(sistema.GetPostById(5).GetCensurado());
+sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
 
 */
+
+
 
 #endregion
 
@@ -135,19 +140,19 @@ Console.WriteLine(sistema.GetPostById(0).GetCensurado());
 
 
 //Pruebas con Invitaciones. Funciona: Enviar Invitacion, Rechazar Invitacion y las listas de amigos y de invitaciones
-ListarAmigos(Juan);
-sistema.EnviarInvitacion(Luis.GetId(), Juan.GetId());
-sistema.EnviarInvitacion(Marta.GetId(), Juan.GetId());
-sistema.EnviarInvitacion(Jose.GetId(), Juan.GetId());
+//ListarAmigos(Juan);
+//sistema.EnviarInvitacion(Luis.GetId(), Juan.GetId());
+//sistema.EnviarInvitacion(Marta.GetId(), Juan.GetId());
+//sistema.EnviarInvitacion(Jose.GetId(), Juan.GetId());
 
-ListarInvitaciones(Juan);
+//ListarInvitaciones(Juan);
 
-sistema.ActualizarListaDeInvitaciones(Juan);
-ListarInvitaciones(Juan);
+//sistema.ActualizarListaDeInvitaciones(Juan);
+//ListarInvitaciones(Juan);
 
-sistema.AceptarInvitacion(invitacionDeLaura);
-ListarAmigos(Juan);
-ListarAmigos(Laura);
+//sistema.AceptarInvitacion(invitacionDeLaura);
+//ListarAmigos(Juan);
+//ListarAmigos(Laura);
 Console.ReadLine();
 
 
