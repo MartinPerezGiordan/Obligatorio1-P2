@@ -62,7 +62,7 @@ namespace Dominio
         #region Metodos Miembro
         public void AgregarMiembro(Miembro miembro)
         {
-            //Falta agregar Validacion
+            //Falta agregar Validacion (por ejemplo que el usuario no escriba un numero)(PREGUNTAR AL PROFE)
             this._miembros.Add(miembro);
         }
 

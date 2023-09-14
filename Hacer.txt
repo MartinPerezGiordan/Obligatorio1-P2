@@ -12,36 +12,39 @@ METODOS
 
 --- Miembro - Aceptar Invitacion * MARTIN * |LISTO|
 
---- Administrador - Bloquear Miembro * PEDRO *
+--- Administrador - Bloquear Miembro * PEDRO * |LISTO| falta implementar logica
 
---- Miembro - realizar Publicacion * PEDRO *
+--- Miembro - realizar Publicacion * PEDRO * |LISTO|
 
---- Administrador - Censurar Publicacion * PEDRO *
+--- Administrador - Censurar Publicacion * PEDRO * |LISTO| falta logica
 
---- (Miembro - Hacer Comentario????)
+--- (Miembro - Hacer Comentario????) |LISTO|
 
---- Miembro - Likear una Publicacion
+--- Miembro - Likear una Publicacion 
 
 
 MENU:
 
---- Alta de Miembro
+--- Alta de Miembro * PEDRO * Verficar que funcione
 
---- Listar publicaciones de un miembro
+--- Listar publicaciones de un miembro * PEDRO *
 
---- Listar posts en los que haya comentado un miembro
+--- Listar posts en los que haya comentado un miembro * PEDRO *
 (solo el post, no el comentario)
 
---- Dadas dos fechas listar los posts realizados entres esas fechas inclusive
+--- Dadas dos fechas listar los posts realizados entres esas fechas inclusive * MARTIN *
 
 --- Obtener los miembros que hayan realizado mas publicaciones de 
-cualquier tipo
+cualquier tipo * MARTIN * 
 
---- Hacer TODOS los overrides
+--- Hacer TODOS los overrides (Meter todos los datos? PREGUNTAR)
 
 *********************************************
 
+PRECARGA:
 
-PRECARGA
+Invitaciones * MARTIN * 
 
----
+Post con comentarios * PEDRO * 
+
+Preguntar si van los get y set en Astah

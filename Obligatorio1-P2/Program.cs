@@ -16,7 +16,7 @@ Miembro Maria = new Miembro( "correo4@example.com", "contrasenia4", "Maria Lopez
 Miembro Sofia = new Miembro( "correo5@example.com", "contrasenia5", "Sofia Torres", new DateOnly(1988, 6, 5), true);
 Miembro Pedro = new Miembro("correo6@example.com", "contrasenia6", "Pedro Martinez", new DateOnly(1992, 12, 30), false);
 Miembro Laura = new Miembro("correo7@example.com", "contrasenia7", "Laura Sanchez", new DateOnly(1993, 8, 25), true);
-Miembro Carlos = new Miembro(   "correo8@example.com", "contrasenia8", "Carlos Gonzalez", new DateOnly(1975, 4, 2), false);
+Miembro Carlos = new Miembro("correo8@example.com", "contrasenia8", "Carlos Gonzalez", new DateOnly(1975, 4, 2), false);
 Miembro Marta = new Miembro("correo9@example.com", "contrasenia9", "Marta Ramirez", new DateOnly(1982, 7, 12), false);
 Miembro Jose = new Miembro("correo10@example.com", "contrasenia10", "Jose Fernandez", new DateOnly(1998, 11, 15), true);
 
@@ -112,7 +112,7 @@ ListarAmigos(Laura);
 #endregion
 
 #region Menu
-/*
+
 int opcion = -1;
 while (opcion != 0)
 {
@@ -123,12 +123,12 @@ while (opcion != 0)
        /* Lista de Menu
         Console.WriteLine("2 - Buscar Publicaciones de Miembros por Email");
         Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
-        Console.WriteLine("4 - Buscar Posts por rango de fechas");
         Console.WriteLine("5 - Mostrar Miembro con mayor cantidad de Publicaiones");
        */
-/*        Console.WriteLine("1 - Ver Miembros");
+        Console.WriteLine("1 - Ver Miembros");
         Console.WriteLine("2 - Ver Administradores");
         Console.WriteLine("3 - Registrarse a Social NetWork");
+        Console.WriteLine("4 - Buscar Posts por rango de fechas");
         opcion = int.Parse(Console.ReadLine());
         switch (opcion)
         {
@@ -155,7 +155,13 @@ while (opcion != 0)
                 sistema.AgregarMiembro(nuevoMiembro);
                 Console.WriteLine("Miembro registrado con exito");
                 break;
-
+            case 4:
+                Console.WriteLine("Ingrese la primera fecha");
+                DateTime fecha1 = DateTime.Parse(Console.ReadLine());
+                Console.WriteLine("Ingrese la segunda fecha");
+                DateTime fecha2 = DateTime.Parse(Console.ReadLine());
+                ListarPostsSegunFecha(fecha1, fecha2);
+                break;
 
 
             default:
@@ -169,7 +175,7 @@ while (opcion != 0)
         opcion = -1;
     }
 }Console.WriteLine("-- ¡Hasta pronto! --");
-*/
+
 #endregion
 
 #region Funciones
@@ -211,6 +217,21 @@ void ListarInvitaciones(Miembro miembro)
         {
             Miembro miembroSolicitante = sistema.GetMiembroById(invitacion.GetIdMiembroSolicitante());
             Console.WriteLine(miembroSolicitante.GetNombre());
+        }
+    }
+}
+
+void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
+{
+    foreach (Publicacion publicacionAMostrar in sistema.GetPublicaciones())
+    {
+        DateTime fechaDePublicacion = publicacionAMostrar.GetFecha();
+        if (fechaDePublicacion > fecha1 && fechaDePublicacion < fecha2)
+        {
+            if (publicacionAMostrar is Post)
+            {
+                Console.WriteLine($"ID:{publicacionAMostrar.GetId()} Fecha: {publicacionAMostrar.GetFecha} Titulo:{publicacionAMostrar.GetTitulo} Contenido:{publicacionAMostrar.GetTexto}");
+            }
         }
     }
 }
