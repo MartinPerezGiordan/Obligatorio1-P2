@@ -15,7 +15,7 @@ namespace Dominio
         private string _email;
         private string _contrasenia;
         private string _nombre;
-        private DateOnly _fechaDeNacimiento;
+        private DateTime _fechaDeNacimiento;
         private List<Miembro> _listaDeAmigos;
         private List<Invitacion> _invitacionesEnviadas;
         private List<Invitacion> _invitacionesRecibidas;
@@ -24,7 +24,7 @@ namespace Dominio
         #endregion
 
         #region Constructor
-        public Miembro(string email, string contrasenia, string nombre, DateOnly fechaDeNacimiento, bool bloqueado)
+        public Miembro(string email, string contrasenia, string nombre, DateTime fechaDeNacimiento, bool bloqueado)
         {
             this._id = s_ultimoId++;
             this._email = email;
@@ -61,7 +61,7 @@ namespace Dominio
             return this._nombre;
         }
 
-        public DateOnly GetFechaDeNacimiento()
+        public DateTime GetFechaDeNacimiento()
         {
             return this._fechaDeNacimiento;
         }

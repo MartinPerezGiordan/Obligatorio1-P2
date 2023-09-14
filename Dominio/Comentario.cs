@@ -3,7 +3,7 @@
     public class Comentario : Publicacion
     {
         private int _idPost;
-        public Comentario(int idPost, Miembro autor, string texto) : base(autor, texto)
+        public Comentario(int idPost, Miembro autor,string titulo, string texto) : base(autor, texto, titulo)
         {
             this._idPost = idPost;
         }

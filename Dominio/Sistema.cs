@@ -171,16 +171,16 @@ namespace Dominio
         #region Post y Comentario
 
         // Agregar un post con id de miembro
-        public void AgregarPostMiembro(int idMiembro, string texto, string nombreImagen)
+        public void AgregarPostMiembro(int idMiembro,string titulo, string texto, string nombreImagen)
         {
-            Post nuevoPost = new Post(this.GetMiembroById(idMiembro), texto, nombreImagen);
+            Post nuevoPost = new Post(this.GetMiembroById(idMiembro), titulo, texto, nombreImagen);
             this.AgregarPublicacion(nuevoPost);
         }
 
         // Agregar un comentario con id de post y id de miembro que comenta
-        public void AgregarComentarioPost(int idPublicacion, int idMiembro, string texto)
+        public void AgregarComentarioPost(int idPublicacion, int idMiembro,string titulo, string texto)
         {
-            Comentario nuevoComentario = new Comentario(idPublicacion, this.GetMiembroById(idMiembro), texto);
+            Comentario nuevoComentario = new Comentario(idPublicacion, this.GetMiembroById(idMiembro),titulo, texto);
             if(this.GetPublicacionById(idPublicacion) is Post)
             {
                 Post post = (Post)this.GetPublicacionById(idPublicacion);

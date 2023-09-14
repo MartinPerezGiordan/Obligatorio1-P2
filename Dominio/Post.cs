@@ -20,16 +20,19 @@ namespace Dominio
         #endregion
 
         #region Constructor
-        public Post(Miembro autor, string texto, string nombreImagen) : base(autor, texto)
+        public Post(Miembro autor, string titulo, string texto, string nombreImagen) : base(autor, texto, titulo)
         {
+
             this._privado = false;
             this._censurado = false;
             this._comentarios = new List<Comentario>();
             this._nombreImagen = nombreImagen;
 
+
+
         }
 
-        public Post(Miembro autor, string texto, string nombreImagen, List<Comentario> comentarios) : base(autor, texto)
+        public Post(Miembro autor, string titulo, string texto, string nombreImagen, List<Comentario> comentarios) : base(autor,texto, titulo)
         {
             this._privado = false;
             this._censurado = false;

@@ -9,16 +9,16 @@ Sistema sistema = new Sistema();
 #region Precarga de Datos
 
 #region Miembros
-Miembro Juan = new Miembro("correo1@example.com", "contrasenia1", "Juan Perez", new DateOnly(1990, 1, 1), false);
-Miembro Ana = new Miembro( "correo2@example.com", "contrasenia2", "Ana Gomez", new DateOnly(1985, 3, 15), false);
-Miembro Luis = new Miembro( "correo3@example.com", "contrasenia3", "Luis Rodriguez", new DateOnly(1995, 5, 20), true);
-Miembro Maria = new Miembro( "correo4@example.com", "contrasenia4", "Maria Lopez", new DateOnly(1980, 10, 10), false);
-Miembro Sofia = new Miembro( "correo5@example.com", "contrasenia5", "Sofia Torres", new DateOnly(1988, 6, 5), true);
-Miembro Pedro = new Miembro("correo6@example.com", "contrasenia6", "Pedro Martinez", new DateOnly(1992, 12, 30), false);
-Miembro Laura = new Miembro("correo7@example.com", "contrasenia7", "Laura Sanchez", new DateOnly(1993, 8, 25), true);
-Miembro Carlos = new Miembro("correo8@example.com", "contrasenia8", "Carlos Gonzalez", new DateOnly(1975, 4, 2), false);
-Miembro Marta = new Miembro("correo9@example.com", "contrasenia9", "Marta Ramirez", new DateOnly(1982, 7, 12), false);
-Miembro Jose = new Miembro("correo10@example.com", "contrasenia10", "Jose Fernandez", new DateOnly(1998, 11, 15), true);
+Miembro Juan = new Miembro("correo1@example.com", "contrasenia1", "Juan Perez", new DateTime(1990, 1, 1), false);
+Miembro Ana = new Miembro( "correo2@example.com", "contrasenia2", "Ana Gomez", new DateTime(1985, 3, 15), false);
+Miembro Luis = new Miembro( "correo3@example.com", "contrasenia3", "Luis Rodriguez", new DateTime(1995, 5, 20), true);
+Miembro Maria = new Miembro( "correo4@example.com", "contrasenia4", "Maria Lopez", new DateTime(1980, 10, 10), false);
+Miembro Sofia = new Miembro( "correo5@example.com", "contrasenia5", "Sofia Torres", new DateTime(1988, 6, 5), true);
+Miembro Pedro = new Miembro("correo6@example.com", "contrasenia6", "Pedro Martinez", new DateTime(1992, 12, 30), false);
+Miembro Laura = new Miembro("correo7@example.com", "contrasenia7", "Laura Sanchez", new DateTime(1993, 8, 25), true);
+Miembro Carlos = new Miembro("correo8@example.com", "contrasenia8", "Carlos Gonzalez", new DateTime(1975, 4, 2), false);
+Miembro Marta = new Miembro("correo9@example.com", "contrasenia9", "Marta Ramirez", new DateTime(1982, 7, 12), false);
+Miembro Jose = new Miembro("correo10@example.com", "contrasenia10", "Jose Fernandez", new DateTime(1998, 11, 15), true);
 
 sistema.AgregarMiembro(Juan);
 sistema.AgregarMiembro(Ana);
@@ -46,31 +46,28 @@ sistema.AgregarInvitacion(invitacionDeLaura);
 
 #region Post y Comentarios
 
-sistema.AgregarPostMiembro(1, "Post 1", "Uno.jpg");
-sistema.AgregarPostMiembro(2, "Post 2", "Dos.jpg");
-sistema.AgregarPostMiembro(2, "Post 3", "tres.jpg");
-sistema.AgregarPostMiembro(3, "Post 4", "cuatro.jpg");
-sistema.AgregarPostMiembro(8, "Post 5", "cinco.jpg");
+sistema.AgregarPostMiembro(1, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg");
+sistema.AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg");
+sistema.AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg");
+sistema.AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg");
+sistema.AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg");
 
-sistema.AgregarComentarioPost(0, 8, "Comentario 1 post 1");
-sistema.AgregarComentarioPost(0, 1, "Comentario 2 post 1");
-sistema.AgregarComentarioPost(0, 2, "Comentario 3 post 1");
 
-sistema.AgregarComentarioPost(1, 0, "Comentario 1 post 2");
-sistema.AgregarComentarioPost(1, 1, "Comentario 2 post 2");
-sistema.AgregarComentarioPost(1, 8, "Comentario 3 post 3");
-
-sistema.AgregarComentarioPost(2, 8, "Comentario 1 post 3");
-sistema.AgregarComentarioPost(2, 4, "Comentario 2 post 3");
-sistema.AgregarComentarioPost(2, 5, "Comentario 3 post 3");
-
-sistema.AgregarComentarioPost(3, 2, "Comentario 1 post 4");
-sistema.AgregarComentarioPost(3, 3, "Comentario 2 post 4");
-sistema.AgregarComentarioPost(3, 8, "Comentario 3 post 4");
-
-sistema.AgregarComentarioPost(4, 6, "Comentario 1 post 5");
-sistema.AgregarComentarioPost(4, 5, "Comentario 2 post 5");
-sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
+sistema.AgregarComentarioPost(0, 8,"Este es el titulo", "Este es el comentario");
+sistema.AgregarComentarioPost(0, 1,"Este es el titulo de mi comentario", "Comentario 2 post 1");
+sistema.AgregarComentarioPost(0, 2,"Este es el titulo de mi comentario", "Comentario 3 post 1");
+sistema.AgregarComentarioPost(1, 0,"Este es el titulo de mi comentario", "Comentario 1 post 2");
+sistema.AgregarComentarioPost(1, 1,"Este es el titulo de mi comentario", "Comentario 2 post 2");
+sistema.AgregarComentarioPost(1, 8,"Este es el titulo de mi comentario", "Comentario 3 post 3");
+sistema.AgregarComentarioPost(2, 8,"Este es el titulo de mi comentario", "Comentario 1 post 3");
+sistema.AgregarComentarioPost(2, 4,"Este es el titulo de mi comentario", "Comentario 2 post 3");
+sistema.AgregarComentarioPost(2, 5,"Este es el titulo de mi comentario", "Comentario 3 post 3");
+sistema.AgregarComentarioPost(3, 2,"Este es el titulo de mi comentario", "Comentario 1 post 4");
+sistema.AgregarComentarioPost(3, 3,"Este es el titulo de mi comentario", "Comentario 2 post 4");
+sistema.AgregarComentarioPost(3, 8,"Este es el titulo de mi comentario", "Comentario 3 post 4");
+sistema.AgregarComentarioPost(4, 6,"Este es el titulo de mi comentario", "Comentario 1 post 5");
+sistema.AgregarComentarioPost(4, 5,"Este es el titulo de mi comentario", "Comentario 2 post 5");
+sistema.AgregarComentarioPost(4, 8,"Este es el titulo de mi comentario", "Comentario 3 post 5");
 
 #endregion
 
@@ -132,9 +129,7 @@ sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
 
 
 
-#endregion
-
-#region Menu
+// PRUEBA EnviarInvitaciones
 
 //ListarMiembros();
 
@@ -155,8 +150,9 @@ sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
 //ListarAmigos(Laura);
 
 
-
 #endregion
+
+
 
 #region Menu
 
@@ -196,7 +192,7 @@ while (opcion != 0)
                 Console.WriteLine("Ingrese contraseña");
                 string contrasenia = Console.ReadLine();
                 Console.WriteLine("Ingrese Fecha de Nacimiento");
-                DateOnly fechaDeNacimiento = DateOnly.Parse(Console.ReadLine());
+                DateTime fechaDeNacimiento = DateTime.Parse(Console.ReadLine());
 
                 Miembro nuevoMiembro = new Miembro(email, contrasenia, nombre, fechaDeNacimiento, false);
                 sistema.AgregarMiembro(nuevoMiembro);
@@ -268,20 +264,64 @@ void ListarInvitaciones(Miembro miembro)
     }
 }
 
+//Esta funcion recibe dos parametros que son dos fechas. 
+//Luego crea una lista vacia de posts postsAMostrar.
+//Luego recorre todos los posts. Si cumplen con ser un post y estar entre las dos fechas recibidas por parametro
+//Se agregan a la lista postsAMostrar
+//Luego se ordena la lista
+//Si la lista esta vacia da un aviso de que entre esas fechas no hay posts. 
+//Se recorre la nueva lista y se verifica si el texto supera los 50 char, en cuyo caso se acorta a 50 char.
+//Luego se muestran en consola los valores de los posts
 void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
 {
-    foreach (Publicacion publicacionAMostrar in sistema.GetPublicaciones())
+    if(fecha1 > fecha2)
     {
-        DateTime fechaDePublicacion = publicacionAMostrar.GetFecha();
-        if (fechaDePublicacion > fecha1 && fechaDePublicacion < fecha2)
+        Console.WriteLine("la primera fecha no puede ser posterior a la segunda.");
+    }
+    else { 
+        List<Post> postsAMostrar = new List<Post>();
+        foreach (Publicacion publicacionAMostrar in sistema.GetPublicaciones())
         {
-            if (publicacionAMostrar is Post)
+            DateTime fechaDePublicacion = publicacionAMostrar.GetFecha();
+            if (fechaDePublicacion >= fecha1 && fechaDePublicacion <= fecha2)
             {
-                Console.WriteLine($"ID:{publicacionAMostrar.GetId()} Fecha: {publicacionAMostrar.GetFecha} Titulo:{publicacionAMostrar.GetTitulo} Contenido:{publicacionAMostrar.GetTexto}");
+                if (publicacionAMostrar is Post)
+                {
+                    postsAMostrar.Add((Post)publicacionAMostrar);
+                }
+            }
+        }
+
+        postsAMostrar.OrderBy(obj => obj.GetTitulo()).ToList();
+
+        if(postsAMostrar.Count == 0) {
+            Console.WriteLine("No hay ningun post entre esas fechas");
+        }
+        else
+        {
+            foreach (Post post in postsAMostrar)
+            {
+                int id = post.GetId();
+                string titulo = post.GetTitulo();
+                DateTime fecha = post.GetFecha();
+                string texto = post.GetTexto();
+
+                if(texto.Length > 50) {
+                    texto = texto.Substring(0, 50);
+                }
+                Console.WriteLine($"ID: {id}");
+                Console.WriteLine($"Título: {titulo}");
+                Console.WriteLine($"Fecha: {fecha}");
+                Console.WriteLine($"Texto: {texto}");
+                Console.WriteLine();
+
             }
         }
     }
+
 }
+
+
 
 #endregion
 

@@ -16,10 +16,17 @@ namespace Dominio
 
         #region Constructor
 
-        public Publicacion(Miembro autor, string texto)
+        public Publicacion(Miembro autor, string texto, string titulo)
         {
+
+            if (texto == null)
+            {
+                throw new Exception("El contenido no puede estar vacio!!");
+            }
+
             this._id = s_ultimoId++;
             this._autor = autor;
+            this._titulo = titulo;
             this._texto = texto;
             this._fecha = DateTime.Now;
         }
