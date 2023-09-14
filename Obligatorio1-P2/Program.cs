@@ -80,7 +80,7 @@ sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
 
 
 
-/* PRUEBA DE GetPublicacionesPorEmail, IdentificarComentarios, IdentificarPosts
+/* PRUEBA GetPublicacionesPorEmail, IdentificarComentarios, IdentificarPosts
 
 foreach(Publicacion publicacion in sistema.GetPublicacionesPorEmail("correo9@example.com"))
 {

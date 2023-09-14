@@ -14,7 +14,7 @@ namespace Dominio
         private List<Administrador> _administradores;
         private List<Publicacion> _publicaciones;
         private List<Invitacion> _invitaciones;
-        private List<Post> _posts;
+
 
         #endregion
 
@@ -44,11 +44,6 @@ namespace Dominio
         public List<Invitacion> GetInvitaciones()
         {
             return this._invitaciones;
-        }
-
-        public List<Post> GetPosts()
-        {
-            return this._posts;
         }
 
         public List<Publicacion> GetPublicaciones()
@@ -145,10 +140,6 @@ namespace Dominio
             return null;
         }
 
-        public Post GetPostById(int id)
-        {
-            return this._posts[id];
-        }
 
         #region Metodos Administrador
 
@@ -167,7 +158,15 @@ namespace Dominio
         //Metod que permite cambiar el valor del atributo censurado de un post
         public void CensurarPost(int idPost, bool censurar)
         {
-            this.GetPostById(idPost).SetCensurado(censurar);
+            if (this.GetPublicacionById(idPost) is Post)
+            {
+                Post post = (Post)this.GetPublicacionById(idPost);
+                post.SetCensurado(censurar);
+            }
+            else
+            {
+                throw new Exception("No se puede censurar comentarios");
+            }
         }
 
         #region Post y Comentario
@@ -177,14 +176,17 @@ namespace Dominio
         {
             Post nuevoPost = new Post(this.GetMiembroById(idMiembro), texto, nombreImagen);
             this.AgregarPublicacion(nuevoPost);
-            this.AgregarPost(nuevoPost);
         }
 
         // Agregar un comentario con id de post y id de miembro que comenta
         public void AgregarComentarioPost(int idPublicacion, int idMiembro, string texto)
         {
             Comentario nuevoComentario = new Comentario(idPublicacion, this.GetMiembroById(idMiembro), texto);
-            this.GetPostById(idPublicacion).AgregarComentario(nuevoComentario);
+            if(this.GetPublicacionById(idPublicacion) is Post)
+            {
+                Post post = (Post)this.GetPublicacionById(idPublicacion);
+                post.AgregarComentario(nuevoComentario);
+            }
             this.AgregarPublicacion(nuevoComentario);
         }
 
@@ -263,21 +265,21 @@ namespace Dominio
             return posts.Distinct().ToList();
         }
         
-        public string GetStringPosts(List<Publicacion> posts)
-        {
-            string postString = "";
-            foreach(Publicacion unPost in posts)
-            {
-                postString += unPost.ToString();
-            }
-            return postString;
-        }
+        //public string GetStringPosts(List<Publicacion> posts)
+        //{
+        //    string postString = "";
+        //    foreach(Publicacion unPost in posts)
+        //    {
+        //        postString += unPost.ToString();
+        //    }
+        //    return postString;
+        //}
 
-        public string menu2(string email)
-        {
-            string posts = this.GetStringPosts(this.GetPostPorComentarios(this.GetComentariosPorEmail(email)));
-            return posts;
-        }
+        //public string menu2(string email)
+        //{
+        //    string posts = this.GetStringPosts(this.GetPostPorComentarios(this.GetComentariosPorEmail(email)));
+        //    return posts;
+        //}
 
         #endregion
 
@@ -304,10 +306,6 @@ namespace Dominio
         public void AgregarPublicacion(Publicacion publicacion)
         {
             this._publicaciones.Add(publicacion);
-        }
-        public void AgregarPost(Post publicacion)
-        {
-            this._posts.Add(publicacion);
         }
 
 
