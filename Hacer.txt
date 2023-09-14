@@ -12,7 +12,7 @@ METODOS
 
 --- Miembro - Aceptar Invitacion * MARTIN * |LISTO|
 
---- Administrador - Bloquear Miembro * PEDRO * |LISTO| falta implementar logica
+--- Administrador - Bloquear Miembro * PEDRO * |LISTO| falta implementar logica * MARTIN * |LISTO|
 
 --- Miembro - realizar Publicacion * PEDRO * |LISTO|
 
@@ -32,7 +32,7 @@ MENU:
 --- Listar posts en los que haya comentado un miembro * PEDRO *
 (solo el post, no el comentario)
 
---- Dadas dos fechas listar los posts realizados entres esas fechas inclusive * MARTIN *
+--- Dadas dos fechas listar los posts realizados entres esas fechas inclusive * MARTIN * |LISTO|
 
 --- Obtener los miembros que hayan realizado mas publicaciones de 
 cualquier tipo * MARTIN * 

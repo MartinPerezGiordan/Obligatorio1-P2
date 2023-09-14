@@ -20,6 +20,7 @@ namespace Dominio
         private List<Invitacion> _invitacionesEnviadas;
         private List<Invitacion> _invitacionesRecibidas;
         private bool _bloqueado;
+        public int CantidadDePublicaciones { get; set; }
 
         #endregion
 
@@ -35,6 +36,7 @@ namespace Dominio
             this._invitacionesEnviadas = new List<Invitacion>();
             this._invitacionesRecibidas = new List<Invitacion>();
             this._bloqueado = bloqueado;
+            this.CantidadDePublicaciones = 0;
         }
 
         #endregion
