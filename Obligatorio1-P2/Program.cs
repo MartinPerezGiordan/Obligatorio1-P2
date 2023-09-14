@@ -319,6 +319,34 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
         }
     }
 
+// Esta función busca al miembro o miembros con la mayor cantidad de publicaciones
+// en una lista de miembros, utilizando 'mayorCantidad' para realizar un seguimiento
+// de la cantidad máxima encontrada y 'miembrosConMasPublicaciones' para almacenar los miembros con mas publicaciones.
+// Luego, imprime los miembros con la mayor cantidad de publicaciones en la consola.
+void ListarMiembroConMasPublicaciones()
+{
+    int mayorCantidad = 0;
+    List<Miembro> miembrosConMasPublicaciones = new List<Miembro>();
+
+    foreach(Miembro miembro in sistema.GetMiembros())
+    {
+        if (miembro.CantidadDePublicaciones > mayorCantidad)
+        {
+            mayorCantidad = miembro.CantidadDePublicaciones;
+            miembrosConMasPublicaciones.Clear();
+            miembrosConMasPublicaciones.Add(miembro);
+        }
+        else if (miembro.CantidadDePublicaciones == mayorCantidad)
+        {
+            miembrosConMasPublicaciones.Add(miembro);
+        }
+    }
+
+        Console.WriteLine("Miembro/s con mayor cantidad de publicaciones:");
+    foreach(Miembro miembro in miembrosConMasPublicaciones)
+    {
+        Console.WriteLine($"{miembro.GetNombre()} hizo {mayorCantidad} publicaciones");
+    }
 }
 
 

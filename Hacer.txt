@@ -35,7 +35,7 @@ MENU:
 --- Dadas dos fechas listar los posts realizados entres esas fechas inclusive * MARTIN *
 
 --- Obtener los miembros que hayan realizado mas publicaciones de 
-cualquier tipo * MARTIN * 
+cualquier tipo * MARTIN * |LISTO|
 
 --- Hacer TODOS los overrides (Meter todos los datos? PREGUNTAR)
 
