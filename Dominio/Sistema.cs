@@ -25,7 +25,6 @@ namespace Dominio
             this._administradores = new List<Administrador>();
             this._invitaciones = new List<Invitacion>();
             this._publicaciones = new List<Publicacion>();
-            this._posts = new List<Post>();
         }
         #endregion
 

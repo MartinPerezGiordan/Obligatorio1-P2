@@ -153,7 +153,7 @@ sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
 //sistema.AceptarInvitacion(invitacionDeLaura);
 //ListarAmigos(Juan);
 //ListarAmigos(Laura);
-Console.ReadLine();
+
 
 
 #endregion
@@ -263,3 +263,6 @@ void ListarInvitaciones(Miembro miembro)
 }
 
 #endregion
+
+Console.WriteLine("Codigo Andando");
+Console.ReadLine();
