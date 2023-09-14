@@ -278,11 +278,12 @@ void ListarInvitaciones(Miembro miembro)
 //Luego se muestran en consola los valores de los posts
 void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
 {
-    if(fecha1 > fecha2)
+    if (fecha1 > fecha2)
     {
         Console.WriteLine("la primera fecha no puede ser posterior a la segunda.");
     }
-    else { 
+    else
+    {
         List<Post> postsAMostrar = new List<Post>();
         foreach (Publicacion publicacionAMostrar in sistema.GetPublicaciones())
         {
@@ -298,7 +299,8 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
 
         postsAMostrar.OrderBy(obj => obj.GetTitulo()).ToList();
 
-        if(postsAMostrar.Count == 0) {
+        if (postsAMostrar.Count == 0)
+        {
             Console.WriteLine("No hay ningun post entre esas fechas");
         }
         else
@@ -310,7 +312,8 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
                 DateTime fecha = post.GetFecha();
                 string texto = post.GetTexto();
 
-                if(texto.Length > 50) {
+                if (texto.Length > 50)
+                {
                     texto = texto.Substring(0, 50);
                 }
                 Console.WriteLine($"ID: {id}");
@@ -322,63 +325,39 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
             }
         }
     }
-
+}
 // Esta función busca al miembro o miembros con la mayor cantidad de publicaciones
 // en una lista de miembros, utilizando 'mayorCantidad' para realizar un seguimiento
 // de la cantidad máxima encontrada y 'miembrosConMasPublicaciones' para almacenar los miembros con mas publicaciones.
 // Luego, imprime los miembros con la mayor cantidad de publicaciones en la consola.
 void ListarMiembroConMasPublicaciones()
-{
-    int mayorCantidad = 0;
-    List<Miembro> miembrosConMasPublicaciones = new List<Miembro>();
-
-    foreach(Miembro miembro in sistema.GetMiembros())
     {
-        if (miembro.CantidadDePublicaciones > mayorCantidad)
+        int mayorCantidad = 0;
+        List<Miembro> miembrosConMasPublicaciones = new List<Miembro>();
+
+        foreach (Miembro miembro in sistema.GetMiembros())
         {
-            mayorCantidad = miembro.CantidadDePublicaciones;
-            miembrosConMasPublicaciones.Clear();
-            miembrosConMasPublicaciones.Add(miembro);
+            if (miembro.CantidadDePublicaciones > mayorCantidad)
+            {
+                mayorCantidad = miembro.CantidadDePublicaciones;
+                miembrosConMasPublicaciones.Clear();
+                miembrosConMasPublicaciones.Add(miembro);
+            }
+            else if (miembro.CantidadDePublicaciones == mayorCantidad)
+            {
+                miembrosConMasPublicaciones.Add(miembro);
+            }
         }
-        else if (miembro.CantidadDePublicaciones == mayorCantidad)
-        {
-            miembrosConMasPublicaciones.Add(miembro);
-        }
-    }
 
         Console.WriteLine("Miembro/s con mayor cantidad de publicaciones:");
-    foreach(Miembro miembro in miembrosConMasPublicaciones)
-    {
-        Console.WriteLine($"{miembro.GetNombre()} hizo {mayorCantidad} publicaciones");
-    }
-}
-
-
-void ListarMiembroConMasPublicaciones()
-{
-    int mayorCantidad = 0;
-    List<Miembro> miembrosConMasPublicaciones = new List<Miembro>();
-
-    foreach(Miembro miembro in sistema.GetMiembros())
-    {
-        if (miembro.CantidadDePublicaciones > mayorCantidad)
+        foreach (Miembro miembro in miembrosConMasPublicaciones)
         {
-            mayorCantidad = miembro.CantidadDePublicaciones;
-            miembrosConMasPublicaciones.Clear();
-            miembrosConMasPublicaciones.Add(miembro);
-        }
-        else if (miembro.CantidadDePublicaciones == mayorCantidad)
-        {
-            miembrosConMasPublicaciones.Add(miembro);
+            Console.WriteLine($"{miembro.GetNombre()} hizo {mayorCantidad} publicaciones");
         }
     }
 
-        Console.WriteLine("Miembro/s con mayor cantidad de publicaciones:");
-    foreach(Miembro miembro in miembrosConMasPublicaciones)
-    {
-        Console.WriteLine($"{miembro.GetNombre()} hizo {mayorCantidad} publicaciones");
-    }
-}
+
+
 
 
 
