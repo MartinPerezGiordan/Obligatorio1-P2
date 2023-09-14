@@ -75,13 +75,25 @@ namespace Dominio
             return miembro.GetInvitacionesRecibidas();
         }
 
+        //De parametro se toman ambas ids, la del solicitante y la del solicitado
+        //Si el solicitante esta bloqueado se envia un error
+        //En caso opuesto se procede a crear la Invitacion y se agrega a la lista de invitaciones del sistema
         public void EnviarInvitacion(int idMiembroSolicitante, int idMiembroSolicitado)
         {
+            if (!GetMiembroById(idMiembroSolicitante).GetBloqueado())
+            {
             Invitacion nuevaInvitacion = new Invitacion(idMiembroSolicitante, idMiembroSolicitado, DateTime.Now);
             this.AgregarInvitacion(nuevaInvitacion);
+            }
+            else
+            {
+                throw new Exception("El miembro esta bloqueado, no puede enviar una invitacion");
+            }
         }
 
-        //Recibe un objeto invitacion y agrega al solicitante de la invitacion a la lista de amigos
+
+        //Recibe un objeto invitacion y verifica que el solicitado no este bloqueado en cuyo caso manda un error.
+        //Si no esta bloqueado agrega al solicitante de la invitacion a la lista de amigos
         //Cambia el estado de la invitacion a aceptada.
         public void AceptarInvitacion(Invitacion invitacion)
         {
@@ -90,17 +102,31 @@ namespace Dominio
 
             int idSolicitado = invitacion.GetIdMiembroSolicitado();
             Miembro solicitado = GetMiembroById(idSolicitado);
-            solicitado.AgregarAmigo(solicitante);
-            solicitante.AgregarAmigo(solicitado);
 
-            invitacion.SetEstadoSolicitud(EstadoSolicitud.APROBADA);
+            if (!solicitado.GetBloqueado())
+            {
+                solicitado.AgregarAmigo(solicitante);
+                solicitante.AgregarAmigo(solicitado);
 
+                invitacion.SetEstadoSolicitud(EstadoSolicitud.APROBADA);
+            }
+            else
+            {
+                throw new Exception("El miembro esta bloqueado, no puede aceptar una invitacion");
+
+            }
         }
 
-        //Cambia el estado de la invitacion a Rechazada.
+        //Cambia el estado de la invitacion a Rechazada en el caso de que el Miembro solicitado no este bloqueado
         public void RechazarInvitacion(Invitacion invitacion)
         {
-            invitacion.SetEstadoSolicitud(EstadoSolicitud.RECHAZADA);
+            int idSolicitado = invitacion.GetIdMiembroSolicitado();
+            Miembro solicitado = GetMiembroById(idSolicitado);
+        
+            if (!solicitado.GetBloqueado())
+            { 
+                invitacion.SetEstadoSolicitud(EstadoSolicitud.RECHAZADA);
+            }
         }
 
         //Ve en la lista de invitaciones que existen en el sistema, si alguna de las 
@@ -170,16 +196,22 @@ namespace Dominio
 
         #region Post y Comentario
 
+        //Suma la cantidad de posts que realizo el miembro
         // Agregar un post con id de miembro
         public void AgregarPostMiembro(int idMiembro,string titulo, string texto, string nombreImagen)
         {
+            Miembro miembro = GetMiembroById(idMiembro);
+            miembro.CantidadDePublicaciones++;
             Post nuevoPost = new Post(this.GetMiembroById(idMiembro), titulo, texto, nombreImagen);
             this.AgregarPublicacion(nuevoPost);
         }
 
+        //Suma la cantidad de posts que realizo el miembro
         // Agregar un comentario con id de post y id de miembro que comenta
         public void AgregarComentarioPost(int idPublicacion, int idMiembro,string titulo, string texto)
         {
+            Miembro miembro = GetMiembroById(idMiembro);
+            miembro.CantidadDePublicaciones++;
             Comentario nuevoComentario = new Comentario(idPublicacion, this.GetMiembroById(idMiembro),titulo, texto);
             if(this.GetPublicacionById(idPublicacion) is Post)
             {

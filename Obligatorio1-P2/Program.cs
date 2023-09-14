@@ -60,8 +60,8 @@ sistema.AgregarComentarioPost(1, 0,"Este es el titulo de mi comentario", "Coment
 sistema.AgregarComentarioPost(1, 1,"Este es el titulo de mi comentario", "Comentario 2 post 2");
 sistema.AgregarComentarioPost(1, 8,"Este es el titulo de mi comentario", "Comentario 3 post 3");
 sistema.AgregarComentarioPost(2, 8,"Este es el titulo de mi comentario", "Comentario 1 post 3");
-sistema.AgregarComentarioPost(2, 4,"Este es el titulo de mi comentario", "Comentario 2 post 3");
-sistema.AgregarComentarioPost(2, 5,"Este es el titulo de mi comentario", "Comentario 3 post 3");
+sistema.AgregarComentarioPost(2, 8,"Este es el titulo de mi comentario", "Comentario 2 post 3");
+sistema.AgregarComentarioPost(2, 2,"Este es el titulo de mi comentario", "Comentario 3 post 3");
 sistema.AgregarComentarioPost(3, 2,"Este es el titulo de mi comentario", "Comentario 1 post 4");
 sistema.AgregarComentarioPost(3, 3,"Este es el titulo de mi comentario", "Comentario 2 post 4");
 sistema.AgregarComentarioPost(3, 8,"Este es el titulo de mi comentario", "Comentario 3 post 4");
@@ -139,12 +139,12 @@ sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
 //sistema.EnviarInvitacion(Luis.GetId(), Juan.GetId());
 //sistema.EnviarInvitacion(Marta.GetId(), Juan.GetId());
 //sistema.EnviarInvitacion(Jose.GetId(), Juan.GetId());
-
+//
 //ListarInvitaciones(Juan);
-
+//
 //sistema.ActualizarListaDeInvitaciones(Juan);
 //ListarInvitaciones(Juan);
-
+//
 //sistema.AceptarInvitacion(invitacionDeLaura);
 //ListarAmigos(Juan);
 //ListarAmigos(Laura);
@@ -166,12 +166,12 @@ while (opcion != 0)
        /* Lista de Menu
         Console.WriteLine("2 - Buscar Publicaciones de Miembros por Email");
         Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
-        Console.WriteLine("5 - Mostrar Miembro con mayor cantidad de Publicaiones");
        */
         Console.WriteLine("1 - Ver Miembros");
         Console.WriteLine("2 - Ver Administradores");
         Console.WriteLine("3 - Registrarse a Social NetWork");
         Console.WriteLine("4 - Buscar Posts por rango de fechas");
+        Console.WriteLine("5 - Mostrar Miembro con mayor cantidad de Publicaiones");
         opcion = int.Parse(Console.ReadLine());
         switch (opcion)
         {
@@ -204,6 +204,10 @@ while (opcion != 0)
                 Console.WriteLine("Ingrese la segunda fecha");
                 DateTime fecha2 = DateTime.Parse(Console.ReadLine());
                 ListarPostsSegunFecha(fecha1, fecha2);
+                break;
+
+            case 5:
+                ListarMiembroConMasPublicaciones();
                 break;
 
 
@@ -323,6 +327,33 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
 // en una lista de miembros, utilizando 'mayorCantidad' para realizar un seguimiento
 // de la cantidad máxima encontrada y 'miembrosConMasPublicaciones' para almacenar los miembros con mas publicaciones.
 // Luego, imprime los miembros con la mayor cantidad de publicaciones en la consola.
+void ListarMiembroConMasPublicaciones()
+{
+    int mayorCantidad = 0;
+    List<Miembro> miembrosConMasPublicaciones = new List<Miembro>();
+
+    foreach(Miembro miembro in sistema.GetMiembros())
+    {
+        if (miembro.CantidadDePublicaciones > mayorCantidad)
+        {
+            mayorCantidad = miembro.CantidadDePublicaciones;
+            miembrosConMasPublicaciones.Clear();
+            miembrosConMasPublicaciones.Add(miembro);
+        }
+        else if (miembro.CantidadDePublicaciones == mayorCantidad)
+        {
+            miembrosConMasPublicaciones.Add(miembro);
+        }
+    }
+
+        Console.WriteLine("Miembro/s con mayor cantidad de publicaciones:");
+    foreach(Miembro miembro in miembrosConMasPublicaciones)
+    {
+        Console.WriteLine($"{miembro.GetNombre()} hizo {mayorCantidad} publicaciones");
+    }
+}
+
+
 void ListarMiembroConMasPublicaciones()
 {
     int mayorCantidad = 0;
