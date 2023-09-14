@@ -14,7 +14,7 @@ namespace Dominio
         private List<Administrador> _administradores;
         private List<Publicacion> _publicaciones;
         private List<Invitacion> _invitaciones;
-        private List<Post> _posts;
+
 
         #endregion
 
@@ -25,7 +25,6 @@ namespace Dominio
             this._administradores = new List<Administrador>();
             this._invitaciones = new List<Invitacion>();
             this._publicaciones = new List<Publicacion>();
-            this._posts = new List<Post>();
         }
         #endregion
 
@@ -44,11 +43,6 @@ namespace Dominio
         public List<Invitacion> GetInvitaciones()
         {
             return this._invitaciones;
-        }
-
-        public List<Post> GetPosts()
-        {
-            return this._posts;
         }
 
         public List<Publicacion> GetPublicaciones()
@@ -133,10 +127,18 @@ namespace Dominio
             return this._publicaciones[id];
         }
 
-        public Post GetPostById(int id)
+        public Miembro GetMiembroByEmail(string email)
         {
-            return this._posts[id];
+            foreach(Miembro unMiembro in this.GetMiembros())
+            {
+                if(unMiembro.GetEmail() == email)
+                {
+                    return unMiembro;
+                }
+            }
+            return null;
         }
+
 
         #region Metodos Administrador
 
@@ -149,41 +151,136 @@ namespace Dominio
         // Metod que permite bloquear o desbloquear a un miembro
         public void BloquearMiembro(int idMiembro, bool bloquear)
         {
-            foreach (Miembro unMiembro in this.GetMiembros())
-            {
-                if(unMiembro.GetId() == idMiembro)
-                {
-                    unMiembro.SetBloqueado(bloquear);
-                }
-            }
+            this.GetMiembroById(idMiembro).SetBloqueado(bloquear);
         }
 
         //Metod que permite cambiar el valor del atributo censurado de un post
         public void CensurarPost(int idPost, bool censurar)
         {
-            foreach (Post unPost in this.GetPosts())
+            if (this.GetPublicacionById(idPost) is Post)
             {
-                if (unPost.GetId() == idPost)
-                {
-                    unPost.SetCensurado(censurar);
-                }
+                Post post = (Post)this.GetPublicacionById(idPost);
+                post.SetCensurado(censurar);
+            }
+            else
+            {
+                throw new Exception("No se puede censurar comentarios");
             }
         }
+
+        #region Post y Comentario
 
         // Agregar un post con id de miembro
         public void AgregarPostMiembro(int idMiembro, string texto, string nombreImagen)
         {
             Post nuevoPost = new Post(this.GetMiembroById(idMiembro), texto, nombreImagen);
-            this.AgregarPublicacion(nuevoPost);  
+            this.AgregarPublicacion(nuevoPost);
         }
 
         // Agregar un comentario con id de post y id de miembro que comenta
         public void AgregarComentarioPost(int idPublicacion, int idMiembro, string texto)
         {
-            Comentario nuevoComentario = new Comentario(this.GetMiembroById(idMiembro), texto);
-            this.GetPostById(idPublicacion).AgregarComentario(nuevoComentario);
-
+            Comentario nuevoComentario = new Comentario(idPublicacion, this.GetMiembroById(idMiembro), texto);
+            if(this.GetPublicacionById(idPublicacion) is Post)
+            {
+                Post post = (Post)this.GetPublicacionById(idPublicacion);
+                post.AgregarComentario(nuevoComentario);
+            }
+            this.AgregarPublicacion(nuevoComentario);
         }
+
+        // Busqueda de publicaciones de un miembro por Email
+        public List<Publicacion> GetPublicacionesPorEmail(string email)
+        {
+            List<Publicacion> publicaciones = new List<Publicacion>();
+            foreach(Publicacion unaPublicacion in this.GetPublicaciones())
+            {
+                if(unaPublicacion.GetAutor().GetEmail() == email)
+                {
+                    publicaciones.Add(unaPublicacion);
+                }
+
+            }
+            return publicaciones;
+        }
+
+        // Identificar comentarios en una lista de publicaciones
+        public List<Comentario> IdentificarComentarios(List<Publicacion> publicaciones)
+        {
+            List<Comentario> comentarios = new List<Comentario>();
+            for(int i=0; i < publicaciones.Count; i++)
+            {
+                if (publicaciones[i] is Comentario)
+                {
+                    Comentario comment = (Comentario)publicaciones[i];
+                    comentarios.Add(comment);
+                }
+            }
+            return comentarios;
+        }
+
+        // Identificar posts en una lista de publicaciones
+        public List<Post> IdentificarPosts(List<Publicacion> publicaciones)
+        {
+            List<Post> posts = new List<Post>();
+            for (int i = 0; i < publicaciones.Count; i++)
+            {
+                if (publicaciones[i] is Post && ((Post)publicaciones[i]).GetCensurado() == false)
+                {
+                    Post post = (Post)publicaciones[i];
+                    posts.Add(post);
+                }
+            }
+            return posts;
+        }
+
+        public List<Comentario> GetComentariosPorEmail(string email)
+        {
+            List<Comentario> comentarios = new List<Comentario>();
+            foreach (Publicacion unaPublicacion in this.GetPublicaciones())
+            {
+                if (unaPublicacion.GetAutor().GetEmail() == email)
+                {
+                    if (unaPublicacion is Comentario)
+                    {
+                        Comentario comment = (Comentario)unaPublicacion;
+                        comentarios.Add(comment);
+                    }
+                }
+
+            }
+            return comentarios;
+        }
+
+        public List<Publicacion> GetPostPorComentarios(List<Comentario> comentarios)
+        {
+            List<Publicacion> posts = new List<Publicacion>();
+            foreach (Comentario unComentario in comentarios)
+            {
+                Publicacion publicacion = this.GetPublicacionById(unComentario.GetIdPost());
+                posts.Add(publicacion);
+            }
+            
+            return posts.Distinct().ToList();
+        }
+        
+        //public string GetStringPosts(List<Publicacion> posts)
+        //{
+        //    string postString = "";
+        //    foreach(Publicacion unPost in posts)
+        //    {
+        //        postString += unPost.ToString();
+        //    }
+        //    return postString;
+        //}
+
+        //public string menu2(string email)
+        //{
+        //    string posts = this.GetStringPosts(this.GetPostPorComentarios(this.GetComentariosPorEmail(email)));
+        //    return posts;
+        //}
+
+        #endregion
 
 
         // miSistema.CrearInvitacion(usuarioSolicitante, usuarioSolicitado)
@@ -208,10 +305,6 @@ namespace Dominio
         public void AgregarPublicacion(Publicacion publicacion)
         {
             this._publicaciones.Add(publicacion);
-        }
-        public void AgregarPost(Post publicacion)
-        {
-            this._posts.Add(publicacion);
         }
 
 

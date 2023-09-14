@@ -39,7 +39,22 @@ cualquier tipo * MARTIN *
 
 --- Hacer TODOS los overrides (Meter todos los datos? PREGUNTAR)
 
+<<<<<<< HEAD
+Semana 3 Lectura letra, entender el problema. Identificar las clases y hacer UML en Astah. Realizar menú con opciones de los se pide.
+
+Semana 4 Actualizar UML con agregaciones y clases de asociación si corresponde. Codificar clases en Dominio con sus métodos de validación.
+
+Semana 5 Actualizar UML con herencias/ clases abstractas si corresponde. Codificar métodos de altas en dominio y realizar precargas.
+
+Semana 5 Realizar funcionalidades del menú 1, 2 y 3
+
+Semana 7 Realizar funcionalidades del menú 4 y 5
+
+Semana 8 Finalizar documentación.
+
+=======
 *********************************************
+>>>>>>> origin/master
 
 PRECARGA:
 
