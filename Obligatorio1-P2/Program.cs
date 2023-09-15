@@ -120,110 +120,192 @@ sistema.LikearUnaPublicacion(3, 6, false);
 
 #endregion
 
-#region Pruebas
+
+#region MenuDePruebas
+
+void AbrirMenuDeTests() {
+
+    int opcionTest = -1;
+    while (opcionTest != 0)
+    {
+        try
+        {
+            Console.Clear();
+            Console.WriteLine("************* MENU DE TESTS *************");
+            Console.WriteLine("0 - Salir");
+            Console.WriteLine("1 - Ver Miembros");
+            Console.WriteLine("2 - Ver Administradores");
+            Console.WriteLine("3 - Registrarse a Social NetWork");
+            Console.WriteLine("4 - PRUEBA GetPublicacionesPorEmail, IdentificarComentarios, IdentificarPosts");
+            Console.WriteLine("5 - PRUEBA BloquearMiembro");
+            Console.WriteLine("6 - Ver Comentarios");
+            Console.WriteLine("7 - PRUEBA CensurarPost");
+            Console.WriteLine("8 - PRUEBA EnviarInvitaciones");
+            Console.WriteLine("9 - PRUEBA Likes y Dislikes");
+
+            opcionTest = int.Parse(Console.ReadLine());
+            switch (opcionTest)
+            {
+
+                case 1:
+                    Console.Clear();
+
+                    ListarMiembros();
+                    Console.ReadLine();
+                    break;
+                case 2:
+                    Console.Clear();
+
+                    foreach (Administrador unAdministrador in sistema.GetAdministradores())
+                    {
+                        Console.WriteLine(unAdministrador.GetId());
+                    }
+                    Console.ReadLine();
+
+                    break;
+                case 3:
+                    Console.Clear();
+
+                    Console.WriteLine("Ingrese Nombre y Apellido");
+                    string nombre = Console.ReadLine();
+                    Console.WriteLine("Ingrese Email");
+                    string email = Console.ReadLine();
+                    Console.WriteLine("Ingrese contraseña");
+                    string contrasenia = Console.ReadLine();
+                    Console.WriteLine("Ingrese Fecha de Nacimiento");
+                    DateTime fechaDeNacimiento = DateTime.Parse(Console.ReadLine());
+
+                    Miembro nuevoMiembro = new Miembro(email, contrasenia, nombre, fechaDeNacimiento, false);
+                    sistema.AgregarMiembro(nuevoMiembro);
+                    Console.WriteLine("Miembro registrado con exito");
+                    Console.ReadLine();
+
+                    break;
+
+                    case 4:
+                    Console.Clear();
+
+                    foreach (Publicacion publicacion in sistema.GetPublicacionesPorEmail("correo9@example.com"))
+                    {
+                        Console.WriteLine(publicacion.ToString());
+                    }
+                    Console.WriteLine("Fin Publicaciones");
+
+                    foreach (Comentario comentario in sistema.IdentificarComentarios(sistema.GetPublicacionesPorEmail("correo9@example.com")))
+                    {
+                        Console.WriteLine(comentario.ToString());
+                    }
+                    Console.WriteLine("Fin Comentarios");
+
+                    foreach (Post post in sistema.IdentificarPosts(sistema.GetPublicacionesPorEmail("correo9@example.com")))
+                    {
+                        Console.WriteLine(post.ToString());
+                    }
+                    Console.WriteLine("Fin Posts");
+                    Console.ReadLine();
+
+                    break; 
+                case 5:
+                    Console.Clear();
+
+                    Console.WriteLine(Juan.GetBloqueado());
+                    sistema.BloquearMiembro(0, true);
+                    Console.WriteLine(Juan.GetBloqueado());
+                    Console.ReadLine();
+
+                    break;
+                    case 6:
+                    Console.Clear();
+
+                    Console.WriteLine("Falta correccion");
+                    // Publicacion publicacion = (Post)sistema.GetPublicacionById(1);
+                    //
+                    // foreach (Comentario comentario in publicacion.get
+                    // {
+                    //     Console.WriteLine(comentario.GetAutorNombre());
+                    // }
+                    Console.ReadLine();
+
+                    break; 
+                case 7:
+                    Console.Clear();
+
+                    Console.WriteLine("Falta correccion");
+                    //Console.WriteLine("Falta correccion");
+                    //sistema.AgregarPostMiembro(8, "Post 6", "cinco.jpg");
+                    //Console.WriteLine(sistema.GetPostById(5).GetCensurado());
+                    //sistema.CensurarPost(5, true);
+                    //Console.WriteLine(sistema.GetPostById(5).GetCensurado());
+                    //sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
+                    Console.ReadLine();
+
+                    break;
+                    case 8:
+            Console.Clear();
+
+                    //ListarMiembros();
+                    //Pruebas con Invitaciones. Funciona: Enviar Invitacion, Rechazar Invitacion y las listas de amigos y de invitaciones
+
+                    ListarAmigos(Juan);
+                    sistema.EnviarInvitacion(Luis.GetId(), Juan.GetId());
+                    sistema.EnviarInvitacion(Marta.GetId(), Juan.GetId());
+                    sistema.EnviarInvitacion(Jose.GetId(), Juan.GetId());
+                    
+                    ListarInvitaciones(Juan);
+                    
+                    sistema.ActualizarListaDeInvitaciones(Juan);
+                    ListarInvitaciones(Juan);
+                    
+                    sistema.AceptarInvitacion(invitacionDeLaura);
+                    ListarAmigos(Juan);
+                    ListarAmigos(Laura);
+                    Console.ReadLine();
+
+                    break;
+                    case 9:
+                    Console.Clear();
+
+                    foreach (Publicacion publicacion in sistema.GetPublicaciones())
+                        {
+                            Console.WriteLine("**************************************************************");
+                            Console.WriteLine($"REACCIONES DE: {publicacion.GetTitulo()}");
+                    
+                            if (publicacion.GetReacciones().Count() > 0)
+                            {
+                                foreach (Reaccion reaccion in publicacion.GetReacciones())
+                                {
+                                    Console.WriteLine(sistema.GetMiembroById(reaccion.IdMiembro) + " dio un " + (reaccion.Like ? "like" : "dislike"));
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("No hay reacciones para esta publicación.");
+                            }
+                    
+                            Console.WriteLine("VA de publicación es " + sistema.CalcularVA(publicacion.GetId()));
+                            Console.WriteLine();
+                        }
+                    Console.ReadLine();
+
+                    break;
 
 
+                default:
+                    Console.WriteLine("Opcion Incorrecta");
+        break;
+    }
+        }
+        catch (Exception)
+        {
+        Console.WriteLine("Opcion Incorrecta.");
+        opcionTest = -1;
+    }
+    }
+    Console.Clear();
 
-/* PRUEBA GetPublicacionesPorEmail, IdentificarComentarios, IdentificarPosts
-
-foreach(Publicacion publicacion in sistema.GetPublicacionesPorEmail("correo9@example.com"))
-{
-    Console.WriteLine(publicacion.ToString());
 }
-Console.WriteLine("Fin Publicaciones");
-
-foreach (Comentario comentario in sistema.IdentificarComentarios(sistema.GetPublicacionesPorEmail("correo9@example.com")))
-{
-    Console.WriteLine(comentario.ToString());
-}
-Console.WriteLine("Fin Comentarios");
-
-foreach (Post post in sistema.IdentificarPosts(sistema.GetPublicacionesPorEmail("correo9@example.com")))
-{
-    Console.WriteLine(post.ToString());
-}
-Console.WriteLine("Fin Posts");
-
-*/
-
-
-/* PRUEBA BloquearMiembro
-
-Console.WriteLine(Juan.GetBloqueado());
-sistema.BloquearMiembro(0, true);
-Console.WriteLine(Juan.GetBloqueado());
-
-*/
-
-/* PRUEBA GetComentarios
-
-foreach (Comentario comentario in sistema.GetPostById(1).GetComentarios())
-{
-    Console.WriteLine(comentario.GetAutorNombre());
-}
-
-*/
-
-/* PRUEBA CensurarPost
-
-sistema.AgregarPostMiembro(8, "Post 6", "cinco.jpg");
-Console.WriteLine(sistema.GetPostById(5).GetCensurado());
-sistema.CensurarPost(5, true);
-Console.WriteLine(sistema.GetPostById(5).GetCensurado());
-sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
-
-*/
-
-
-
-// PRUEBA EnviarInvitaciones
-
-//ListarMiembros();
-
-
-//Pruebas con Invitaciones. Funciona: Enviar Invitacion, Rechazar Invitacion y las listas de amigos y de invitaciones
-//ListarAmigos(Juan);
-//sistema.EnviarInvitacion(Luis.GetId(), Juan.GetId());
-//sistema.EnviarInvitacion(Marta.GetId(), Juan.GetId());
-//sistema.EnviarInvitacion(Jose.GetId(), Juan.GetId());
-//
-//ListarInvitaciones(Juan);
-//
-//sistema.ActualizarListaDeInvitaciones(Juan);
-//ListarInvitaciones(Juan);
-//
-//sistema.AceptarInvitacion(invitacionDeLaura);
-//ListarAmigos(Juan);
-//ListarAmigos(Laura);
-
-
-// PRUEBA Likes y Dislikes
-
-//foreach (Publicacion publicacion in sistema.GetPublicaciones())
-//{
-//    Console.WriteLine("**************************************************************");
-//    Console.WriteLine($"REACCIONES DE: {publicacion.GetTitulo()}");
-//
-//    if (publicacion.GetReacciones().Count() > 0)
-//    {
-//        foreach (Reaccion reaccion in publicacion.GetReacciones())
-//        {
-//            Console.WriteLine(sistema.GetMiembroById(reaccion.IdMiembro) + " dio un " + (reaccion.Like ? "like" : "dislike"));
-//        }
-//    }
-//    else
-//    {
-//        Console.WriteLine("No hay reacciones para esta publicación.");
-//    }
-//
-//    Console.WriteLine("VA de publicación es " + sistema.CalcularVA(publicacion.GetId()));
-//    Console.WriteLine();
-//}
-
-
 
 #endregion
-
 
 
 #region Menu
@@ -234,42 +316,21 @@ while (opcion != 0)
     try
     {
         Console.WriteLine("************* SOCIAL NETWORK *************");
+        Console.WriteLine("50 - Menu de Tests");
         Console.WriteLine("0 - Salir");
-       /* Lista de Menu
-        Console.WriteLine("2 - Buscar Publicaciones de Miembros por Email");
-        Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
-       */
-        Console.WriteLine("1 - Ver Miembros");
-        Console.WriteLine("2 - Ver Administradores");
-        Console.WriteLine("3 - Registrarse a Social NetWork");
+        Console.WriteLine("1 - IMPLEMENTAR");
+        Console.WriteLine("2 - IMPLEMENTAR");
+        Console.WriteLine("3 - IMPLEMENTAR");
         Console.WriteLine("4 - Buscar Posts por rango de fechas");
         Console.WriteLine("5 - Mostrar Miembro con mayor cantidad de Publicaiones");
         opcion = int.Parse(Console.ReadLine());
         switch (opcion)
         {
-            case 1:
-                ListarMiembros();
+            case 50:
+                    AbrirMenuDeTests();
                 break;
-            case 2:
-                foreach (Administrador unAdministrador in sistema.GetAdministradores())
-                {
-                    Console.WriteLine(unAdministrador.GetId());
-                }
-                break;
-            case 3:
-                Console.WriteLine("Ingrese Nombre y Apellido");
-                string nombre = Console.ReadLine();
-                Console.WriteLine("Ingrese Email");
-                string email = Console.ReadLine();
-                Console.WriteLine("Ingrese contraseña");
-                string contrasenia = Console.ReadLine();
-                Console.WriteLine("Ingrese Fecha de Nacimiento");
-                DateTime fechaDeNacimiento = DateTime.Parse(Console.ReadLine());
 
-                Miembro nuevoMiembro = new Miembro(email, contrasenia, nombre, fechaDeNacimiento, false);
-                sistema.AgregarMiembro(nuevoMiembro);
-                Console.WriteLine("Miembro registrado con exito");
-                break;
+
             case 4:
                 Console.WriteLine("Ingrese la primera fecha");
                 DateTime fecha1 = DateTime.Parse(Console.ReadLine());
