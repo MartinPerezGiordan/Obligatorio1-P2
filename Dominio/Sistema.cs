@@ -143,16 +143,6 @@ namespace Dominio
         }
 
 
-
-
-
-        #endregion
-
-        public Publicacion GetPublicacionById(int id)
-        {
-            return this._publicaciones[id];
-        }
-
         public Miembro GetMiembroByEmail(string email)
         {
             foreach(Miembro unMiembro in this.GetMiembros())
@@ -165,6 +155,33 @@ namespace Dominio
             return null;
         }
 
+        //Esta funcion permite tanto Likear una publicacion como dislikearla.
+        //Acepta 3 parametros, el miembro que likea, la publicacion y si es un like(true) o dislike(false)
+        //Primero ve si ya existe un like o dislike en la publicacion hecho por ese miembro, en cuyo caso solo lo cambia de like a dislike o viceversa.
+        //En caso contrario crea la reaccion con el constructor de reacciones y luego lo agrega a la lista de reacciones de la publicacion.
+        public void LikearUnaPublicacion(int idMiembro, int idPublicacion, bool like)
+        {
+            bool noHayReaccion = true;
+            Publicacion publicacion = this.GetPublicacionById(idPublicacion);
+
+            foreach(Reaccion unaReaccion in publicacion.GetReacciones())
+            {
+                if(unaReaccion.IdMiembro == idMiembro)
+                {
+                    unaReaccion.Like = like;
+                    noHayReaccion = false;
+                }
+            }
+
+            if(noHayReaccion)
+            {
+            Reaccion reaccion = new Reaccion(like,idMiembro);
+            publicacion.AgregarReaccion(reaccion);
+            }
+        }
+
+
+        #endregion
 
         #region Metodos Administrador
 
@@ -314,9 +331,6 @@ namespace Dominio
 
         #endregion
 
-
-        // miSistema.CrearInvitacion(usuarioSolicitante, usuarioSolicitado)
-
         #endregion
 
         #region Metodos Invitacion
@@ -338,7 +352,43 @@ namespace Dominio
         {
             this._publicaciones.Add(publicacion);
         }
+        public Publicacion GetPublicacionById(int id)
+        {
+            return this._publicaciones[id];
+        }
 
+        public double CalcularVA(int idPublicacion)
+        {
+            Publicacion publicacion = GetPublicacionById(idPublicacion);
+            double VA = 0;
+            int likes = 0;
+            int dislikes = 0;
+            
+            foreach(Reaccion reaccion in publicacion.GetReacciones())
+            {
+                if (reaccion.Like)
+                {
+                    likes++;
+                }
+                else
+                {
+                    dislikes++;
+                }
+            }
+
+            VA = (likes * 5) + (dislikes * -2);
+
+            if(publicacion is Post)
+            {
+                Post post = (Post) publicacion;
+                if (post.Publico)
+                {
+                    VA += 10;
+                }
+            }
+
+            return VA;
+        }
 
         #endregion
 

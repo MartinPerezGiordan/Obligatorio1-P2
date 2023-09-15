@@ -20,7 +20,7 @@ METODOS
 
 --- (Miembro - Hacer Comentario????) |LISTO|
 
---- Miembro - Likear una Publicacion 
+--- Miembro - Likear una Publicacion * Martin * |LISTO| 
 
 
 MENU:

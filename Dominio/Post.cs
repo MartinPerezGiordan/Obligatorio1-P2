@@ -14,7 +14,7 @@ namespace Dominio
 
         private string _nombreImagen;
         private List<Comentario> _comentarios;
-        private bool _privado;
+        public bool Publico { get; set; }
         private bool _censurado;
 
         #endregion
@@ -23,7 +23,7 @@ namespace Dominio
         public Post(Miembro autor, string titulo, string texto, string nombreImagen) : base(autor, texto, titulo)
         {
 
-            this._privado = false;
+            this.Publico = true;
             this._censurado = false;
             this._comentarios = new List<Comentario>();
             this._nombreImagen = nombreImagen;
@@ -34,7 +34,7 @@ namespace Dominio
 
         public Post(Miembro autor, string titulo, string texto, string nombreImagen, List<Comentario> comentarios) : base(autor,texto, titulo)
         {
-            this._privado = false;
+            this.Publico = true;
             this._censurado = false;
             this._comentarios = comentarios;
             this._nombreImagen = nombreImagen;

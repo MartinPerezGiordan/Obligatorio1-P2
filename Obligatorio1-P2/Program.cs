@@ -46,28 +46,75 @@ sistema.AgregarInvitacion(invitacionDeLaura);
 
 #region Post y Comentarios
 
+//Ids publicacion de 0 a 4 son post
 sistema.AgregarPostMiembro(1, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg");
 sistema.AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg");
 sistema.AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg");
 sistema.AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg");
 sistema.AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg");
 
+//Ids publicacion de 5 a 19 son comentario
+sistema.AgregarComentarioPost(0, 8,"Este es el titulo 1", "Este es el comentario");
+sistema.AgregarComentarioPost(0, 1,"Este es el titulo 2", "Comentario 2 post 1");
+sistema.AgregarComentarioPost(0, 2,"Este es el titulo 3", "Comentario 3 post 1");
+sistema.AgregarComentarioPost(1, 0,"Este es el titulo 4", "Comentario 1 post 2");
+sistema.AgregarComentarioPost(1, 1,"Este es el titulo 5", "Comentario 2 post 2");
+sistema.AgregarComentarioPost(1, 8,"Este es el titulo 6", "Comentario 3 post 3");
+sistema.AgregarComentarioPost(2, 8,"Este es el titulo 7", "Comentario 1 post 3");
+sistema.AgregarComentarioPost(2, 8,"Este es el titulo 8", "Comentario 2 post 3");
+sistema.AgregarComentarioPost(2, 2,"Este es el titulo 9", "Comentario 3 post 3");
+sistema.AgregarComentarioPost(3, 2,"Este es el titulo 10", "Comentario 1 post 4");
+sistema.AgregarComentarioPost(3, 3,"Este es el titulo 11", "Comentario 2 post 4");
+sistema.AgregarComentarioPost(3, 8,"Este es el titulo 12", "Comentario 3 post 4");
+sistema.AgregarComentarioPost(4, 6,"Este es el titulo 13", "Comentario 1 post 5");
+sistema.AgregarComentarioPost(4, 5,"Este es el titulo 14", "Comentario 2 post 5");
+sistema.AgregarComentarioPost(4, 8,"Este es el titulo 15", "Comentario 3 post 5");
 
-sistema.AgregarComentarioPost(0, 8,"Este es el titulo", "Este es el comentario");
-sistema.AgregarComentarioPost(0, 1,"Este es el titulo de mi comentario", "Comentario 2 post 1");
-sistema.AgregarComentarioPost(0, 2,"Este es el titulo de mi comentario", "Comentario 3 post 1");
-sistema.AgregarComentarioPost(1, 0,"Este es el titulo de mi comentario", "Comentario 1 post 2");
-sistema.AgregarComentarioPost(1, 1,"Este es el titulo de mi comentario", "Comentario 2 post 2");
-sistema.AgregarComentarioPost(1, 8,"Este es el titulo de mi comentario", "Comentario 3 post 3");
-sistema.AgregarComentarioPost(2, 8,"Este es el titulo de mi comentario", "Comentario 1 post 3");
-sistema.AgregarComentarioPost(2, 8,"Este es el titulo de mi comentario", "Comentario 2 post 3");
-sistema.AgregarComentarioPost(2, 2,"Este es el titulo de mi comentario", "Comentario 3 post 3");
-sistema.AgregarComentarioPost(3, 2,"Este es el titulo de mi comentario", "Comentario 1 post 4");
-sistema.AgregarComentarioPost(3, 3,"Este es el titulo de mi comentario", "Comentario 2 post 4");
-sistema.AgregarComentarioPost(3, 8,"Este es el titulo de mi comentario", "Comentario 3 post 4");
-sistema.AgregarComentarioPost(4, 6,"Este es el titulo de mi comentario", "Comentario 1 post 5");
-sistema.AgregarComentarioPost(4, 5,"Este es el titulo de mi comentario", "Comentario 2 post 5");
-sistema.AgregarComentarioPost(4, 8,"Este es el titulo de mi comentario", "Comentario 3 post 5");
+#endregion
+
+#region Reacciones
+ //Likes a foto de vacaciones en la playa
+sistema.LikearUnaPublicacion(1, 0, true);
+sistema.LikearUnaPublicacion(2, 0, false);
+sistema.LikearUnaPublicacion(3, 0, true);
+sistema.LikearUnaPublicacion(4, 0, true);
+sistema.LikearUnaPublicacion(5, 0, true);
+sistema.LikearUnaPublicacion(1, 0, true);
+sistema.LikearUnaPublicacion(2, 0, true);
+sistema.LikearUnaPublicacion(3, 0, true);
+
+//Likes a Nuevo libro
+sistema.LikearUnaPublicacion(1, 1, true);
+sistema.LikearUnaPublicacion(2, 1, false);
+sistema.LikearUnaPublicacion(3, 1, true);
+sistema.LikearUnaPublicacion(4, 1, true);
+sistema.LikearUnaPublicacion(5, 1, true);
+sistema.LikearUnaPublicacion(1, 1, true);
+sistema.LikearUnaPublicacion(2, 1, true);
+sistema.LikearUnaPublicacion(3, 1, false);
+
+//Este es el titulo 1
+sistema.LikearUnaPublicacion(1, 5, true);
+sistema.LikearUnaPublicacion(2, 5, false);
+sistema.LikearUnaPublicacion(3, 5, true);
+sistema.LikearUnaPublicacion(4, 5, true);
+sistema.LikearUnaPublicacion(5, 5, true);
+sistema.LikearUnaPublicacion(1, 5, true);
+sistema.LikearUnaPublicacion(2, 5, true);
+sistema.LikearUnaPublicacion(3, 5, true);
+
+//Este es el titulo 2
+sistema.LikearUnaPublicacion(1, 6, true);
+sistema.LikearUnaPublicacion(2, 6, false);
+sistema.LikearUnaPublicacion(3, 6, true);
+sistema.LikearUnaPublicacion(4, 6, true);
+sistema.LikearUnaPublicacion(5, 6, true);
+sistema.LikearUnaPublicacion(1, 6, true);
+sistema.LikearUnaPublicacion(2, 6, true);
+sistema.LikearUnaPublicacion(3, 6, false);
+
+
+
 
 #endregion
 
@@ -148,6 +195,31 @@ sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
 //sistema.AceptarInvitacion(invitacionDeLaura);
 //ListarAmigos(Juan);
 //ListarAmigos(Laura);
+
+
+// PRUEBA Likes y Dislikes
+
+//foreach (Publicacion publicacion in sistema.GetPublicaciones())
+//{
+//    Console.WriteLine("**************************************************************");
+//    Console.WriteLine($"REACCIONES DE: {publicacion.GetTitulo()}");
+//
+//    if (publicacion.GetReacciones().Count() > 0)
+//    {
+//        foreach (Reaccion reaccion in publicacion.GetReacciones())
+//        {
+//            Console.WriteLine(sistema.GetMiembroById(reaccion.IdMiembro) + " dio un " + (reaccion.Like ? "like" : "dislike"));
+//        }
+//    }
+//    else
+//    {
+//        Console.WriteLine("No hay reacciones para esta publicación.");
+//    }
+//
+//    Console.WriteLine("VA de publicación es " + sistema.CalcularVA(publicacion.GetId()));
+//    Console.WriteLine();
+//}
+
 
 
 #endregion
