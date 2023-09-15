@@ -284,13 +284,13 @@ namespace Dominio
             return comentarios;
         }
 
-        public List<Publicacion> GetPostPorComentarios(List<Comentario> comentarios)
+        public List<Post> GetPostPorComentarios(List<Comentario> comentarios)
         {
-            List<Publicacion> posts = new List<Publicacion>();
+            List<Post> posts = new List<Post>();
             foreach (Comentario unComentario in comentarios)
             {
-                Publicacion publicacion = this.GetPublicacionById(unComentario.GetIdPost());
-                posts.Add(publicacion);
+                Post post = (Post)this.GetPublicacionById(unComentario.GetIdPost());
+                posts.Add(post);
             }
             
             return posts.Distinct().ToList();

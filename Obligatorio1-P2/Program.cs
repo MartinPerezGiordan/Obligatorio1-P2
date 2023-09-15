@@ -164,27 +164,19 @@ while (opcion != 0)
         Console.WriteLine("************* SOCIAL NETWORK *************");
         Console.WriteLine("0 - Salir");
        /* Lista de Menu
+       
+       Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
+       */
+        Console.WriteLine("1 - Registrarse a Social NetWork");
         Console.WriteLine("2 - Buscar Publicaciones de Miembros por Email");
         Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
-       */
-        Console.WriteLine("1 - Ver Miembros");
-        Console.WriteLine("2 - Ver Administradores");
-        Console.WriteLine("3 - Registrarse a Social NetWork");
         Console.WriteLine("4 - Buscar Posts por rango de fechas");
         Console.WriteLine("5 - Mostrar Miembro con mayor cantidad de Publicaiones");
         opcion = int.Parse(Console.ReadLine());
         switch (opcion)
         {
             case 1:
-                ListarMiembros();
-                break;
-            case 2:
-                foreach (Administrador unAdministrador in sistema.GetAdministradores())
-                {
-                    Console.WriteLine(unAdministrador.GetId());
-                }
-                break;
-            case 3:
+                Console.WriteLine("Registro");
                 Console.WriteLine("Ingrese Nombre y Apellido");
                 string nombre = Console.ReadLine();
                 Console.WriteLine("Ingrese Email");
@@ -193,11 +185,38 @@ while (opcion != 0)
                 string contrasenia = Console.ReadLine();
                 Console.WriteLine("Ingrese Fecha de Nacimiento");
                 DateTime fechaDeNacimiento = DateTime.Parse(Console.ReadLine());
-
                 Miembro nuevoMiembro = new Miembro(email, contrasenia, nombre, fechaDeNacimiento, false);
                 sistema.AgregarMiembro(nuevoMiembro);
-                Console.WriteLine("Miembro registrado con exito");
+                Console.WriteLine("Miembro registrado con exito");                
                 break;
+
+            case 2:
+                Console.WriteLine("Buscar Publicaciones de Miembros por Email");
+                Console.WriteLine("Ingrese email");
+                string emailBuscado = Console.ReadLine();
+                Console.WriteLine("Posts:");
+                foreach (Post post in sistema.IdentificarPosts(sistema.GetPublicacionesPorEmail(emailBuscado)))
+                {
+                    Console.WriteLine(post.ToString());
+                }
+                Console.WriteLine("Comentarios:");
+                foreach (Comentario comentario in sistema.IdentificarComentarios(sistema.GetPublicacionesPorEmail(emailBuscado)))
+                {
+                    Console.WriteLine(comentario.ToString());
+                }               
+                break;
+
+            case 3:
+                Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
+                Console.WriteLine("Ingrese email");
+                string emailComentario = Console.ReadLine();
+                Console.WriteLine("Posts comentados:");
+                foreach (Post post in sistema.GetPostPorComentarios(sistema.GetComentariosPorEmail(emailComentario)))
+                {
+                    Console.WriteLine(post.ToString());
+                }
+                break;
+
             case 4:
                 Console.WriteLine("Ingrese la primera fecha");
                 DateTime fecha1 = DateTime.Parse(Console.ReadLine());
@@ -209,7 +228,6 @@ while (opcion != 0)
             case 5:
                 ListarMiembroConMasPublicaciones();
                 break;
-
 
             default:
                 Console.WriteLine("Opcion Incorrecta");
@@ -296,16 +314,16 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
                 }
             }
         }
-        //Corregir ordenar lista por titulo descendente
-        postsAMostrar.OrderBy(obj => obj.GetTitulo()).ToList();
+        
+        List<Post> postsOrdenados = postsAMostrar.OrderBy(x => x.GetTitulo()).ToList();
 
-        if (postsAMostrar.Count == 0)
+        if (postsOrdenados.Count == 0)
         {
             Console.WriteLine("No hay ningun post entre esas fechas");
         }
         else
         {
-            foreach (Post post in postsAMostrar)
+            foreach (Post post in postsOrdenados)
             {
                 int id = post.GetId();
                 string titulo = post.GetTitulo();

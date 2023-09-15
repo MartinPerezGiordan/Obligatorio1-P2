@@ -68,9 +68,9 @@ Ordenar lista de posts por fecha de manera titulo descendente * PEDRO *
 
 Clase Reaccion y implementacion de reaccion en publicacion * MARTIN *
 
-Ordenar fuciones 1 2 y 3 * PEDRO *
+Ordenar fuciones 1 2 y 3 * PEDRO * ||LISTO||
 
-Alta de Miembro * PEDRO * Verficar que funcione
+Alta de Miembro * PEDRO * Verficar que funcione ||LISTO||
 
 Calculo V/A * MARTIN *
 
