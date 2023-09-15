@@ -11,6 +11,7 @@ namespace Dominio
         private Miembro _autor;
         private string _texto;
         private DateTime _fecha;
+        private List<Reaccion> _reacciones;
 
         #endregion
 
@@ -29,6 +30,7 @@ namespace Dominio
             this._titulo = titulo;
             this._texto = texto;
             this._fecha = DateTime.Now;
+            this._reacciones = new List<Reaccion>();
         }
 
         #endregion
@@ -69,7 +71,17 @@ namespace Dominio
             return this._fecha.ToString();
         }
 
+        public List<Reaccion> GetReacciones()
+        {
+            return this._reacciones;
+        }
+
+
         #endregion
+        public void AgregarReaccion(Reaccion reaccion)
+        {
+            this._reacciones.Add(reaccion);
+        }
     }
 }
 
