@@ -234,7 +234,7 @@ namespace Dominio
             if (this.GetPublicacionById(idPublicacion) is Post)
             {
                 Post post = (Post)this.GetPublicacionById(idPublicacion);
-                if(post.GetPrivado() == false || (post.GetPrivado() == true && miembroPublicacion.GetListaDeAmigos().Contains(miembro)))
+                if(post.Publico == true || (post.Publico == false && miembroPublicacion.GetListaDeAmigos().Contains(miembro)))
                 {
                     post.AgregarComentario(nuevoComentario);
                     miembro.CantidadDePublicaciones++;

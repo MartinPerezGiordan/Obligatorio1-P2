@@ -95,24 +95,17 @@ foreach (Invitacion invitacion in Carlos.GetInvitacionesRecibidas())
 
 #region Post y Comentarios
 
-<<<<<<< HEAD
-sistema.AgregarPostMiembro(0, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg", false);
-sistema.AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg", false);
-sistema.AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg", false);
-sistema.AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg", false);
-sistema.AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg", false);
+//Ids publicacion de 0 a 5 son post
+sistema.AgregarPostMiembro(0, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg", true);
+sistema.AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg", true);
+sistema.AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg", true);
+sistema.AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg", true);
+sistema.AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg", true);
 
-sistema.AgregarPostMiembro(9, "Post privado", "Privado!!", "soloamigoscomentan.jpg", true);
-=======
-//Ids publicacion de 0 a 4 son post
-sistema.AgregarPostMiembro(1, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg");
-sistema.AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg");
-sistema.AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg");
-sistema.AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg");
-sistema.AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg");
->>>>>>> master
+// Post privado para pruebas
+sistema.AgregarPostMiembro(9, "Post privado", "Privado!!", "soloamigoscomentan.jpg", false);
 
-//Ids publicacion de 5 a 19 son comentario
+//Ids publicacion de 6 a 19 son comentario
 sistema.AgregarComentarioPost(0, 8,"Este es el titulo 1", "Este es el comentario");
 sistema.AgregarComentarioPost(0, 1,"Este es el titulo 2", "Comentario 2 post 1");
 sistema.AgregarComentarioPost(0, 2,"Este es el titulo 3", "Comentario 3 post 1");
@@ -128,6 +121,8 @@ sistema.AgregarComentarioPost(3, 8,"Este es el titulo 12", "Comentario 3 post 4"
 sistema.AgregarComentarioPost(4, 6,"Este es el titulo 13", "Comentario 1 post 5");
 sistema.AgregarComentarioPost(4, 5,"Este es el titulo 14", "Comentario 2 post 5");
 sistema.AgregarComentarioPost(4, 8,"Este es el titulo 15", "Comentario 3 post 5");
+
+sistema.AgregarComentarioPost(5, 8, "hola", "hola");
 
 #endregion
 
@@ -174,26 +169,6 @@ sistema.LikearUnaPublicacion(3, 6, false);
 
 
 
-<<<<<<< HEAD
-sistema.AgregarComentarioPost(0, 8,"Este es el titulo", "Este es el comentario 1 post 1");
-sistema.AgregarComentarioPost(0, 1,"Este es el titulo de mi comentario", "Comentario 2 post 1");
-sistema.AgregarComentarioPost(0, 2,"Este es el titulo de mi comentario", "Comentario 3 post 1");
-sistema.AgregarComentarioPost(1, 0,"Este es el titulo de mi comentario", "Comentario 1 post 2");
-sistema.AgregarComentarioPost(1, 1,"Este es el titulo de mi comentario", "Comentario 2 post 2");
-sistema.AgregarComentarioPost(1, 8,"Este es el titulo de mi comentario", "Comentario 3 post 3");
-sistema.AgregarComentarioPost(2, 8,"Este es el titulo de mi comentario", "Comentario 1 post 3");
-sistema.AgregarComentarioPost(2, 8,"Este es el titulo de mi comentario", "Comentario 2 post 3");
-sistema.AgregarComentarioPost(2, 2,"Este es el titulo de mi comentario", "Comentario 3 post 3");
-sistema.AgregarComentarioPost(3, 2,"Este es el titulo de mi comentario", "Comentario 1 post 4");
-sistema.AgregarComentarioPost(3, 3,"Este es el titulo de mi comentario", "Comentario 2 post 4");
-sistema.AgregarComentarioPost(3, 8,"Este es el titulo de mi comentario", "Comentario 3 post 4");
-sistema.AgregarComentarioPost(4, 6,"Este es el titulo de mi comentario", "Comentario 1 post 5");
-sistema.AgregarComentarioPost(4, 5,"Este es el titulo de mi comentario", "Comentario 2 post 5");
-sistema.AgregarComentarioPost(4, 8,"Este es el titulo de mi comentario", "Comentario 3 post 5");
-=======
->>>>>>> master
-
-sistema.AgregarComentarioPost(5, 8, "Este es el titulo de mi comentario", "Comentario 3 post 5");
 #endregion
 
 #endregion
@@ -316,10 +291,6 @@ while (opcion != 0)
     {
         Console.WriteLine("************* SOCIAL NETWORK *************");
         Console.WriteLine("0 - Salir");
-       /* Lista de Menu
-       
-       Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
-       */
         Console.WriteLine("1 - Registrarse a Social NetWork");
         Console.WriteLine("2 - Buscar Publicaciones de Miembros por Email");
         Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");

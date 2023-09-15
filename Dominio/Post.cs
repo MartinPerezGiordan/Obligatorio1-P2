@@ -20,14 +20,10 @@ namespace Dominio
         #endregion
 
         #region Constructor
-        public Post(Miembro autor, string titulo, string texto, string nombreImagen, bool privado) : base(autor, texto, titulo)
+        public Post(Miembro autor, string titulo, string texto, string nombreImagen, bool publico) : base(autor, texto, titulo)
         {
 
-<<<<<<< HEAD
-            this._privado = privado;
-=======
-            this.Publico = true;
->>>>>>> master
+            this.Publico = publico;
             this._censurado = false;
             this._comentarios = new List<Comentario>();
             this._nombreImagen = nombreImagen;
@@ -50,11 +46,6 @@ namespace Dominio
         public bool GetCensurado()
         {
             return this._censurado;
-        }
-
-        public bool GetPrivado()
-        {
-            return this._privado;
         }
 
         public List<Comentario> GetComentarios()
