@@ -368,7 +368,7 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
                 }
             }
         }
-
+        //Corregir ordenar lista por titulo descendente
         postsAMostrar.OrderBy(obj => obj.GetTitulo()).ToList();
 
         if (postsAMostrar.Count == 0)

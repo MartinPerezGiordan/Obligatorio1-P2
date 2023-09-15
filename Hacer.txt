@@ -20,12 +20,10 @@ METODOS
 
 --- (Miembro - Hacer Comentario????) |LISTO|
 
---- Miembro - Likear una Publicacion * Martin * |LISTO| 
 
 
 MENU:
 
---- Alta de Miembro * PEDRO * Verficar que funcione
 
 --- Listar publicaciones de un miembro * PEDRO *
 
@@ -38,6 +36,7 @@ MENU:
 cualquier tipo * MARTIN * |LISTO|
 
 --- Hacer TODOS los overrides (Meter todos los datos? PREGUNTAR)
+
 
 <<<<<<< HEAD
 Semana 3 Lectura letra, entender el problema. Identificar las clases y hacer UML en Astah. Realizar menú con opciones de los se pide.
@@ -58,8 +57,28 @@ Semana 8 Finalizar documentación.
 
 PRECARGA:
 
-Invitaciones * MARTIN * 
+Post con comentarios * PEDRO *
+Preguntar si van los get y set en Astah || SI VAN ||
 
-Post con comentarios * PEDRO * 
+FALTA HACER :
 
-Preguntar si van los get y set en Astah
+Invitaciones * PEDRO * 
+
+Ordenar lista de posts por fecha de manera titulo descendente * PEDRO *
+
+Clase Reaccion y implementacion de reaccion en publicacion * MARTIN *
+
+Ordenar fuciones 1 2 y 3 * PEDRO *
+
+Alta de Miembro * PEDRO * Verficar que funcione
+
+Calculo V/A * MARTIN *
+
+Post Privado / Publico * PENSAR PEDRO *
+
+Validaciones * Martes en clase *
+
+Actualizar Astah
+
+Documentacion
+
