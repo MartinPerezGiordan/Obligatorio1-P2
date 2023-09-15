@@ -9,7 +9,7 @@ Sistema sistema = new Sistema();
 #region Precarga de Datos
 
 #region Miembros
-Miembro Juan = new Miembro("correo1@example.com", "contrasenia2", "Juan Perez", new DateTime(1990, 1, 1), false);
+Miembro Juan = new Miembro("correo1@example.com", "contrasenia1", "Juan Perez", new DateTime(1990, 1, 1), false);
 Miembro Ana = new Miembro( "correo2@example.com", "contrasenia2", "Ana Gomez", new DateTime(1985, 3, 15), false);
 Miembro Luis = new Miembro( "correo3@example.com", "contrasenia3", "Luis Rodriguez", new DateTime(1995, 5, 20), false);
 Miembro Maria = new Miembro( "correo4@example.com", "contrasenia4", "Maria Lopez", new DateTime(1980, 10, 10), false);
@@ -121,8 +121,6 @@ sistema.AgregarComentarioPost(3, 8,"Este es el titulo 12", "Comentario 3 post 4"
 sistema.AgregarComentarioPost(4, 6,"Este es el titulo 13", "Comentario 1 post 5");
 sistema.AgregarComentarioPost(4, 5,"Este es el titulo 14", "Comentario 2 post 5");
 sistema.AgregarComentarioPost(4, 8,"Este es el titulo 15", "Comentario 3 post 5");
-
-sistema.AgregarComentarioPost(5, 8, "hola", "hola");
 
 #endregion
 
@@ -280,7 +278,6 @@ ListarAmigos(Marta);
 
 #endregion
 
-Console.WriteLine(Juan.GetListaDeAmigos().Contains(Jose));
 
 #region Menu
 
