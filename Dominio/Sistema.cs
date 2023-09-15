@@ -82,8 +82,11 @@ namespace Dominio
         {
             if (!GetMiembroById(idMiembroSolicitante).GetBloqueado())
             {
-            Invitacion nuevaInvitacion = new Invitacion(idMiembroSolicitante, idMiembroSolicitado, DateTime.Now);
-            this.AgregarInvitacion(nuevaInvitacion);
+                Invitacion nuevaInvitacion = new Invitacion(idMiembroSolicitante, idMiembroSolicitado, DateTime.Now);
+                this.AgregarInvitacion(nuevaInvitacion);
+                GetMiembroById(idMiembroSolicitante).AgregarInvitacionEnviada(nuevaInvitacion);
+                GetMiembroById(idMiembroSolicitado).AgregarInvitacionRecibida(nuevaInvitacion);
+
             }
             else
             {
@@ -131,16 +134,16 @@ namespace Dominio
 
         //Ve en la lista de invitaciones que existen en el sistema, si alguna de las 
         //invitaciones pertenece a al miembro la agrega a su lista de invitaciones recibidas.
-        public void ActualizarListaDeInvitaciones(Miembro miembro)
-        {
-            foreach (Invitacion invitacion in this._invitaciones)
-            {
-                if (invitacion.GetIdMiembroSolicitado() == miembro.GetId())
-                {
-                    miembro.AgregarInvitacionRecibida(invitacion);
-                }
-            }
-        }
+        //public void ActualizarListaDeInvitaciones(Miembro miembro)
+        //{
+        //    foreach (Invitacion invitacion in this._invitaciones)
+        //    {
+        //        if (invitacion.GetIdMiembroSolicitado() == miembro.GetId())
+        //        {
+        //            miembro.AgregarInvitacionRecibida(invitacion);
+        //        }
+        //    }
+        //}
 
 
 
@@ -196,29 +199,39 @@ namespace Dominio
 
         #region Post y Comentario
 
-        //Suma la cantidad de posts que realizo el miembro
-        // Agregar un post con id de miembro
-        public void AgregarPostMiembro(int idMiembro,string titulo, string texto, string nombreImagen)
+        // Agregar un post con id de miembro y Suma la cantidad de posts que realizo el miembro
+        public void AgregarPostMiembro(int idMiembro,string titulo, string texto, string nombreImagen, bool privado)
         {
             Miembro miembro = GetMiembroById(idMiembro);
             miembro.CantidadDePublicaciones++;
-            Post nuevoPost = new Post(this.GetMiembroById(idMiembro), titulo, texto, nombreImagen);
+            Post nuevoPost = new Post(this.GetMiembroById(idMiembro), titulo, texto, nombreImagen, privado);
             this.AgregarPublicacion(nuevoPost);
         }
 
-        //Suma la cantidad de posts que realizo el miembro
-        // Agregar un comentario con id de post y id de miembro que comenta
-        public void AgregarComentarioPost(int idPublicacion, int idMiembro,string titulo, string texto)
+        // Agregar un comentario con id de post y id de miembro que comenta verifica si es privado(y deja agregar un comentario de un amigo) o publico y Suma la cantidad de posts que realizo el miembro
+        public void AgregarComentarioPost(int idPublicacion, int idMiembro, string titulo, string texto)
         {
             Miembro miembro = GetMiembroById(idMiembro);
-            miembro.CantidadDePublicaciones++;
-            Comentario nuevoComentario = new Comentario(idPublicacion, this.GetMiembroById(idMiembro),titulo, texto);
-            if(this.GetPublicacionById(idPublicacion) is Post)
+            Miembro miembroPublicacion = this.GetPublicacionById(idPublicacion).GetAutor();           
+            Comentario nuevoComentario = new Comentario(idPublicacion, miembro, titulo, texto);
+            if (this.GetPublicacionById(idPublicacion) is Post)
             {
                 Post post = (Post)this.GetPublicacionById(idPublicacion);
-                post.AgregarComentario(nuevoComentario);
+                if(post.GetPrivado() == false || (post.GetPrivado() == true && miembroPublicacion.GetListaDeAmigos().Contains(miembro)))
+                {
+                    post.AgregarComentario(nuevoComentario);
+                    miembro.CantidadDePublicaciones++;
+                    this.AgregarPublicacion(nuevoComentario);
+                }
+                else
+                {
+                    throw new Exception("El post es privado");
+                }
             }
-            this.AgregarPublicacion(nuevoComentario);
+            else
+            {
+                throw new Exception("El id de publicacion no corresponde a un post");
+            }
         }
 
         // Busqueda de publicaciones de un miembro por Email
@@ -266,6 +279,7 @@ namespace Dominio
             return posts;
         }
 
+        // Busqueda de comentarios de un miembro por Email
         public List<Comentario> GetComentariosPorEmail(string email)
         {
             List<Comentario> comentarios = new List<Comentario>();
@@ -284,6 +298,7 @@ namespace Dominio
             return comentarios;
         }
 
+        // Busqueda de post comentador por un miembro por Email
         public List<Post> GetPostPorComentarios(List<Comentario> comentarios)
         {
             List<Post> posts = new List<Post>();
@@ -295,27 +310,9 @@ namespace Dominio
             
             return posts.Distinct().ToList();
         }
-        
-        //public string GetStringPosts(List<Publicacion> posts)
-        //{
-        //    string postString = "";
-        //    foreach(Publicacion unPost in posts)
-        //    {
-        //        postString += unPost.ToString();
-        //    }
-        //    return postString;
-        //}
 
-        //public string menu2(string email)
-        //{
-        //    string posts = this.GetStringPosts(this.GetPostPorComentarios(this.GetComentariosPorEmail(email)));
-        //    return posts;
-        //}
 
         #endregion
-
-
-        // miSistema.CrearInvitacion(usuarioSolicitante, usuarioSolicitado)
 
         #endregion
 

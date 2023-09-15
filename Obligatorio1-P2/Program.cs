@@ -11,14 +11,14 @@ Sistema sistema = new Sistema();
 #region Miembros
 Miembro Juan = new Miembro("correo1@example.com", "contrasenia1", "Juan Perez", new DateTime(1990, 1, 1), false);
 Miembro Ana = new Miembro( "correo2@example.com", "contrasenia2", "Ana Gomez", new DateTime(1985, 3, 15), false);
-Miembro Luis = new Miembro( "correo3@example.com", "contrasenia3", "Luis Rodriguez", new DateTime(1995, 5, 20), true);
+Miembro Luis = new Miembro( "correo3@example.com", "contrasenia3", "Luis Rodriguez", new DateTime(1995, 5, 20), false);
 Miembro Maria = new Miembro( "correo4@example.com", "contrasenia4", "Maria Lopez", new DateTime(1980, 10, 10), false);
-Miembro Sofia = new Miembro( "correo5@example.com", "contrasenia5", "Sofia Torres", new DateTime(1988, 6, 5), true);
+Miembro Sofia = new Miembro( "correo5@example.com", "contrasenia5", "Sofia Torres", new DateTime(1988, 6, 5), false);
 Miembro Pedro = new Miembro("correo6@example.com", "contrasenia6", "Pedro Martinez", new DateTime(1992, 12, 30), false);
-Miembro Laura = new Miembro("correo7@example.com", "contrasenia7", "Laura Sanchez", new DateTime(1993, 8, 25), true);
+Miembro Laura = new Miembro("correo7@example.com", "contrasenia7", "Laura Sanchez", new DateTime(1993, 8, 25), false);
 Miembro Carlos = new Miembro("correo8@example.com", "contrasenia8", "Carlos Gonzalez", new DateTime(1975, 4, 2), false);
 Miembro Marta = new Miembro("correo9@example.com", "contrasenia9", "Marta Ramirez", new DateTime(1982, 7, 12), false);
-Miembro Jose = new Miembro("correo10@example.com", "contrasenia10", "Jose Fernandez", new DateTime(1998, 11, 15), true);
+Miembro Jose = new Miembro("correo10@example.com", "contrasenia10", "Jose Fernandez", new DateTime(1998, 11, 15), false);
 
 sistema.AgregarMiembro(Juan);
 sistema.AgregarMiembro(Ana);
@@ -39,21 +39,72 @@ sistema.AgregarAdministrador(Lucas);
 #endregion
 
 #region Invitaciones
-Invitacion invitacionDeLaura = new Invitacion(Laura.GetId(), Juan.GetId(), new DateTime(2002, 9, 23));
 
-sistema.AgregarInvitacion(invitacionDeLaura);
+// Invitaciones para cada uno de los miembros
+sistema.EnviarInvitacion(Luis.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Marta.GetId(), Ana.GetId());
+sistema.EnviarInvitacion(Juan.GetId(), Maria.GetId());
+sistema.EnviarInvitacion(Jose.GetId(), Luis.GetId());
+sistema.EnviarInvitacion(Ana.GetId(), Sofia.GetId());
+sistema.EnviarInvitacion(Maria.GetId(), Pedro.GetId());
+sistema.EnviarInvitacion(Sofia.GetId(), Laura.GetId());
+sistema.EnviarInvitacion(Laura.GetId(), Carlos.GetId());
+sistema.EnviarInvitacion(Jose.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Pedro.GetId(), Jose.GetId());
+
+// Dos miembros sean amigos del resto de miembros
+sistema.EnviarInvitacion(Luis.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Jose.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Ana.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Maria.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Sofia.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Laura.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Pedro.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Carlos.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Marta.GetId(), Juan.GetId());
+
+sistema.EnviarInvitacion(Luis.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Jose.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Ana.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Maria.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Sofia.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Laura.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Pedro.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Carlos.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Juan.GetId(), Marta.GetId());
+
+foreach (Invitacion invitacion in Juan.GetInvitacionesRecibidas())
+{
+    sistema.AceptarInvitacion(invitacion);
+}
+foreach (Invitacion invitacion in Marta.GetInvitacionesRecibidas())
+{
+    sistema.AceptarInvitacion(invitacion);
+}
+
+// Invitacion rechazada
+foreach (Invitacion invitacion in Carlos.GetInvitacionesRecibidas())
+{
+    sistema.RechazarInvitacion(invitacion);
+}
+
+
+
+
 #endregion
 
 #region Post y Comentarios
 
-sistema.AgregarPostMiembro(1, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg");
-sistema.AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg");
-sistema.AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg");
-sistema.AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg");
-sistema.AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg");
+sistema.AgregarPostMiembro(0, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg", false);
+sistema.AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg", false);
+sistema.AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg", false);
+sistema.AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg", false);
+sistema.AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg", false);
+
+sistema.AgregarPostMiembro(9, "Post privado", "Privado!!", "soloamigoscomentan.jpg", true);
 
 
-sistema.AgregarComentarioPost(0, 8,"Este es el titulo", "Este es el comentario");
+sistema.AgregarComentarioPost(0, 8,"Este es el titulo", "Este es el comentario 1 post 1");
 sistema.AgregarComentarioPost(0, 1,"Este es el titulo de mi comentario", "Comentario 2 post 1");
 sistema.AgregarComentarioPost(0, 2,"Este es el titulo de mi comentario", "Comentario 3 post 1");
 sistema.AgregarComentarioPost(1, 0,"Este es el titulo de mi comentario", "Comentario 1 post 2");
@@ -69,6 +120,7 @@ sistema.AgregarComentarioPost(4, 6,"Este es el titulo de mi comentario", "Coment
 sistema.AgregarComentarioPost(4, 5,"Este es el titulo de mi comentario", "Comentario 2 post 5");
 sistema.AgregarComentarioPost(4, 8,"Este es el titulo de mi comentario", "Comentario 3 post 5");
 
+sistema.AgregarComentarioPost(5, 8, "Este es el titulo de mi comentario", "Comentario 3 post 5");
 #endregion
 
 #endregion
@@ -129,30 +181,33 @@ sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
 
 
 
-// PRUEBA EnviarInvitaciones
 
-//ListarMiembros();
+/* PRUEBA con Invitaciones. Funciona: Enviar Invitacion, Rechazar Invitacion y las listas de amigos y de invitaciones
 
+ListarAmigos(Juan);
+ListarAmigos(Marta);
 
-//Pruebas con Invitaciones. Funciona: Enviar Invitacion, Rechazar Invitacion y las listas de amigos y de invitaciones
-//ListarAmigos(Juan);
-//sistema.EnviarInvitacion(Luis.GetId(), Juan.GetId());
-//sistema.EnviarInvitacion(Marta.GetId(), Juan.GetId());
-//sistema.EnviarInvitacion(Jose.GetId(), Juan.GetId());
-//
-//ListarInvitaciones(Juan);
-//
-//sistema.ActualizarListaDeInvitaciones(Juan);
-//ListarInvitaciones(Juan);
-//
-//sistema.AceptarInvitacion(invitacionDeLaura);
-//ListarAmigos(Juan);
-//ListarAmigos(Laura);
+foreach (Invitacion invitacion in Juan.GetInvitacionesRecibidas())
+{
+    sistema.AceptarInvitacion(invitacion);
+}
+foreach (Invitacion invitacion in Marta.GetInvitacionesRecibidas())
+{
+    sistema.AceptarInvitacion(invitacion);
+}
+foreach (Invitacion invitacion in sistema.GetInvitaciones().Distinct().ToList())
+{
+    Console.WriteLine(invitacion.ToString());
+}
 
+ListarAmigos(Juan);
+ListarAmigos(Marta);
+
+*/
 
 #endregion
 
-
+Console.WriteLine(Juan.GetListaDeAmigos().Contains(Jose));
 
 #region Menu
 
@@ -262,7 +317,7 @@ if (miembro.GetListaDeAmigos().Count == 0)
 }
 else 
 {
-    foreach (Miembro amigo in miembro.GetListaDeAmigos())
+    foreach (Miembro amigo in miembro.GetListaDeAmigos().Distinct().ToList())
     {
         Console.WriteLine(amigo.GetNombre());
     }

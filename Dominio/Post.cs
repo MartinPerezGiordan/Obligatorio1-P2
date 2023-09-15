@@ -20,15 +20,13 @@ namespace Dominio
         #endregion
 
         #region Constructor
-        public Post(Miembro autor, string titulo, string texto, string nombreImagen) : base(autor, texto, titulo)
+        public Post(Miembro autor, string titulo, string texto, string nombreImagen, bool privado) : base(autor, texto, titulo)
         {
 
-            this._privado = false;
+            this._privado = privado;
             this._censurado = false;
             this._comentarios = new List<Comentario>();
             this._nombreImagen = nombreImagen;
-
-
 
         }
 
@@ -48,6 +46,11 @@ namespace Dominio
         public bool GetCensurado()
         {
             return this._censurado;
+        }
+
+        public bool GetPrivado()
+        {
+            return this._privado;
         }
 
         public List<Comentario> GetComentarios()
@@ -87,7 +90,7 @@ namespace Dominio
 
         public override string ToString()
         {
-            return $"Id: {this.GetId()} {Environment.NewLine}Autor: {this.GetAutorNombre()} {Environment.NewLine}Texto: {this.GetTexto()} {Environment.NewLine}Fecha: {this.GetFechaString()} {Environment.NewLine}Nombre Imagen: {this.GetNombreImagen()}{Environment.NewLine}{Environment.NewLine}";
+            return $"Id: {this.GetId()} {Environment.NewLine}Autor: {this.GetAutorNombre()} {Environment.NewLine}Texto: {this.GetTexto()} {Environment.NewLine}Fecha: {this.GetFechaString()} {Environment.NewLine}Nombre Imagen: {this.GetNombreImagen()}{Environment.NewLine}";
         }
 
         #endregion
