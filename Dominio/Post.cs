@@ -20,15 +20,13 @@ namespace Dominio
         #endregion
 
         #region Constructor
-        public Post(Miembro autor, string titulo, string texto, string nombreImagen) : base(autor, texto, titulo)
+        public Post(Miembro autor, string titulo, string texto, string nombreImagen, bool publico) : base(autor, texto, titulo)
         {
 
-            this.Publico = true;
+            this.Publico = publico;
             this._censurado = false;
             this._comentarios = new List<Comentario>();
             this._nombreImagen = nombreImagen;
-
-
 
         }
 
@@ -87,7 +85,7 @@ namespace Dominio
 
         public override string ToString()
         {
-            return $"Id: {this.GetId()} {Environment.NewLine}Autor: {this.GetAutorNombre()} {Environment.NewLine}Texto: {this.GetTexto()} {Environment.NewLine}Fecha: {this.GetFechaString()} {Environment.NewLine}Nombre Imagen: {this.GetNombreImagen()}{Environment.NewLine}{Environment.NewLine}";
+            return $"Id: {this.GetId()} {Environment.NewLine}Autor: {this.GetAutorNombre()} {Environment.NewLine}Texto: {this.GetTexto()} {Environment.NewLine}Fecha: {this.GetFechaString()} {Environment.NewLine}Nombre Imagen: {this.GetNombreImagen()}{Environment.NewLine}";
         }
 
         #endregion

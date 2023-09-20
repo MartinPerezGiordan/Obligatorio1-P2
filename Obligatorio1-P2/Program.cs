@@ -13,10 +13,10 @@ Miembro Luis = new Miembro("correo3@example.com", "contrasenia3", "Luis Rodrigue
 Miembro Maria = new Miembro("correo4@example.com", "contrasenia4", "Maria Lopez", new DateTime(1980, 10, 10), false);
 Miembro Sofia = new Miembro("correo5@example.com", "contrasenia5", "Sofia Torres", new DateTime(1988, 6, 5), true);
 Miembro Pedro = new Miembro("correo6@example.com", "contrasenia6", "Pedro Martinez", new DateTime(1992, 12, 30), false);
-Miembro Laura = new Miembro("correo7@example.com", "contrasenia7", "Laura Sanchez", new DateTime(1993, 8, 25), true);
+Miembro Laura = new Miembro("correo7@example.com", "contrasenia7", "Laura Sanchez", new DateTime(1993, 8, 25), false);
 Miembro Carlos = new Miembro("correo8@example.com", "contrasenia8", "Carlos Gonzalez", new DateTime(1975, 4, 2), false);
 Miembro Marta = new Miembro("correo9@example.com", "contrasenia9", "Marta Ramirez", new DateTime(1982, 7, 12), false);
-Miembro Jose = new Miembro("correo10@example.com", "contrasenia10", "Jose Fernandez", new DateTime(1998, 11, 15), true);
+Miembro Jose = new Miembro("correo10@example.com", "contrasenia10", "Jose Fernandez", new DateTime(1998, 11, 15), false);
 
 sistema.AgregarMiembro(Juan);
 sistema.AgregarMiembro(Ana);
@@ -41,37 +41,89 @@ sistema.AgregarAdministrador(Lucas);
 
 #region Invitaciones
 
-Invitacion invitacionDeLaura = new Invitacion(Laura.GetId(), Juan.GetId(), new DateTime(2002, 9, 23));
+// Invitaciones para cada uno de los miembros
+sistema.EnviarInvitacion(Luis.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Marta.GetId(), Ana.GetId());
+sistema.EnviarInvitacion(Juan.GetId(), Maria.GetId());
+sistema.EnviarInvitacion(Jose.GetId(), Luis.GetId());
+sistema.EnviarInvitacion(Ana.GetId(), Sofia.GetId());
+sistema.EnviarInvitacion(Maria.GetId(), Pedro.GetId());
+sistema.EnviarInvitacion(Sofia.GetId(), Laura.GetId());
+sistema.EnviarInvitacion(Laura.GetId(), Carlos.GetId());
+sistema.EnviarInvitacion(Jose.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Pedro.GetId(), Jose.GetId());
 
-sistema.AgregarInvitacion(invitacionDeLaura);
+// Dos miembros sean amigos del resto de miembros
+sistema.EnviarInvitacion(Luis.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Jose.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Ana.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Maria.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Sofia.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Laura.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Pedro.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Carlos.GetId(), Juan.GetId());
+sistema.EnviarInvitacion(Marta.GetId(), Juan.GetId());
+
+sistema.EnviarInvitacion(Luis.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Jose.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Ana.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Maria.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Sofia.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Laura.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Pedro.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Carlos.GetId(), Marta.GetId());
+sistema.EnviarInvitacion(Juan.GetId(), Marta.GetId());
+
+foreach (Invitacion invitacion in Juan.GetInvitacionesRecibidas())
+{
+    sistema.AceptarInvitacion(invitacion);
+}
+foreach (Invitacion invitacion in Marta.GetInvitacionesRecibidas())
+{
+    sistema.AceptarInvitacion(invitacion);
+}
+
+// Invitacion rechazada
+foreach (Invitacion invitacion in Carlos.GetInvitacionesRecibidas())
+{
+    sistema.RechazarInvitacion(invitacion);
+}
+
+
+
+
+#endregion
 
 #endregion Invitaciones
 
 #region Post y Comentarios
 
-//Ids publicacion de 0 a 4 son post
-sistema.AgregarPostMiembro(1, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg");
-sistema.AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg");
-sistema.AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg");
-sistema.AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg");
-sistema.AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg");
+//Ids publicacion de 0 a 5 son post
+sistema.AgregarPostMiembro(0, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg", true);
+sistema.AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg", true);
+sistema.AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg", true);
+sistema.AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg", true);
+sistema.AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg", true);
 
-//Ids publicacion de 5 a 19 son comentario
-sistema.AgregarComentarioPost(0, 8, "Este es el titulo 1", "Este es el comentario");
-sistema.AgregarComentarioPost(0, 1, "Este es el titulo 2", "Comentario 2 post 1");
-sistema.AgregarComentarioPost(0, 2, "Este es el titulo 3", "Comentario 3 post 1");
-sistema.AgregarComentarioPost(1, 0, "Este es el titulo 4", "Comentario 1 post 2");
-sistema.AgregarComentarioPost(1, 1, "Este es el titulo 5", "Comentario 2 post 2");
-sistema.AgregarComentarioPost(1, 8, "Este es el titulo 6", "Comentario 3 post 3");
-sistema.AgregarComentarioPost(2, 8, "Este es el titulo 7", "Comentario 1 post 3");
-sistema.AgregarComentarioPost(2, 8, "Este es el titulo 8", "Comentario 2 post 3");
-sistema.AgregarComentarioPost(2, 2, "Este es el titulo 9", "Comentario 3 post 3");
-sistema.AgregarComentarioPost(3, 2, "Este es el titulo 10", "Comentario 1 post 4");
-sistema.AgregarComentarioPost(3, 3, "Este es el titulo 11", "Comentario 2 post 4");
-sistema.AgregarComentarioPost(3, 8, "Este es el titulo 12", "Comentario 3 post 4");
-sistema.AgregarComentarioPost(4, 6, "Este es el titulo 13", "Comentario 1 post 5");
-sistema.AgregarComentarioPost(4, 5, "Este es el titulo 14", "Comentario 2 post 5");
-sistema.AgregarComentarioPost(4, 8, "Este es el titulo 15", "Comentario 3 post 5");
+// Post privado para pruebas
+sistema.AgregarPostMiembro(9, "Post privado", "Privado!!", "soloamigoscomentan.jpg", false);
+
+//Ids publicacion de 6 a 19 son comentario
+sistema.AgregarComentarioPost(0, 8,"Este es el titulo 1", "Este es el comentario");
+sistema.AgregarComentarioPost(0, 1,"Este es el titulo 2", "Comentario 2 post 1");
+sistema.AgregarComentarioPost(0, 2,"Este es el titulo 3", "Comentario 3 post 1");
+sistema.AgregarComentarioPost(1, 0,"Este es el titulo 4", "Comentario 1 post 2");
+sistema.AgregarComentarioPost(1, 1,"Este es el titulo 5", "Comentario 2 post 2");
+sistema.AgregarComentarioPost(1, 8,"Este es el titulo 6", "Comentario 3 post 3");
+sistema.AgregarComentarioPost(2, 8,"Este es el titulo 7", "Comentario 1 post 3");
+sistema.AgregarComentarioPost(2, 8,"Este es el titulo 8", "Comentario 2 post 3");
+sistema.AgregarComentarioPost(2, 2,"Este es el titulo 9", "Comentario 3 post 3");
+sistema.AgregarComentarioPost(3, 2,"Este es el titulo 10", "Comentario 1 post 4");
+sistema.AgregarComentarioPost(3, 3,"Este es el titulo 11", "Comentario 2 post 4");
+sistema.AgregarComentarioPost(3, 8,"Este es el titulo 12", "Comentario 3 post 4");
+sistema.AgregarComentarioPost(4, 6,"Este es el titulo 13", "Comentario 1 post 5");
+sistema.AgregarComentarioPost(4, 5,"Este es el titulo 14", "Comentario 2 post 5");
+sistema.AgregarComentarioPost(4, 8,"Este es el titulo 15", "Comentario 3 post 5");
 
 #endregion Post y Comentarios
 
@@ -431,16 +483,16 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
                 }
             }
         }
-        //Corregir ordenar lista por titulo descendente
-        postsAMostrar.OrderBy(obj => obj.GetTitulo()).ToList();
+        
+        List<Post> postsOrdenados = postsAMostrar.OrderBy(x => x.GetTitulo()).ToList();
 
-        if (postsAMostrar.Count == 0)
+        if (postsOrdenados.Count == 0)
         {
             Console.WriteLine("No hay ningun post entre esas fechas");
         }
         else
         {
-            foreach (Post post in postsAMostrar)
+            foreach (Post post in postsOrdenados)
             {
                 int id = post.GetId();
                 string titulo = post.GetTitulo();

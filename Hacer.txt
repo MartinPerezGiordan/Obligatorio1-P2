@@ -62,19 +62,19 @@ Preguntar si van los get y set en Astah || SI VAN ||
 
 FALTA HACER :
 
-Invitaciones * PEDRO * 
+Precarga Invitaciones * PEDRO * ||LISTO||
 
-Ordenar lista de posts por fecha de manera titulo descendente * PEDRO *
+Ordenar lista de posts por fecha de manera titulo descendente * PEDRO * ||LISTO||
 
 Clase Reaccion y implementacion de reaccion en publicacion * MARTIN *
 
-Ordenar fuciones 1 2 y 3 * PEDRO *
+Ordenar fuciones 1 2 y 3 * PEDRO * ||LISTO||
 
-Alta de Miembro * PEDRO * Verficar que funcione
+Alta de Miembro * PEDRO * Verficar que funcione ||LISTO||
 
 Calculo V/A * MARTIN *
 
-Post Privado / Publico * PENSAR PEDRO *
+Post Privado / Publico * PEDRO * ||LISTO||
 
 Validaciones * Martes en clase *
 

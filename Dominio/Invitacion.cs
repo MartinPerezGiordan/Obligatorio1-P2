@@ -67,5 +67,9 @@ namespace Dominio
         }
         #endregion
 
+        public override string ToString()
+        {
+            return $"Id: {this.GetId()} {Environment.NewLine}Solicitante: {this.GetIdMiembroSolicitante()} {Environment.NewLine}Solicitado: {this.GetIdMiembroSolicitado()} {Environment.NewLine}Estado: {this.GetEstadoSolicitud()} {Environment.NewLine}";
+        }
     }
 }
