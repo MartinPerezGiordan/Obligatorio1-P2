@@ -78,10 +78,14 @@ namespace Dominio
 
 
         #endregion
+
+        #region Metodos
         public void AgregarReaccion(Reaccion reaccion)
         {
             this._reacciones.Add(reaccion);
         }
+
+        #endregion
     }
 }
 

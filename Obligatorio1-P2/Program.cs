@@ -1,19 +1,17 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Dominio;
 
-
-
 Sistema sistema = new Sistema();
-
 
 #region Precarga de Datos
 
 #region Miembros
+
 Miembro Juan = new Miembro("correo1@example.com", "contrasenia1", "Juan Perez", new DateTime(1990, 1, 1), false);
-Miembro Ana = new Miembro( "correo2@example.com", "contrasenia2", "Ana Gomez", new DateTime(1985, 3, 15), false);
-Miembro Luis = new Miembro( "correo3@example.com", "contrasenia3", "Luis Rodriguez", new DateTime(1995, 5, 20), true);
-Miembro Maria = new Miembro( "correo4@example.com", "contrasenia4", "Maria Lopez", new DateTime(1980, 10, 10), false);
-Miembro Sofia = new Miembro( "correo5@example.com", "contrasenia5", "Sofia Torres", new DateTime(1988, 6, 5), true);
+Miembro Ana = new Miembro("correo2@example.com", "contrasenia2", "Ana Gomez", new DateTime(1985, 3, 15), false);
+Miembro Luis = new Miembro("correo3@example.com", "contrasenia3", "Luis Rodriguez", new DateTime(1995, 5, 20), true);
+Miembro Maria = new Miembro("correo4@example.com", "contrasenia4", "Maria Lopez", new DateTime(1980, 10, 10), false);
+Miembro Sofia = new Miembro("correo5@example.com", "contrasenia5", "Sofia Torres", new DateTime(1988, 6, 5), true);
 Miembro Pedro = new Miembro("correo6@example.com", "contrasenia6", "Pedro Martinez", new DateTime(1992, 12, 30), false);
 Miembro Laura = new Miembro("correo7@example.com", "contrasenia7", "Laura Sanchez", new DateTime(1993, 8, 25), true);
 Miembro Carlos = new Miembro("correo8@example.com", "contrasenia8", "Carlos Gonzalez", new DateTime(1975, 4, 2), false);
@@ -30,19 +28,24 @@ sistema.AgregarMiembro(Laura);
 sistema.AgregarMiembro(Carlos);
 sistema.AgregarMiembro(Marta);
 sistema.AgregarMiembro(Jose);
-#endregion
+
+#endregion Miembros
 
 #region Administradores
+
 Administrador Lucas = new Administrador("correo@admin.com", "adminContrasenia1");
 
 sistema.AgregarAdministrador(Lucas);
-#endregion
+
+#endregion Administradores
 
 #region Invitaciones
+
 Invitacion invitacionDeLaura = new Invitacion(Laura.GetId(), Juan.GetId(), new DateTime(2002, 9, 23));
 
 sistema.AgregarInvitacion(invitacionDeLaura);
-#endregion
+
+#endregion Invitaciones
 
 #region Post y Comentarios
 
@@ -54,26 +57,27 @@ sistema.AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanza
 sistema.AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg");
 
 //Ids publicacion de 5 a 19 son comentario
-sistema.AgregarComentarioPost(0, 8,"Este es el titulo 1", "Este es el comentario");
-sistema.AgregarComentarioPost(0, 1,"Este es el titulo 2", "Comentario 2 post 1");
-sistema.AgregarComentarioPost(0, 2,"Este es el titulo 3", "Comentario 3 post 1");
-sistema.AgregarComentarioPost(1, 0,"Este es el titulo 4", "Comentario 1 post 2");
-sistema.AgregarComentarioPost(1, 1,"Este es el titulo 5", "Comentario 2 post 2");
-sistema.AgregarComentarioPost(1, 8,"Este es el titulo 6", "Comentario 3 post 3");
-sistema.AgregarComentarioPost(2, 8,"Este es el titulo 7", "Comentario 1 post 3");
-sistema.AgregarComentarioPost(2, 8,"Este es el titulo 8", "Comentario 2 post 3");
-sistema.AgregarComentarioPost(2, 2,"Este es el titulo 9", "Comentario 3 post 3");
-sistema.AgregarComentarioPost(3, 2,"Este es el titulo 10", "Comentario 1 post 4");
-sistema.AgregarComentarioPost(3, 3,"Este es el titulo 11", "Comentario 2 post 4");
-sistema.AgregarComentarioPost(3, 8,"Este es el titulo 12", "Comentario 3 post 4");
-sistema.AgregarComentarioPost(4, 6,"Este es el titulo 13", "Comentario 1 post 5");
-sistema.AgregarComentarioPost(4, 5,"Este es el titulo 14", "Comentario 2 post 5");
-sistema.AgregarComentarioPost(4, 8,"Este es el titulo 15", "Comentario 3 post 5");
+sistema.AgregarComentarioPost(0, 8, "Este es el titulo 1", "Este es el comentario");
+sistema.AgregarComentarioPost(0, 1, "Este es el titulo 2", "Comentario 2 post 1");
+sistema.AgregarComentarioPost(0, 2, "Este es el titulo 3", "Comentario 3 post 1");
+sistema.AgregarComentarioPost(1, 0, "Este es el titulo 4", "Comentario 1 post 2");
+sistema.AgregarComentarioPost(1, 1, "Este es el titulo 5", "Comentario 2 post 2");
+sistema.AgregarComentarioPost(1, 8, "Este es el titulo 6", "Comentario 3 post 3");
+sistema.AgregarComentarioPost(2, 8, "Este es el titulo 7", "Comentario 1 post 3");
+sistema.AgregarComentarioPost(2, 8, "Este es el titulo 8", "Comentario 2 post 3");
+sistema.AgregarComentarioPost(2, 2, "Este es el titulo 9", "Comentario 3 post 3");
+sistema.AgregarComentarioPost(3, 2, "Este es el titulo 10", "Comentario 1 post 4");
+sistema.AgregarComentarioPost(3, 3, "Este es el titulo 11", "Comentario 2 post 4");
+sistema.AgregarComentarioPost(3, 8, "Este es el titulo 12", "Comentario 3 post 4");
+sistema.AgregarComentarioPost(4, 6, "Este es el titulo 13", "Comentario 1 post 5");
+sistema.AgregarComentarioPost(4, 5, "Este es el titulo 14", "Comentario 2 post 5");
+sistema.AgregarComentarioPost(4, 8, "Este es el titulo 15", "Comentario 3 post 5");
 
-#endregion
+#endregion Post y Comentarios
 
 #region Reacciones
- //Likes a foto de vacaciones en la playa
+
+//Likes a foto de vacaciones en la playa
 sistema.LikearUnaPublicacion(1, 0, true);
 sistema.LikearUnaPublicacion(2, 0, false);
 sistema.LikearUnaPublicacion(3, 0, true);
@@ -113,18 +117,14 @@ sistema.LikearUnaPublicacion(1, 6, true);
 sistema.LikearUnaPublicacion(2, 6, true);
 sistema.LikearUnaPublicacion(3, 6, false);
 
+#endregion Reacciones
 
-
-
-#endregion
-
-#endregion
-
+#endregion Precarga de Datos
 
 #region MenuDePruebas
 
-void AbrirMenuDeTests() {
-
+void AbrirMenuDeTests()
+{
     int opcionTest = -1;
     while (opcionTest != 0)
     {
@@ -146,13 +146,13 @@ void AbrirMenuDeTests() {
             opcionTest = int.Parse(Console.ReadLine());
             switch (opcionTest)
             {
-
                 case 1:
                     Console.Clear();
 
                     ListarMiembros();
                     Console.ReadLine();
                     break;
+
                 case 2:
                     Console.Clear();
 
@@ -163,6 +163,7 @@ void AbrirMenuDeTests() {
                     Console.ReadLine();
 
                     break;
+
                 case 3:
                     Console.Clear();
 
@@ -182,7 +183,7 @@ void AbrirMenuDeTests() {
 
                     break;
 
-                    case 4:
+                case 4:
                     Console.Clear();
 
                     foreach (Publicacion publicacion in sistema.GetPublicacionesPorEmail("correo9@example.com"))
@@ -204,7 +205,8 @@ void AbrirMenuDeTests() {
                     Console.WriteLine("Fin Posts");
                     Console.ReadLine();
 
-                    break; 
+                    break;
+
                 case 5:
                     Console.Clear();
 
@@ -214,7 +216,8 @@ void AbrirMenuDeTests() {
                     Console.ReadLine();
 
                     break;
-                    case 6:
+
+                case 6:
                     Console.Clear();
 
                     Console.WriteLine("Falta correccion");
@@ -226,7 +229,8 @@ void AbrirMenuDeTests() {
                     // }
                     Console.ReadLine();
 
-                    break; 
+                    break;
+
                 case 7:
                     Console.Clear();
 
@@ -240,8 +244,9 @@ void AbrirMenuDeTests() {
                     Console.ReadLine();
 
                     break;
-                    case 8:
-            Console.Clear();
+
+                case 8:
+                    Console.Clear();
 
                     //ListarMiembros();
                     //Pruebas con Invitaciones. Funciona: Enviar Invitacion, Rechazar Invitacion y las listas de amigos y de invitaciones
@@ -250,63 +255,61 @@ void AbrirMenuDeTests() {
                     sistema.EnviarInvitacion(Luis.GetId(), Juan.GetId());
                     sistema.EnviarInvitacion(Marta.GetId(), Juan.GetId());
                     sistema.EnviarInvitacion(Jose.GetId(), Juan.GetId());
-                    
+
                     ListarInvitaciones(Juan);
-                    
+
                     sistema.ActualizarListaDeInvitaciones(Juan);
                     ListarInvitaciones(Juan);
-                    
+
                     sistema.AceptarInvitacion(invitacionDeLaura);
                     ListarAmigos(Juan);
                     ListarAmigos(Laura);
                     Console.ReadLine();
 
                     break;
-                    case 9:
+
+                case 9:
                     Console.Clear();
 
                     foreach (Publicacion publicacion in sistema.GetPublicaciones())
+                    {
+                        Console.WriteLine("**************************************************************");
+                        Console.WriteLine($"REACCIONES DE: {publicacion.GetTitulo()}");
+
+                        if (publicacion.GetReacciones().Count() > 0)
                         {
-                            Console.WriteLine("**************************************************************");
-                            Console.WriteLine($"REACCIONES DE: {publicacion.GetTitulo()}");
-                    
-                            if (publicacion.GetReacciones().Count() > 0)
+                            foreach (Reaccion reaccion in publicacion.GetReacciones())
                             {
-                                foreach (Reaccion reaccion in publicacion.GetReacciones())
-                                {
-                                    Console.WriteLine(sistema.GetMiembroById(reaccion.IdMiembro) + " dio un " + (reaccion.Like ? "like" : "dislike"));
-                                }
+                                Console.WriteLine(sistema.GetMiembroById(reaccion.IdMiembro) + " dio un " + (reaccion.Like ? "like" : "dislike"));
                             }
-                            else
-                            {
-                                Console.WriteLine("No hay reacciones para esta publicación.");
-                            }
-                    
-                            Console.WriteLine("VA de publicación es " + sistema.CalcularVA(publicacion.GetId()));
-                            Console.WriteLine();
                         }
+                        else
+                        {
+                            Console.WriteLine("No hay reacciones para esta publicación.");
+                        }
+
+                        Console.WriteLine("VA de publicación es " + sistema.CalcularVA(publicacion.GetId()));
+                        Console.WriteLine();
+                    }
                     Console.ReadLine();
 
                     break;
 
-
                 default:
                     Console.WriteLine("Opcion Incorrecta");
-        break;
-    }
+                    break;
+            }
         }
         catch (Exception)
         {
-        Console.WriteLine("Opcion Incorrecta.");
-        opcionTest = -1;
-    }
+            Console.WriteLine("Opcion Incorrecta.");
+            opcionTest = -1;
+        }
     }
     Console.Clear();
-
 }
 
-#endregion
-
+#endregion MenuDePruebas
 
 #region Menu
 
@@ -327,9 +330,8 @@ while (opcion != 0)
         switch (opcion)
         {
             case 50:
-                    AbrirMenuDeTests();
+                AbrirMenuDeTests();
                 break;
-
 
             case 4:
                 Console.WriteLine("Ingrese la primera fecha");
@@ -343,7 +345,6 @@ while (opcion != 0)
                 ListarMiembroConMasPublicaciones();
                 break;
 
-
             default:
                 Console.WriteLine("Opcion Incorrecta");
                 break;
@@ -354,9 +355,10 @@ while (opcion != 0)
         Console.WriteLine("Opcion Incorrecta.");
         opcion = -1;
     }
-}Console.WriteLine("-- ¡Hasta pronto! --");
+}
+Console.WriteLine("-- ¡Hasta pronto! --");
 
-#endregion
+#endregion Menu
 
 #region Funciones
 
@@ -368,26 +370,26 @@ void ListarMiembros()
     }
 }
 
-void ListarAmigos(Miembro miembro) 
+void ListarAmigos(Miembro miembro)
 {
-Console.WriteLine($"Amigos de {miembro.GetNombre()}:");
-if (miembro.GetListaDeAmigos().Count == 0)
-{
-    Console.WriteLine("Aun no hay amigos :(");
-}
-else 
-{
-    foreach (Miembro amigo in miembro.GetListaDeAmigos())
+    Console.WriteLine($"Amigos de {miembro.GetNombre()}:");
+    if (miembro.GetListaDeAmigos().Count == 0)
     {
-        Console.WriteLine(amigo.GetNombre());
+        Console.WriteLine("Aun no hay amigos :(");
     }
-}
+    else
+    {
+        foreach (Miembro amigo in miembro.GetListaDeAmigos())
+        {
+            Console.WriteLine(amigo.GetNombre());
+        }
+    }
 }
 
 void ListarInvitaciones(Miembro miembro)
 {
     Console.WriteLine($"Invitaciones recibidas de {miembro.GetNombre()}:");
-    if (miembro.GetInvitacionesRecibidas().Count == 0) 
+    if (miembro.GetInvitacionesRecibidas().Count == 0)
     {
         Console.WriteLine("Aun no ha recibido ninguna invitacion");
     }
@@ -401,12 +403,12 @@ void ListarInvitaciones(Miembro miembro)
     }
 }
 
-//Esta funcion recibe dos parametros que son dos fechas. 
+//Esta funcion recibe dos parametros que son dos fechas.
 //Luego crea una lista vacia de posts postsAMostrar.
 //Luego recorre todos los posts. Si cumplen con ser un post y estar entre las dos fechas recibidas por parametro
 //Se agregan a la lista postsAMostrar
 //Luego se ordena la lista
-//Si la lista esta vacia da un aviso de que entre esas fechas no hay posts. 
+//Si la lista esta vacia da un aviso de que entre esas fechas no hay posts.
 //Se recorre la nueva lista y se verifica si el texto supera los 50 char, en cuyo caso se acorta a 50 char.
 //Luego se muestran en consola los valores de los posts
 void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
@@ -454,7 +456,6 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
                 Console.WriteLine($"Fecha: {fecha}");
                 Console.WriteLine($"Texto: {texto}");
                 Console.WriteLine();
-
             }
         }
     }
@@ -464,37 +465,30 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
 // de la cantidad máxima encontrada y 'miembrosConMasPublicaciones' para almacenar los miembros con mas publicaciones.
 // Luego, imprime los miembros con la mayor cantidad de publicaciones en la consola.
 void ListarMiembroConMasPublicaciones()
+{
+    int mayorCantidad = 0;
+    List<Miembro> miembrosConMasPublicaciones = new List<Miembro>();
+
+    foreach (Miembro miembro in sistema.GetMiembros())
     {
-        int mayorCantidad = 0;
-        List<Miembro> miembrosConMasPublicaciones = new List<Miembro>();
-
-        foreach (Miembro miembro in sistema.GetMiembros())
+        if (miembro.CantidadDePublicaciones > mayorCantidad)
         {
-            if (miembro.CantidadDePublicaciones > mayorCantidad)
-            {
-                mayorCantidad = miembro.CantidadDePublicaciones;
-                miembrosConMasPublicaciones.Clear();
-                miembrosConMasPublicaciones.Add(miembro);
-            }
-            else if (miembro.CantidadDePublicaciones == mayorCantidad)
-            {
-                miembrosConMasPublicaciones.Add(miembro);
-            }
+            mayorCantidad = miembro.CantidadDePublicaciones;
+            miembrosConMasPublicaciones.Clear();
+            miembrosConMasPublicaciones.Add(miembro);
         }
-
-        Console.WriteLine("Miembro/s con mayor cantidad de publicaciones:");
-        foreach (Miembro miembro in miembrosConMasPublicaciones)
+        else if (miembro.CantidadDePublicaciones == mayorCantidad)
         {
-            Console.WriteLine($"{miembro.GetNombre()} hizo {mayorCantidad} publicaciones");
+            miembrosConMasPublicaciones.Add(miembro);
         }
     }
 
+    Console.WriteLine("Miembro/s con mayor cantidad de publicaciones:");
+    foreach (Miembro miembro in miembrosConMasPublicaciones)
+    {
+        Console.WriteLine($"{miembro.GetNombre()} hizo {mayorCantidad} publicaciones");
+    }
+}
 
+#endregion Funciones
 
-
-
-
-#endregion
-
-Console.WriteLine("Codigo Andando");
-Console.ReadLine();
