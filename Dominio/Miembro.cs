@@ -11,15 +11,15 @@ namespace Dominio
         #region Atributos
 
         private static int s_ultimoId = 0;
-        private int _id;
-        private string _email;
-        private string _contrasenia;
-        private string _nombre;
-        private DateTime _fechaDeNacimiento;
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Contrasenia { get; set; }
+        public string Nombre { get; set; }
+        public DateTime FechaDeNacimiento { get; set; }
         private List<Miembro> _listaDeAmigos;
         private List<Invitacion> _invitacionesEnviadas;
         private List<Invitacion> _invitacionesRecibidas;
-        private bool _bloqueado;
+        public bool Bloqueado { get; set; }
         public int CantidadDePublicaciones { get; set; }
 
         #endregion
@@ -27,15 +27,15 @@ namespace Dominio
         #region Constructor
         public Miembro(string email, string contrasenia, string nombre, DateTime fechaDeNacimiento, bool bloqueado)
         {
-            this._id = s_ultimoId++;
-            this._email = email;
-            this._contrasenia = contrasenia;
-            this._nombre = nombre;
-            this._fechaDeNacimiento = fechaDeNacimiento;
+            this.Id = s_ultimoId++;
+            this.Email = email;
+            this.Contrasenia = contrasenia;
+            this.Nombre = nombre;
+            this.FechaDeNacimiento = fechaDeNacimiento;
             this._listaDeAmigos = new List<Miembro>(); //Empieza la lista de amigos vacia
             this._invitacionesEnviadas = new List<Invitacion>();
             this._invitacionesRecibidas = new List<Invitacion>();
-            this._bloqueado = bloqueado;
+            this.Bloqueado = bloqueado;
             this.CantidadDePublicaciones = 0;
         }
 
@@ -43,30 +43,6 @@ namespace Dominio
 
         #region Get Y Set
 
-        public int GetId()
-        {
-            return this._id;
-        }
-
-        public string GetEmail()
-        {
-            return this._email;
-        }
-
-        public string GetContrasenia()
-        {
-            return this._contrasenia;
-        }
-
-        public string GetNombre()
-        {
-            return this._nombre;
-        }
-
-        public DateTime GetFechaDeNacimiento()
-        {
-            return this._fechaDeNacimiento;
-        }
 
         public List<Miembro> GetListaDeAmigos()
         {
@@ -81,16 +57,6 @@ namespace Dominio
         public List<Invitacion> GetInvitacionesRecibidas()
         {
             return this._invitacionesRecibidas;
-        }
-
-        public bool GetBloqueado()
-        {
-            return this._bloqueado;
-        }
-
-        public void SetBloqueado(bool bloqueado)
-        {
-            this._bloqueado = bloqueado;
         }
 
         #endregion
@@ -119,7 +85,7 @@ namespace Dominio
 
         public override string ToString()
         {
-            return $"ID: {_id}, Nombre: {_nombre}";
+            return $"ID: {Id}, Nombre: {Nombre}";
         }
 
         #endregion

@@ -6,37 +6,18 @@ namespace Dominio
         #region Atributos
 
         private static int s_ultimoId = 0;
-        private int _id;
-        private string _email;
-        private string _contrasena;
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Contrasena { get; set; }
 
         #endregion
 
         #region Constructor
         public Administrador(string email, string contrasena)
         {
-            this._id = s_ultimoId++;
-            this._email = email;
-            this._contrasena = contrasena;
-        }
-
-        #endregion
-
-        #region Get Y Set
-
-        public int GetId()
-        {
-            return this._id;
-        }
-
-        public string GetEmail()
-        {
-            return this._email;
-        }
-
-        public string GetContrasena()
-        {
-            return this._contrasena;
+            this.Id = s_ultimoId++;
+            this.Email = email;
+            this.Contrasena = contrasena;
         }
 
         #endregion
