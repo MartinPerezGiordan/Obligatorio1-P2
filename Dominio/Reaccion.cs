@@ -9,9 +9,9 @@ namespace Dominio
     public class Reaccion
     {
         public bool Like { get; set; }
-        public int IdMiembro;
+        public int IdMiembro { get; set; }
 
-        public Reaccion(bool like, int idMiembro) 
+    public Reaccion(bool like, int idMiembro) 
         { 
             this.Like = like;
             this.IdMiembro = idMiembro;

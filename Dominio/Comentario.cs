@@ -2,20 +2,15 @@
 {
     public class Comentario : Publicacion
     {
-        private int _idPost;
+        public int IdPost { get; set; }
         public Comentario(int idPost, Miembro autor,string titulo, string texto) : base(autor, texto, titulo)
         {
-            this._idPost = idPost;
-        }
-
-        public int GetIdPost()
-        {
-            return this._idPost;
+            this.IdPost = idPost;
         }
 
         public override string ToString()
         {
-            return $"Id: {this.GetId()} {Environment.NewLine}Autor: {this.GetAutorNombre()} {Environment.NewLine}Texto: {this.GetTexto()} {Environment.NewLine}Fecha: {this.GetFechaString()} {Environment.NewLine}";
+            return $"Id: {this.IdPost} {Environment.NewLine}Autor: {this.Autor.Nombre} {Environment.NewLine}Texto: {this.Texto} {Environment.NewLine}Fecha: {this.Fecha.ToString()} {Environment.NewLine}";
         }
     }
 }

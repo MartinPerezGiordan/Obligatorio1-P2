@@ -80,7 +80,7 @@ namespace Dominio
         //En caso opuesto se procede a crear la Invitacion y se agrega a la lista de invitaciones del sistema
         public void EnviarInvitacion(int idMiembroSolicitante, int idMiembroSolicitado)
         {
-            if (!GetMiembroById(idMiembroSolicitante).GetBloqueado())
+            if (!GetMiembroById(idMiembroSolicitante).Bloqueado)
             {
                 Invitacion nuevaInvitacion = new Invitacion(idMiembroSolicitante, idMiembroSolicitado, DateTime.Now);
                 this.AgregarInvitacion(nuevaInvitacion);
@@ -106,7 +106,7 @@ namespace Dominio
             int idSolicitado = invitacion.GetIdMiembroSolicitado();
             Miembro solicitado = GetMiembroById(idSolicitado);
 
-            if (!solicitado.GetBloqueado())
+            if (!solicitado.Bloqueado)
             {
                 solicitado.AgregarAmigo(solicitante);
                 solicitante.AgregarAmigo(solicitado);
@@ -126,7 +126,7 @@ namespace Dominio
             int idSolicitado = invitacion.GetIdMiembroSolicitado();
             Miembro solicitado = GetMiembroById(idSolicitado);
         
-            if (!solicitado.GetBloqueado())
+            if (!solicitado.Bloqueado)
             { 
                 invitacion.SetEstadoSolicitud(EstadoSolicitud.RECHAZADA);
             }
@@ -150,7 +150,7 @@ namespace Dominio
         {
             foreach(Miembro unMiembro in this.GetMiembros())
             {
-                if(unMiembro.GetEmail() == email)
+                if(unMiembro.Email == email)
                 {
                     return unMiembro;
                 }
@@ -197,7 +197,7 @@ namespace Dominio
         // Metod que permite bloquear o desbloquear a un miembro
         public void BloquearMiembro(int idMiembro, bool bloquear)
         {
-            this.GetMiembroById(idMiembro).SetBloqueado(bloquear);
+            this.GetMiembroById(idMiembro).Bloqueado = bloquear;
         }
 
         //Metod que permite cambiar el valor del atributo censurado de un post
@@ -229,7 +229,7 @@ namespace Dominio
         public void AgregarComentarioPost(int idPublicacion, int idMiembro, string titulo, string texto)
         {
             Miembro miembro = GetMiembroById(idMiembro);
-            Miembro miembroPublicacion = this.GetPublicacionById(idPublicacion).GetAutor();           
+            Miembro miembroPublicacion = this.GetPublicacionById(idPublicacion).Autor;           
             Comentario nuevoComentario = new Comentario(idPublicacion, miembro, titulo, texto);
             if (this.GetPublicacionById(idPublicacion) is Post)
             {
@@ -257,7 +257,7 @@ namespace Dominio
             List<Publicacion> publicaciones = new List<Publicacion>();
             foreach(Publicacion unaPublicacion in this.GetPublicaciones())
             {
-                if(unaPublicacion.GetAutor().GetEmail() == email)
+                if(unaPublicacion.Autor.Email == email)
                 {
                     publicaciones.Add(unaPublicacion);
                 }
@@ -287,7 +287,7 @@ namespace Dominio
             List<Post> posts = new List<Post>();
             for (int i = 0; i < publicaciones.Count; i++)
             {
-                if (publicaciones[i] is Post && ((Post)publicaciones[i]).GetCensurado() == false)
+                if (publicaciones[i] is Post && ((Post)publicaciones[i]).Censurado == false)
                 {
                     Post post = (Post)publicaciones[i];
                     posts.Add(post);
@@ -302,7 +302,7 @@ namespace Dominio
             List<Comentario> comentarios = new List<Comentario>();
             foreach (Publicacion unaPublicacion in this.GetPublicaciones())
             {
-                if (unaPublicacion.GetAutor().GetEmail() == email)
+                if (unaPublicacion.Autor.Email == email)
                 {
                     if (unaPublicacion is Comentario)
                     {
@@ -321,7 +321,7 @@ namespace Dominio
             List<Post> posts = new List<Post>();
             foreach (Comentario unComentario in comentarios)
             {
-                Post post = (Post)this.GetPublicacionById(unComentario.GetIdPost());
+                Post post = (Post)this.GetPublicacionById(unComentario.IdPost);
                 posts.Add(post);
             }
             

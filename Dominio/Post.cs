@@ -12,10 +12,10 @@ namespace Dominio
 
         #region Atributos
 
-        private string _nombreImagen;
+        public string NombreImagen;
         private List<Comentario> _comentarios;
         public bool Publico { get; set; }
-        private bool _censurado;
+        public bool Censurado { get; set; }
 
         #endregion
 
@@ -24,38 +24,27 @@ namespace Dominio
         {
 
             this.Publico = publico;
-            this._censurado = false;
+            this.Censurado = false;
             this._comentarios = new List<Comentario>();
-            this._nombreImagen = nombreImagen;
+            this.NombreImagen = nombreImagen;
 
         }
 
         public Post(Miembro autor, string titulo, string texto, string nombreImagen, List<Comentario> comentarios) : base(autor,texto, titulo)
         {
             this.Publico = true;
-            this._censurado = false;
+            this.Censurado = false;
             this._comentarios = comentarios;
-            this._nombreImagen = nombreImagen;
+            this.NombreImagen = nombreImagen;
         }
 
         #endregion
 
         #region Get y Set
 
-        
-        public bool GetCensurado()
-        {
-            return this._censurado;
-        }
-
         public List<Comentario> GetComentarios()
         {
             return this._comentarios;
-        }
-
-        public string GetNombreImagen()
-        {
-            return this._nombreImagen;
         }
 
         #endregion
@@ -65,7 +54,7 @@ namespace Dominio
         // Agregar Comentario al Post
         public void AgregarComentario(Comentario comentario)
         {
-            if(this._censurado == false)
+            if(this.Censurado == false)
             {
                 this._comentarios.Add(comentario);
             } else
@@ -76,7 +65,7 @@ namespace Dominio
 
         public void SetCensurado(bool censurar)
         {
-            this._censurado = censurar;
+            this.Censurado = censurar;
         }
 
         #endregion
@@ -85,7 +74,7 @@ namespace Dominio
 
         public override string ToString()
         {
-            return $"Id: {this.GetId()} {Environment.NewLine}Autor: {this.GetAutorNombre()} {Environment.NewLine}Texto: {this.GetTexto()} {Environment.NewLine}Fecha: {this.GetFechaString()} {Environment.NewLine}Nombre Imagen: {this.GetNombreImagen()}{Environment.NewLine}";
+            return $"Id: {this.Id} {Environment.NewLine}Autor: {this.Autor.Nombre} {Environment.NewLine}Texto: {this.Texto} {Environment.NewLine}Fecha: {this.Fecha} {Environment.NewLine}Nombre Imagen: {this.NombreImagen}{Environment.NewLine}";
         }
 
         #endregion
