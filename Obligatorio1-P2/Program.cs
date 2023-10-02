@@ -561,6 +561,7 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
 // Luego, imprime los miembros con la mayor cantidad de publicaciones en la consola.
 void ListarMiembroConMasPublicaciones()
 {
+    bool hayRegistros = false;
     int mayorCantidad = 0;
     List<Miembro> miembrosConMasPublicaciones = new List<Miembro>();
 
@@ -571,18 +572,29 @@ void ListarMiembroConMasPublicaciones()
             mayorCantidad = miembro.CantidadDePublicaciones;
             miembrosConMasPublicaciones.Clear();
             miembrosConMasPublicaciones.Add(miembro);
+            hayRegistros = true;
         }
         else if (miembro.CantidadDePublicaciones == mayorCantidad)
         {
             miembrosConMasPublicaciones.Add(miembro);
         }
     }
-
-    Console.WriteLine("Miembro/s con mayor cantidad de publicaciones:");
-    foreach (Miembro miembro in miembrosConMasPublicaciones)
+    if(hayRegistros)
     {
-        Console.WriteLine($"{miembro.Nombre} hizo {mayorCantidad} publicaciones");
+        Console.WriteLine("Miembro/s con mayor cantidad de publicaciones:");
+        foreach (Miembro miembro in miembrosConMasPublicaciones)
+        {
+            Console.WriteLine($"{miembro.Nombre} hizo {mayorCantidad} publicaciones");
+            Console.WriteLine($"DATOS DEL MIEMBRO:");
+            Console.WriteLine(miembro);
+
+        }
     }
+    else
+    {
+        throw new Exception("Nadie ha hecho una publicacion");
+    }
+
 }
 
 #endregion
