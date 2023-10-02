@@ -98,7 +98,9 @@ namespace Dominio
 
         public override string ToString()
         {
-            return $"ID: {Id}, Nombre: {Nombre}";
+            return $"ID: {Id}, Nombre: {Nombre}, Email: {Email}, Contraseña: {Contrasenia}," +
+                $" Fecha de Nacimiento: {FechaDeNacimiento}, Bloqueado: {Bloqueado}," +
+                $" Cantidad de Publicaciones: {CantidadDePublicaciones}";
         }
 
         #endregion

@@ -409,28 +409,41 @@ while (opcion != 0)
             }
             break;
         case 2:
-            Console.WriteLine("Buscar Publicaciones de Miembros por Email");
-            Console.WriteLine("Ingrese email");
-            string emailBuscado = Console.ReadLine();
-            Console.WriteLine("Posts:");
-            foreach (Post post in sistema.IdentificarPosts(sistema.GetPublicacionesPorEmail(emailBuscado)))
-            {
-                Console.WriteLine(post.ToString());
+            try { 
+                Console.WriteLine("Buscar Publicaciones de Miembros por Email");
+                Console.WriteLine("Ingrese email");
+                string emailBuscado = Console.ReadLine();
+                Console.WriteLine("Posts:");
+                foreach (Post post in sistema.IdentificarPosts(sistema.GetPublicacionesPorEmail(emailBuscado)))
+                {
+                    Console.WriteLine(post.ToString());
+                }
+                Console.WriteLine("Comentarios:");
+                foreach (Comentario comentario in sistema.IdentificarComentarios(sistema.GetPublicacionesPorEmail(emailBuscado)))
+                {
+                    Console.WriteLine(comentario.ToString());
+                }
             }
-            Console.WriteLine("Comentarios:");
-            foreach (Comentario comentario in sistema.IdentificarComentarios(sistema.GetPublicacionesPorEmail(emailBuscado)))
+            catch (Exception e)
             {
-                Console.WriteLine(comentario.ToString());
+                Console.WriteLine(e.Message);
             }
             break;
         case 3:
-            Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
-            Console.WriteLine("Ingrese email");
-            string emailComentario = Console.ReadLine();
-            Console.WriteLine("Posts comentados:");
-            foreach (Post post in sistema.GetPostPorComentarios(sistema.GetComentariosPorEmail(emailComentario)))
+            try
             {
-                Console.WriteLine(post.ToString());
+                Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
+                Console.WriteLine("Ingrese email");
+                string email = Console.ReadLine();
+                Console.WriteLine("Posts comentados:");
+                foreach (Post post in sistema.GetPostPorComentarios(sistema.GetComentariosPorEmail(email)))
+                {
+                    Console.WriteLine(post.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
             break;
 
@@ -582,6 +595,9 @@ void ListarMiembroConMasPublicaciones()
     foreach (Miembro miembro in miembrosConMasPublicaciones)
     {
         Console.WriteLine($"{miembro.Nombre} hizo {mayorCantidad} publicaciones");
+        Console.WriteLine($"DATOS DEL MIEMBRO:");
+        Console.WriteLine(miembro);
+
     }
 }
 

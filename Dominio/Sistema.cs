@@ -251,17 +251,45 @@ namespace Dominio
             }
         }
 
-        // Busqueda de publicaciones de un miembro por Email
+        //Validacion de email del usuario en la que se busca si existe ese mail en la lista
+        //para algun miembro de la lista de miembros. Si no existe se lanza una exception.
+        public void validarEmail(string email)
+        {
+            bool seEncontro = false;
+            foreach(Miembro unMiembro in this.GetMiembros())
+            {
+                if(unMiembro.Email == email)
+                {
+                    seEncontro = true; break;
+                }
+            }
+            if (!seEncontro)
+            {
+                throw new Exception("No existe un usuario con ese mail");
+            }
+        }
+
+        // Busqueda de publicaciones de un miembro por Email.
+        //Primero se valida si existe el email y luego se busca si ese email tiene publicaciones
+        //En caso de tenerlas se busca todas las publicaciones que tiene ese miembro segun su mail.
+        //Si no tiene ninguna se lanza una exception. 
         public List<Publicacion> GetPublicacionesPorEmail(string email)
         {
+            validarEmail(email);
+            bool noHayRegistros = true;
             List<Publicacion> publicaciones = new List<Publicacion>();
             foreach(Publicacion unaPublicacion in this.GetPublicaciones())
             {
                 if(unaPublicacion.Autor.Email == email)
                 {
                     publicaciones.Add(unaPublicacion);
+                    noHayRegistros = false;
                 }
 
+            }
+            if (noHayRegistros)
+            {
+                throw new Exception("No hay publicaciones para ese usuario");
             }
             return publicaciones;
         }
@@ -297,20 +325,30 @@ namespace Dominio
         }
 
         // Busqueda de comentarios de un miembro por Email
+        //Primero se valida si el email existe
+        //Se busca en las publicaciones y se arma una lista con todos las publicaciones 
+        //vinculadas a ese email y si son comentario se agregan a la lista que va a retornar
+        //este metodo
         public List<Comentario> GetComentariosPorEmail(string email)
         {
+            validarEmail(email);
             List<Comentario> comentarios = new List<Comentario>();
+            bool hayComentarios = false;
             foreach (Publicacion unaPublicacion in this.GetPublicaciones())
             {
                 if (unaPublicacion.Autor.Email == email)
                 {
                     if (unaPublicacion is Comentario)
                     {
+                        hayComentarios = true;
                         Comentario comment = (Comentario)unaPublicacion;
                         comentarios.Add(comment);
                     }
                 }
-
+            }
+            if (!hayComentarios)
+            {
+                throw new Exception("Este usuario aun no ha hecho comentarios");
             }
             return comentarios;
         }
