@@ -14,7 +14,7 @@ namespace Dominio
         private List<Administrador> _administradores;
         private List<Publicacion> _publicaciones;
         private List<Invitacion> _invitaciones;
-
+        private List<Miembro> _miembroLogueado;
 
         #endregion
 
@@ -25,6 +25,7 @@ namespace Dominio
             this._administradores = new List<Administrador>();
             this._invitaciones = new List<Invitacion>();
             this._publicaciones = new List<Publicacion>();
+            this._miembroLogueado = new List<Miembro>();
         }
         #endregion
 
@@ -69,6 +70,26 @@ namespace Dominio
                 {
                     throw new Exception("Email ya esta registrado");
                 }
+            }
+        }
+        public void Login(string email, string contrasenia)
+        {
+            this.ValidarLogin(email, contrasenia);
+            this._miembroLogueado.Add(this.GetMiembroByEmail(email));
+        }
+        public void ValidarLogin(string email, string contrasenia)
+        {
+            bool seEncontro = false;
+            foreach (Miembro unMiembro in this.GetMiembros())
+            {
+                if (unMiembro.Email == email && unMiembro.Contrasenia == contrasenia)
+                {
+                    seEncontro = true; break;
+                }
+            }
+            if (!seEncontro)
+            {
+                throw new Exception("Email o contraseña incorrectos");
             }
         }
 

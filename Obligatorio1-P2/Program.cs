@@ -189,6 +189,7 @@ void AbrirMenuDeTests()
             Console.WriteLine("7 - PRUEBA CensurarPost");
             Console.WriteLine("8 - PRUEBA EnviarInvitaciones");
             Console.WriteLine("9 - PRUEBA Likes y Dislikes");
+            Console.WriteLine("10 - Login");
 
             opcionTest = int.Parse(Console.ReadLine());
             switch (opcionTest)
@@ -341,7 +342,7 @@ void AbrirMenuDeTests()
                     Console.ReadLine();
 
                     break;
-
+                
                 default:
                     Console.WriteLine("Opcion Incorrecta");
                     break;
@@ -371,6 +372,7 @@ while (opcion != 0)
     Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
     Console.WriteLine("4 - Buscar Posts por rango de fechas");
     Console.WriteLine("5 - Mostrar Miembro con mayor cantidad de Publicaiones");
+    Console.WriteLine("6 - Login");
     try
     {
         opcion = int.Parse(Console.ReadLine());
@@ -461,6 +463,28 @@ while (opcion != 0)
 
         case 5:
             ListarMiembroConMasPublicaciones();
+            break;
+        case 6:
+            Boolean seLogueo = false;
+            while (!seLogueo)
+            {
+                try
+                {
+                    Console.WriteLine("Login");
+                    Console.WriteLine("Ingrese Email");
+                    string emailLogin = Console.ReadLine();
+                    Console.WriteLine("Ingrese contraseña");
+                    string contraseniaLogin = Console.ReadLine();
+                    sistema.Login(emailLogin, contraseniaLogin);
+                    Console.WriteLine("Login Exitoso");
+                    seLogueo = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    seLogueo = false;
+                }
+            }
             break;
 
         default:
