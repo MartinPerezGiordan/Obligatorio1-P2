@@ -7,16 +7,16 @@ Sistema sistema = new Sistema();
 
 #region Miembros
 
-Miembro Juan = new Miembro("correo1@example.com", "contrasenia1", "Juan Perez", new DateTime(1990, 1, 1), false);
-Miembro Ana = new Miembro("correo2@example.com", "contrasenia2", "Ana Gomez", new DateTime(1985, 3, 15), false);
-Miembro Luis = new Miembro("correo3@example.com", "contrasenia3", "Luis Rodriguez", new DateTime(1995, 5, 20), false);
-Miembro Maria = new Miembro("correo4@example.com", "contrasenia4", "Maria Lopez", new DateTime(1980, 10, 10), false);
-Miembro Sofia = new Miembro("correo5@example.com", "contrasenia5", "Sofia Torres", new DateTime(1988, 6, 5), false);
-Miembro Pedro = new Miembro("correo6@example.com", "contrasenia6", "Pedro Martinez", new DateTime(1992, 12, 30), false);
-Miembro Laura = new Miembro("correo7@example.com", "contrasenia7", "Laura Sanchez", new DateTime(1993, 8, 25), false);
-Miembro Carlos = new Miembro("correo8@example.com", "contrasenia8", "Carlos Gonzalez", new DateTime(1975, 4, 2), false);
-Miembro Marta = new Miembro("correo9@example.com", "contrasenia9", "Marta Ramirez", new DateTime(1982, 7, 12), false);
-Miembro Jose = new Miembro("correo10@example.com", "contrasenia10", "Jose Fernandez", new DateTime(1998, 11, 15), false);
+Miembro Juan = new Miembro("correo0@example.com", "contrasenia1", "Juan", "Perez", new DateTime(1990, 1, 1), false);
+Miembro Ana = new Miembro("correo1@example.com", "contrasenia2", "Ana",  "Gomez", new DateTime(1985, 3, 15), false);
+Miembro Luis = new Miembro("correo2@example.com", "contrasenia3", "Luis", "Rodriguez", new DateTime(1995, 5, 20), false);
+Miembro Maria = new Miembro("correo3@example.com", "contrasenia4", "Maria", "Lopez", new DateTime(1980, 10, 10), false);
+Miembro Sofia = new Miembro("correo4@example.com", "contrasenia5", "Sofia", "Torres", new DateTime(1988, 6, 5), false);
+Miembro Pedro = new Miembro("correo5@example.com", "contrasenia6", "Pedro", "Martinez", new DateTime(1992, 12, 30), false);
+Miembro Laura = new Miembro("correo6@example.com", "contrasenia7", "Laura", "Sanchez", new DateTime(1993, 8, 25), false);
+Miembro Carlos = new Miembro("correo7@example.com", "contrasenia8", "Carlos", "Gonzalez", new DateTime(1975, 4, 2), false);
+Miembro Marta = new Miembro("correo8@example.com", "contrasenia9", "Marta", "Ramirez", new DateTime(1982, 7, 12), false);
+Miembro Jose = new Miembro("correo9@example.com", "contrasenia10", "Jose", "Fernandez", new DateTime(1998, 11, 15), false);
 
 sistema.AgregarMiembro(Juan);
 sistema.AgregarMiembro(Ana);
@@ -216,6 +216,8 @@ void AbrirMenuDeTests()
 
                     Console.WriteLine("Ingrese Nombre y Apellido");
                     string nombre = Console.ReadLine();
+                    Console.WriteLine("IngreseApellido");
+                    string apellido = Console.ReadLine();
                     Console.WriteLine("Ingrese Email");
                     string email = Console.ReadLine();
                     Console.WriteLine("Ingrese contraseña");
@@ -223,7 +225,7 @@ void AbrirMenuDeTests()
                     Console.WriteLine("Ingrese Fecha de Nacimiento");
                     DateTime fechaDeNacimiento = DateTime.Parse(Console.ReadLine());
 
-                    Miembro nuevoMiembro = new Miembro(email, contrasenia, nombre, fechaDeNacimiento, false);
+                    Miembro nuevoMiembro = new Miembro(email, contrasenia, nombre, apellido, fechaDeNacimiento, false);
                     sistema.AgregarMiembro(nuevoMiembro);
                     Console.WriteLine("Miembro registrado con exito");
                     Console.ReadLine();
@@ -233,19 +235,19 @@ void AbrirMenuDeTests()
                 case 4:
                     Console.Clear();
 
-                    foreach (Publicacion publicacion in sistema.GetPublicacionesPorEmail("correo9@example.com"))
+                    foreach (Publicacion publicacion in sistema.GetPublicacionesPorEmail("correo8@example.com"))
                     {
                         Console.WriteLine(publicacion.ToString());
                     }
                     Console.WriteLine("Fin Publicaciones");
 
-                    foreach (Comentario comentario in sistema.IdentificarComentarios(sistema.GetPublicacionesPorEmail("correo9@example.com")))
+                    foreach (Comentario comentario in sistema.IdentificarComentarios(sistema.GetPublicacionesPorEmail("correo8@example.com")))
                     {
                         Console.WriteLine(comentario.ToString());
                     }
                     Console.WriteLine("Fin Comentarios");
 
-                    foreach (Post post in sistema.IdentificarPosts(sistema.GetPublicacionesPorEmail("correo9@example.com")))
+                    foreach (Post post in sistema.IdentificarPosts(sistema.GetPublicacionesPorEmail("correo8@example.com")))
                     {
                         Console.WriteLine(post.ToString());
                     }
@@ -389,15 +391,17 @@ while (opcion != 0)
                 try
                 {
                     Console.WriteLine("Registro");
-                    Console.WriteLine("Ingrese Nombre y Apellido");
+                    Console.WriteLine("Ingrese Nombre");
                     string nombre = Console.ReadLine();
+                    Console.WriteLine("Ingrese Apellido");
+                    string apellido = Console.ReadLine();
                     Console.WriteLine("Ingrese Email");
                     string email = Console.ReadLine();
                     Console.WriteLine("Ingrese contraseña");
                     string contrasenia = Console.ReadLine();
                     Console.WriteLine("Ingrese Fecha de Nacimiento");
                     DateTime fechaDeNacimiento = DateTime.Parse(Console.ReadLine());
-                    Miembro nuevoMiembro = new Miembro(email, contrasenia, nombre, fechaDeNacimiento, false);
+                    Miembro nuevoMiembro = new Miembro(email, contrasenia, nombre, apellido, fechaDeNacimiento, false);
                     sistema.AgregarMiembro(nuevoMiembro);
                     Console.WriteLine("Miembro registrado con exito");
                     seInserto = true;

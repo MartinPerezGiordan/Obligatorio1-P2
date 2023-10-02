@@ -57,7 +57,19 @@ namespace Dominio
         public void AgregarMiembro(Miembro miembro)
         {
             //Falta agregar Validacion (por ejemplo que el usuario no escriba un numero)(PREGUNTAR AL PROFE)
+            this.validarEmailRegistro(miembro.Email);
             this._miembros.Add(miembro);
+        }
+
+        public void validarEmailRegistro(string email)
+        {
+            foreach(Miembro unMiembro in this.GetMiembros())
+            {
+                if(unMiembro.Email == email)
+                {
+                    throw new Exception("Email ya esta registrado");
+                }
+            }
         }
 
         public Miembro GetMiembroById(int id)
