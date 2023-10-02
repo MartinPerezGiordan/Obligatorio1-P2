@@ -113,7 +113,7 @@ namespace Dominio
         }
         public void ValidarContraseña()
         {
-            if (this.Email.Length < 8)
+            if (this.Contrasenia.Length < 8)
             {
                 throw new Exception("La contraseña no puede ser menor a 8 caracteres");
             }
