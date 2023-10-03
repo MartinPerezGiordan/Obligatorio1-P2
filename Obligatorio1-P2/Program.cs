@@ -29,7 +29,6 @@ sistema.AgregarMiembro(Carlos);
 sistema.AgregarMiembro(Marta);
 sistema.AgregarMiembro(Jose);
 
-
 #endregion Miembros
 
 #region Administradores
