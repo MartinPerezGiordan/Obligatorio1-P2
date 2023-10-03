@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Dominio;
 
-Sistema sistema = new Sistema();
+Sistema sistema = Sistema.Instancia;
 
 #region Precarga de Datos
 
@@ -28,6 +28,7 @@ sistema.AgregarMiembro(Laura);
 sistema.AgregarMiembro(Carlos);
 sistema.AgregarMiembro(Marta);
 sistema.AgregarMiembro(Jose);
+
 
 #endregion Miembros
 

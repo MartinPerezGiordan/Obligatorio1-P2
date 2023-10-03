@@ -10,6 +10,21 @@ namespace Dominio
     {
 
         #region Atributos
+
+        private static int s_ultimoId = 0;
+        public int Id { get; set; }
+
+        private static Sistema instancia;
+        public static Sistema Instancia{
+            get
+            {
+                if(instancia == null)
+                {
+                    instancia = new Sistema();
+                }
+                return instancia; 
+            }
+        }
         private List<Miembro> _miembros;
         private List<Administrador> _administradores;
         private List<Publicacion> _publicaciones;
@@ -19,8 +34,10 @@ namespace Dominio
         #endregion
 
         #region Constructor
-        public Sistema() 
-        { 
+        private Sistema() 
+        {
+            this.Id = s_ultimoId;
+            s_ultimoId++;
             this._miembros = new List<Miembro>();
             this._administradores = new List<Administrador>();
             this._invitaciones = new List<Invitacion>();
