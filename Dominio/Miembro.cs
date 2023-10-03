@@ -110,6 +110,11 @@ namespace Dominio
             {
                 throw new Exception("Email no puede estar vacio");
             }
+            string ultimasCuatro = this.Email.Substring(this.Email.Length - 4);
+            if (ultimasCuatro != ".com" || !this.Email.Contains("@"))
+            {
+                throw new Exception("Email invalido");
+            }
         }
         public void ValidarContraseña()
         {

@@ -27,6 +27,7 @@ namespace Dominio
             this.Censurado = false;
             this._comentarios = new List<Comentario>();
             this.NombreImagen = nombreImagen;
+            ValidarNombreImagen();
 
         }
 
@@ -36,6 +37,8 @@ namespace Dominio
             this.Censurado = false;
             this._comentarios = comentarios;
             this.NombreImagen = nombreImagen;
+            ValidarNombreImagen();
+
         }
 
         #endregion
@@ -68,6 +71,15 @@ namespace Dominio
             this.Censurado = censurar;
         }
 
+        public void ValidarNombreImagen()
+        {
+            string ultimasCuatro = this.NombreImagen.Substring(this.NombreImagen.Length - 4);
+            if (ultimasCuatro != ".png" && ultimasCuatro != ".jpg")
+            {
+                throw new Exception("La imagen debe ser .jpg o .png");
+            }
+        }
+
         #endregion
 
         #region Override
@@ -76,7 +88,6 @@ namespace Dominio
         {
             return $"Id: {this.Id} {Environment.NewLine}Autor: {this.Autor.Nombre} {Environment.NewLine}Texto: {this.Texto} {Environment.NewLine}Fecha: {this.Fecha} {Environment.NewLine}Nombre Imagen: {this.NombreImagen}{Environment.NewLine}";
         }
-
         #endregion
     }
 }
