@@ -14,7 +14,7 @@ namespace Dominio
         private List<Administrador> _administradores;
         private List<Publicacion> _publicaciones;
         private List<Invitacion> _invitaciones;
-        private List<Miembro> _miembroLogueado;
+        private Miembro _miembroLogueado;
 
         #endregion
 
@@ -25,7 +25,6 @@ namespace Dominio
             this._administradores = new List<Administrador>();
             this._invitaciones = new List<Invitacion>();
             this._publicaciones = new List<Publicacion>();
-            this._miembroLogueado = new List<Miembro>();
         }
         #endregion
 
@@ -49,6 +48,10 @@ namespace Dominio
         public List<Publicacion> GetPublicaciones()
         {
             return this._publicaciones;
+        }
+        public Miembro GetMiembroLoguedao()
+        {
+            return this._miembroLogueado;
         }
         #endregion
 
@@ -75,7 +78,7 @@ namespace Dominio
         public void Login(string email, string contrasenia)
         {
             this.ValidarLogin(email, contrasenia);
-            this._miembroLogueado.Add(this.GetMiembroByEmail(email));
+            this._miembroLogueado = this.GetMiembroByEmail(email);
         }
         public void ValidarLogin(string email, string contrasenia)
         {
