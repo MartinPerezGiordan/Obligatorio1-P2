@@ -86,7 +86,7 @@ namespace Dominio
         {
             ValidarNombre();
             ValidarApellido();
-            ValidarContraseña();
+            ValidarContrasenia();
             ValidarEmail();
         }
 
@@ -116,7 +116,7 @@ namespace Dominio
                 throw new Exception("Email invalido");
             }
         }
-        public void ValidarContraseña()
+        public void ValidarContrasenia()
         {
             if (this.Contrasenia.Length < 8)
             {
