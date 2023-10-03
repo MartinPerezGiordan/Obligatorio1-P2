@@ -11,9 +11,6 @@ namespace Dominio
 
         #region Atributos
 
-        private static int s_ultimoId = 0;
-        public int Id { get; set; }
-
         private static Sistema instancia;
         public static Sistema Instancia{
             get
@@ -36,8 +33,6 @@ namespace Dominio
         #region Constructor
         private Sistema() 
         {
-            this.Id = s_ultimoId;
-            s_ultimoId++;
             this._miembros = new List<Miembro>();
             this._administradores = new List<Administrador>();
             this._invitaciones = new List<Invitacion>();
