@@ -2,7 +2,6 @@
 using Dominio;
 
 Sistema sistema = Sistema.Instancia;
-Console.WriteLine(DateTime.Now.AddYears(-13));
 #region Precarga de Datos
 
 #region Miembros
@@ -384,15 +383,19 @@ while (opcion != 0)
     switch (opcion)
     {
         case 50:
+            Console.Clear();
             AbrirMenuDeTests();
             break;
         case 1:
+
             Boolean seInserto = false;
             while(!seInserto)
             {
                 try
                 {
-                    Console.WriteLine("Registro");
+                    Console.Clear();
+
+                    Console.WriteLine("******* Registro *******");
                     Console.WriteLine("Ingrese Nombre");
                     string nombre = Console.ReadLine();
                     Console.WriteLine("Ingrese Apellido");
@@ -415,8 +418,10 @@ while (opcion != 0)
             }
             break;
         case 2:
-            try { 
-                Console.WriteLine("Buscar Publicaciones de Miembros por Email");
+            try {
+                Console.Clear();
+
+                Console.WriteLine("******** Buscar Publicaciones de Miembros por Email ********");
                 Console.WriteLine("Ingrese email");
                 string emailBuscado = Console.ReadLine();
                 Console.WriteLine("Posts:");
@@ -438,7 +443,9 @@ while (opcion != 0)
         case 3:
             try
             {
-                Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
+                Console.Clear();
+
+                Console.WriteLine("******** Buscar Posts comentados por Miembros por Email ********");
                 Console.WriteLine("Ingrese email");
                 string email = Console.ReadLine();
                 Console.WriteLine("Posts comentados:");
@@ -454,6 +461,8 @@ while (opcion != 0)
             break;
 
         case 4:
+            Console.Clear();
+            Console.WriteLine("******** Buscar Posts por rango de fechas ********");
             Console.WriteLine("Ingrese la primera fecha");
             DateTime fecha1 = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Ingrese la segunda fecha");
@@ -462,6 +471,9 @@ while (opcion != 0)
             break;
 
         case 5:
+            Console.Clear();
+            Console.WriteLine("******** Mostrar Miembro con mayor cantidad de Publicaiones ********");
+
             ListarMiembroConMasPublicaciones();
             break;
         case 6:
@@ -470,7 +482,9 @@ while (opcion != 0)
             {
                 try
                 {
-                    Console.WriteLine("Login");
+                    Console.Clear();
+                    Console.WriteLine("******* Login *******");
+
                     Console.WriteLine("Ingrese Email");
                     string emailLogin = Console.ReadLine();
                     Console.WriteLine("Ingrese contraseña");
