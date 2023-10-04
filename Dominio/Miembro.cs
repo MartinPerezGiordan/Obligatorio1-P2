@@ -88,6 +88,7 @@ namespace Dominio
             ValidarApellido();
             ValidarContrasenia();
             ValidarEmail();
+            ValidarNacimiento();
         }
 
         public void ValidarNombre()
@@ -121,6 +122,16 @@ namespace Dominio
             if (this.Contrasenia.Length < 8)
             {
                 throw new Exception("La contraseña no puede ser menor a 8 caracteres");
+            }
+        }
+
+
+        public void ValidarNacimiento()
+        {
+            DateTime fechaLimite = DateTime.Now.AddYears(-13);
+            if (this.FechaDeNacimiento >= fechaLimite)
+            {
+                throw new Exception("Para registrarse debe ser mayor a 13 años");
             }
         }
         #endregion

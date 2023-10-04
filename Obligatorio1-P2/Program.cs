@@ -2,7 +2,7 @@
 using Dominio;
 
 Sistema sistema = Sistema.Instancia;
-
+Console.WriteLine(DateTime.Now.AddYears(-13));
 #region Precarga de Datos
 
 #region Miembros
@@ -568,7 +568,7 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
             }
         }
         
-        List<Post> postsOrdenados = postsAMostrar.OrderBy(x => x.Titulo).ToList();
+        List<Post> postsOrdenados = postsAMostrar.OrderBy(post => post.Titulo).ToList();
 
         if (postsOrdenados.Count == 0)
         {
