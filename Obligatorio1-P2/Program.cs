@@ -371,7 +371,7 @@ while (opcion != 0)
     Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
     Console.WriteLine("4 - Buscar Posts por rango de fechas");
     Console.WriteLine("5 - Mostrar Miembro con mayor cantidad de Publicaiones");
-    Console.WriteLine("6 - Login");
+    //Console.WriteLine("6 - Login");
     try
     {
         opcion = int.Parse(Console.ReadLine());
@@ -476,30 +476,30 @@ while (opcion != 0)
 
             ListarMiembroConMasPublicaciones();
             break;
-        case 6:
-            Boolean seLogueo = false;
-            while (!seLogueo)
-            {
-                try
-                {
-                    Console.Clear();
-                    Console.WriteLine("******* Login *******");
+        //case 6:
+        //    Boolean seLogueo = false;
+        //    while (!seLogueo)
+        //    {
+        //        try
+        //        {
+        //            Console.Clear();
+        //            Console.WriteLine("******* Login *******");
 
-                    Console.WriteLine("Ingrese Email");
-                    string emailLogin = Console.ReadLine();
-                    Console.WriteLine("Ingrese contraseña");
-                    string contraseniaLogin = Console.ReadLine();
-                    sistema.Login(emailLogin, contraseniaLogin);
-                    Console.WriteLine("Login Exitoso");
-                    seLogueo = true;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    seLogueo = false;
-                }
-            }
-            break;
+        //            Console.WriteLine("Ingrese Email");
+        //            string emailLogin = Console.ReadLine();
+        //            Console.WriteLine("Ingrese contraseña");
+        //            string contraseniaLogin = Console.ReadLine();
+        //            sistema.Login(emailLogin, contraseniaLogin);
+        //            Console.WriteLine("Login Exitoso");
+        //            seLogueo = true;
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Console.WriteLine(e.Message);
+        //            seLogueo = false;
+        //        }
+        //    }
+        //    break;
 
         default:
             Console.WriteLine("Opcion Incorrecta");
