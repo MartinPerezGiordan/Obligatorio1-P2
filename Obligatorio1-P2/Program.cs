@@ -168,7 +168,8 @@ sistema.LikearUnaPublicacion(3, 6, false);
 #endregion
 
 #region MenuDePruebas
-
+//Esto es un menu de tests con el objetivo de ayudarnos a nosotros los desarrolladores a ver que ciertas funcionalidades esten funcionando correctamente.
+//NO ES EL MENU REQUERIDO POR LA LETRA DEL OBLIGATORIO.
 void AbrirMenuDeTests()
 {
     int opcionTest = -1;
@@ -323,7 +324,7 @@ while (opcion != 0)
     Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
     Console.WriteLine("4 - Buscar Posts por rango de fechas");
     Console.WriteLine("5 - Mostrar Miembro con mayor cantidad de Publicaciones");
-    Console.WriteLine("6 - Login");
+    //Console.WriteLine("6 - Login");
     try
     {
         opcion = int.Parse(Console.ReadLine());
