@@ -113,15 +113,6 @@ namespace Dominio
             return this._miembros[id];
         }
 
-        public List<Invitacion> VerInvitacionesEnviadas(Miembro miembro)
-        {
-            return miembro.GetInvitacionesEnviadas();
-        }
-
-        public List<Invitacion> VerInvitacionesRecibidas(Miembro miembro)
-        {
-            return miembro.GetInvitacionesRecibidas();
-        }
 
         //De parametro se toman ambas ids, la del solicitante y la del solicitado
         //Si el solicitante esta bloqueado se envia un error

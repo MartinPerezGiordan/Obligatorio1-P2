@@ -322,7 +322,7 @@ while (opcion != 0)
     Console.WriteLine("2 - Buscar Publicaciones de Miembros por Email");
     Console.WriteLine("3 - Buscar Posts comentados por Miembros por Email");
     Console.WriteLine("4 - Buscar Posts por rango de fechas");
-    Console.WriteLine("5 - Mostrar Miembro con mayor cantidad de Publicaiones");
+    Console.WriteLine("5 - Mostrar Miembro con mayor cantidad de Publicaciones");
     Console.WriteLine("6 - Login");
     try
     {
