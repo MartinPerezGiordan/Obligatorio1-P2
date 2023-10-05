@@ -428,30 +428,30 @@ while (opcion != 0)
 
             ListarMiembroConMasPublicaciones();
             break;
-        case 6:
-            Boolean seLogueo = false;
-            while (!seLogueo)
-            {
-                try
-                {
-                    Console.Clear();
-                    Console.WriteLine("******* Login *******");
+        //case 6:
+        //    Boolean seLogueo = false;
+        //    while (!seLogueo)
+        //    {
+        //        try
+        //        {
+        //            Console.Clear();
+        //            Console.WriteLine("******* Login *******");
 
-                    Console.WriteLine("Ingrese Email");
-                    string emailLogin = Console.ReadLine();
-                    Console.WriteLine("Ingrese contraseña");
-                    string contraseniaLogin = Console.ReadLine();
-                    sistema.Login(emailLogin, contraseniaLogin);
-                    Console.WriteLine("Login Exitoso");
-                    seLogueo = true;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    seLogueo = false;
-                }
-            }
-            break;
+        //            Console.WriteLine("Ingrese Email");
+        //            string emailLogin = Console.ReadLine();
+        //            Console.WriteLine("Ingrese contraseña");
+        //            string contraseniaLogin = Console.ReadLine();
+        //            sistema.Login(emailLogin, contraseniaLogin);
+        //            Console.WriteLine("Login Exitoso");
+        //            seLogueo = true;
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Console.WriteLine(e.Message);
+        //            seLogueo = false;
+        //        }
+        //    }
+        //    break;
 
         default:
             if(opcion != 0)
