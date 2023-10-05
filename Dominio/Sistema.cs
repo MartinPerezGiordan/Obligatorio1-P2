@@ -11,15 +11,15 @@ namespace Dominio
 
         #region Atributos
 
-        private static Sistema instancia;
+        private static Sistema s_instancia;
         public static Sistema Instancia{
             get
             {
-                if(instancia == null)
+                if(s_instancia == null)
                 {
-                    instancia = new Sistema();
+                    s_instancia = new Sistema();
                 }
-                return instancia; 
+                return s_instancia; 
             }
         }
         private List<Miembro> _miembros;
@@ -179,20 +179,6 @@ namespace Dominio
                 invitacion.SetEstadoSolicitud(EstadoSolicitud.RECHAZADA);
             }
         }
-
-        //Ve en la lista de invitaciones que existen en el sistema, si alguna de las 
-        //invitaciones pertenece a al miembro la agrega a su lista de invitaciones recibidas.
-        //public void ActualizarListaDeInvitaciones(Miembro miembro)
-        //{
-        //    foreach (Invitacion invitacion in this._invitaciones)
-        //    {
-        //        if (invitacion.GetIdMiembroSolicitado() == miembro.GetId())
-        //        {
-        //            miembro.AgregarInvitacionRecibida(invitacion);
-        //        }
-        //    }
-        //}
-
 
         public Miembro GetMiembroByEmail(string email)
         {

@@ -31,16 +31,6 @@ namespace Dominio
 
         }
 
-        public Post(Miembro autor, string titulo, string texto, string nombreImagen, List<Comentario> comentarios) : base(autor,texto, titulo)
-        {
-            this.Publico = true;
-            this.Censurado = false;
-            this._comentarios = comentarios;
-            this.NombreImagen = nombreImagen;
-            ValidarNombreImagen();
-
-        }
-
         #endregion
 
         #region Get y Set

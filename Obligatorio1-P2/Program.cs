@@ -181,14 +181,10 @@ void AbrirMenuDeTests()
             Console.WriteLine("0 - Salir");
             Console.WriteLine("1 - Ver Miembros");
             Console.WriteLine("2 - Ver Administradores");
-            Console.WriteLine("3 - Registrarse a Social NetWork");
-            Console.WriteLine("4 - PRUEBA GetPublicacionesPorEmail, IdentificarComentarios, IdentificarPosts");
-            Console.WriteLine("5 - PRUEBA BloquearMiembro");
-            Console.WriteLine("6 - Ver Comentarios");
-            Console.WriteLine("7 - PRUEBA CensurarPost");
-            Console.WriteLine("8 - PRUEBA EnviarInvitaciones");
-            Console.WriteLine("9 - PRUEBA Likes y Dislikes");
-            Console.WriteLine("10 - Login");
+            Console.WriteLine("3 - PRUEBA GetPublicacionesPorEmail, IdentificarComentarios, IdentificarPosts");
+            Console.WriteLine("4 - PRUEBA BloquearAJuan y DesbloquearAJuan");
+            Console.WriteLine("5 - PRUEBA EnviarInvitaciones");
+            Console.WriteLine("6 - PRUEBA Likes y Dislikes");
 
             opcionTest = int.Parse(Console.ReadLine());
             switch (opcionTest)
@@ -211,28 +207,9 @@ void AbrirMenuDeTests()
 
                     break;
 
+
+
                 case 3:
-                    Console.Clear();
-
-                    Console.WriteLine("Ingrese Nombre y Apellido");
-                    string nombre = Console.ReadLine();
-                    Console.WriteLine("IngreseApellido");
-                    string apellido = Console.ReadLine();
-                    Console.WriteLine("Ingrese Email");
-                    string email = Console.ReadLine();
-                    Console.WriteLine("Ingrese contraseña");
-                    string contrasenia = Console.ReadLine();
-                    Console.WriteLine("Ingrese Fecha de Nacimiento");
-                    DateTime fechaDeNacimiento = DateTime.Parse(Console.ReadLine());
-
-                    Miembro nuevoMiembro = new Miembro(email, contrasenia, nombre, apellido, fechaDeNacimiento, false);
-                    sistema.AgregarMiembro(nuevoMiembro);
-                    Console.WriteLine("Miembro registrado con exito");
-                    Console.ReadLine();
-
-                    break;
-
-                case 4:
                     Console.Clear();
 
                     foreach (Publicacion publicacion in sistema.GetPublicacionesPorEmail("correo8@example.com"))
@@ -256,45 +233,20 @@ void AbrirMenuDeTests()
 
                     break;
 
+                case 4:
+                    Console.Clear();
+
+                    Console.WriteLine("Juan estaba bloqueado --->" + Juan.Bloqueado);
+                    sistema.BloquearMiembro(0, !Juan.Bloqueado);
+                    Console.WriteLine("Juan esta bloqueado --->" + Juan.Bloqueado);
+
+                    Console.ReadLine();
+
+                    break;
+
+
+
                 case 5:
-                    Console.Clear();
-
-                    Console.WriteLine(Juan.Bloqueado);
-                    sistema.BloquearMiembro(0, true);
-                    Console.WriteLine(Juan.Bloqueado);
-                    Console.ReadLine();
-
-                    break;
-
-                case 6:
-                    Console.Clear();
-
-                    Console.WriteLine("Falta correccion");
-                    // Publicacion publicacion = (Post)sistema.GetPublicacionById(1);
-                    //
-                    // foreach (Comentario comentario in publicacion.get
-                    // {
-                    //     Console.WriteLine(comentario.GetAutorNombre());
-                    // }
-                    Console.ReadLine();
-
-                    break;
-
-                case 7:
-                    Console.Clear();
-
-                    Console.WriteLine("Falta correccion");
-                    //Console.WriteLine("Falta correccion");
-                    //sistema.AgregarPostMiembro(8, "Post 6", "cinco.jpg");
-                    //Console.WriteLine(sistema.GetPostById(5).GetCensurado());
-                    //sistema.CensurarPost(5, true);
-                    //Console.WriteLine(sistema.GetPostById(5).GetCensurado());
-                    //sistema.AgregarComentarioPost(4, 8, "Comentario 3 post 5");
-                    Console.ReadLine();
-
-                    break;
-
-                case 8:
                     Console.Clear();
 
                     //ListarMiembros();
@@ -315,7 +267,7 @@ void AbrirMenuDeTests()
 
                     break;
 
-                case 9:
+                case 6:
                     Console.Clear();
 
                     foreach (Publicacion publicacion in sistema.GetPublicaciones())
@@ -502,7 +454,10 @@ while (opcion != 0)
             break;
 
         default:
+            if(opcion != 0)
+            {
             Console.WriteLine("Opcion Incorrecta");
+            }
             break;
     }
 }

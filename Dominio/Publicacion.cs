@@ -20,10 +20,6 @@ namespace Dominio
         public Publicacion(Miembro autor, string texto, string titulo)
         {
 
-            if (texto == null)
-            {
-                throw new Exception("El contenido no puede estar vacio!!");
-            }
 
             this.Id = s_ultimoId++;
             this.Autor = autor;
@@ -31,6 +27,7 @@ namespace Dominio
             this.Texto = texto;
             this.Fecha = DateTime.Now;
             this._reacciones = new List<Reaccion>();
+            ValidarContenido();
         }
 
         #endregion
@@ -55,6 +52,13 @@ namespace Dominio
             this._reacciones.Add(reaccion);
         }
 
+        public void ValidarContenido()
+        {
+            if (this.Texto == null)
+            {
+                throw new Exception("El contenido no puede estar vacio!!");
+            }
+        }
 
         #endregion
     }
