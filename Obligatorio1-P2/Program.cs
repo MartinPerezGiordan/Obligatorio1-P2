@@ -538,15 +538,16 @@ void ListarPostsSegunFecha(DateTime fecha1, DateTime fecha2)
             }
         }
         
-        List<Post> postsOrdenados = postsAMostrar.OrderBy(post => post.Titulo).ToList();
 
-        if (postsOrdenados.Count == 0)
+        postsAMostrar.Sort();
+
+        if (postsAMostrar.Count == 0)
         {
             Console.WriteLine("No hay ningun post entre esas fechas");
         }
         else
         {
-            foreach (Post post in postsOrdenados)
+            foreach (Post post in postsAMostrar)
             {
                 int id = post.Id;
                 string titulo = post.Titulo;

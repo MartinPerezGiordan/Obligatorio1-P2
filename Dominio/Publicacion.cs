@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Dominio
 {
-	public abstract class Publicacion
+	public abstract class Publicacion : IComparable
 	{
         #region Atributos
 
@@ -60,6 +60,19 @@ namespace Dominio
             }
         }
 
+
+        public int CompareTo(Object? obj)
+        {
+            if(obj == null)
+            {
+                throw new Exception("obj es null");
+            }
+
+            Publicacion otra = obj as Publicacion;
+
+            return this.Titulo.CompareTo(otra.Titulo);
+
+        }
         #endregion
     }
 }
