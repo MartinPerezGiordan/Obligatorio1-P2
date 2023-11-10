@@ -37,6 +37,7 @@ namespace Dominio
             this._administradores = new List<Administrador>();
             this._invitaciones = new List<Invitacion>();
             this._publicaciones = new List<Publicacion>();
+            precargarUsuarios();
         }
         #endregion
 
@@ -91,7 +92,7 @@ namespace Dominio
             this.ValidarLogin(email, contrasenia);
             this._miembroLogueado = this.GetMiembroByEmail(email);
         }
-        public void ValidarLogin(string email, string contrasenia)
+        public bool ValidarLogin(string email, string contrasenia)
         {
             bool seEncontro = false;
             foreach (Miembro unMiembro in this.GetMiembros())
@@ -101,10 +102,8 @@ namespace Dominio
                     seEncontro = true; break;
                 }
             }
-            if (!seEncontro)
-            {
-                throw new Exception("Email o contraseña incorrectos");
-            }
+
+            return seEncontro;
         }
 
         public Miembro GetMiembroById(int id)
@@ -453,7 +452,23 @@ namespace Dominio
         }
 
         #endregion
+        #region Precargas
 
+        private void precargarUsuarios()
+        {
+            AgregarMiembro(new Miembro("correo0@example.com", "contrasenia1", "Juan", "Perez", new DateTime(1990, 1, 1), false));
+            AgregarMiembro(new Miembro("correo1@example.com", "contrasenia2", "Ana",  "Gomez", new DateTime(1985, 3, 15), false));
+            AgregarMiembro(new Miembro("correo2@example.com", "contrasenia3", "Luis", "Rodriguez", new DateTime(1995, 5, 20), false));
+            AgregarMiembro(new Miembro("correo3@example.com", "contrasenia4", "Maria", "Lopez", new DateTime(1980, 10, 10), false));
+            AgregarMiembro(new Miembro("correo4@example.com", "contrasenia5", "Sofia", "Torres", new DateTime(1988, 6, 5), false));
+            AgregarMiembro(new Miembro("correo5@example.com", "contrasenia6", "Pedro", "Martinez", new DateTime(1992, 12, 30), false));
+            AgregarMiembro(new Miembro("correo6@example.com", "contrasenia7", "Laura", "Sanchez", new DateTime(1993, 8, 25), false));
+            AgregarMiembro(new Miembro("correo7@example.com", "contrasenia8", "Carlos", "Gonzalez", new DateTime(1975, 4, 2), false));
+            AgregarMiembro(new Miembro("correo8@example.com", "contrasenia9", "Marta", "Ramirez", new DateTime(1982, 7, 12), false));
+            AgregarMiembro(new Miembro("correo9@example.com", "contrasenia10", "Jose", "Fernandez", new DateTime(1998, 11, 15), false));
+        }
+
+        #endregion
         #endregion
 
     }
