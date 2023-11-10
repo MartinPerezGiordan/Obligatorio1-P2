@@ -28,5 +28,27 @@ namespace WebApplication1.Controllers
             HttpContext.Session.SetString("usuario", "");
             return RedirectToAction("Login");
         }
+
+
+        public IActionResult SignUp()
+        {
+            return View(new Miembro());
+        }
+
+        [HttpPost]
+        public IActionResult SignUp(Miembro miembro)
+        {
+            try
+            {
+                Sistema.Instancia.AgregarMiembro(miembro);
+                return RedirectToAction("Login", new { mensajeExito = "Usuario creado con exito" });
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Mensaje = ex.Message;
+                return View();
+            }
+
+        }
     }
 }

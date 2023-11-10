@@ -39,9 +39,8 @@ namespace Dominio
             this._invitacionesRecibidas = new List<Invitacion>();
             this.Bloqueado = bloqueado;
             this.CantidadDePublicaciones = 0;
-            Validar();
-            
         }
+        public Miembro() { }
 
         #endregion
 

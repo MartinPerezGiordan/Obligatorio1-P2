@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@if (!String.IsNullOrEmpty(ViewBag.Mensaje))
+{
+    <div class="alert alert-danger">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<div class="container">
+    <h2>Registro</h2>
+    <form method="post" class="needs-validation" novalidate>
+        
+        <div class="mb-3">
+            <label for="Email">Email</label>
+            <input type="email" class="form-control" id="Email" name="Email" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="Password">Contraseña</label>
+            <input type="password" class="form-control" id="Password" name="Password" required>
+
+        </div>
+
+        <div class="mb-3">
+            <label for="Nombre">Nombre</label>
+            <input type="text" class="form-control" id="Nombre" name="Nombre" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="Apellido">Apellido</label>
+            <input type="text" class="form-control" id="Apellido" name="Apellido" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="FechaNacimiento">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="FechaNacimiento" name="FechaNacimiento" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+    </form>
+</div>

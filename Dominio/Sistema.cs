@@ -73,7 +73,7 @@ namespace Dominio
         #region Metodos Miembro
         public void AgregarMiembro(Miembro miembro)
         {
-            this.validarEmailRegistro(miembro.Email);
+            miembro.Validar();
             this._miembros.Add(miembro);
         }
 

@@ -4,6 +4,12 @@
 @{
 }
 
+@if (!String.IsNullOrEmpty(ViewBag.MensajeExito))
+{
+    <div class="alert alert-success">
+        @ViewBag.MensajeExito
+    </div>
+}
 @if (!String.IsNullOrEmpty(ViewBag.Mensaje))
 {
     <div class="alert alert-danger">
@@ -22,5 +28,5 @@
         <input type="password" class="form-control" id="Password" name="password" placeholder="Password">
     </div>
     <input type="submit" value="Log In" />
-    <a href="#">Sign up</a>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="SignUp">Sign Up</a>
 </form>
