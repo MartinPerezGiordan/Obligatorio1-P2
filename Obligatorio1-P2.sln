@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obligatorio1-P2", "Obligatorio1-P2\Obligatorio1-P2.csproj", "{7DF397D6-6A25-493C-BC35-D138FA473C39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Obligatorio1-P2", "Obligatorio1-P2\Obligatorio1-P2.csproj", "{7DF397D6-6A25-493C-BC35-D138FA473C39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{27A64688-F35A-4F69-8C29-E18BF34C8D8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dominio", "Dominio\Dominio.csproj", "{27A64688-F35A-4F69-8C29-E18BF34C8D8B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{55705672-DFEF-4300-8A0B-DDD9EB03437D}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Nomenclatura.txt = Nomenclatura.txt
 		Propuestas_&_Dudas.txt = Propuestas_&_Dudas.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{B5E61C1A-709D-4200-BFA7-AD79F2F0FED4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +30,10 @@ Global
 		{27A64688-F35A-4F69-8C29-E18BF34C8D8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27A64688-F35A-4F69-8C29-E18BF34C8D8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27A64688-F35A-4F69-8C29-E18BF34C8D8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E61C1A-709D-4200-BFA7-AD79F2F0FED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E61C1A-709D-4200-BFA7-AD79F2F0FED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E61C1A-709D-4200-BFA7-AD79F2F0FED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E61C1A-709D-4200-BFA7-AD79F2F0FED4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
