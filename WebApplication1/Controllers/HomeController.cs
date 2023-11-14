@@ -15,9 +15,6 @@ namespace WebApplication1.Controllers
             }
 
 
-            //Puede ver: SUYOS -- PUBLICOS -- AMIGOS
-
-
             Miembro miembroLogeado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
             ViewBag.Nombre = miembroLogeado.Nombre;
             List<Publicacion> publicaciones = Sistema.Instancia.GetPublicaciones();

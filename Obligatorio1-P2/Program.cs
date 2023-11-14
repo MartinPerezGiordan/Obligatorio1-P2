@@ -288,7 +288,7 @@ void AbrirMenuDeTests()
                             Console.WriteLine("No hay reacciones para esta publicación.");
                         }
 
-                        Console.WriteLine("VA de publicación es " + sistema.CalcularVA(publicacion.Id));
+                        Console.WriteLine("VA de publicación es " + publicacion.CalcularVA());
                         Console.WriteLine();
                     }
                     Console.ReadLine();
