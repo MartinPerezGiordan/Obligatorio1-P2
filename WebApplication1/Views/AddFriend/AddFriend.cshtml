@@ -1,0 +1,45 @@
+﻿
+@using Dominio
+@model List<Miembro>
+
+@if (!String.IsNullOrEmpty(ViewBag.Mensaje))
+{
+    <div class="alert alert-success">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<div class="container mt-4">
+    <h2>Agregar un amigo</h2>
+
+    <div class="row justify-content-center">
+
+        @foreach (Miembro pendiente in ViewBag.Pendientes)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">@pendiente.Nombre</h5>
+                        <h5 class="btn btn-warning">Pendiente</h5>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @foreach (Miembro noAmigo in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">@noAmigo.Nombre</h5>
+                        <form asp-controller="AddFriend" asp-action="AgregarAmigo" method="post">
+                            <input type="hidden" name="noAmigoId" value="@noAmigo.Id" />
+                            <button type="submit" class="btn btn-primary">Agregar amigo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

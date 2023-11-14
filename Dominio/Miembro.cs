@@ -66,6 +66,20 @@ namespace Dominio
 
         #region Metodos
 
+        public bool esAmigoById(int id)
+        {
+            bool esAmigo = false;
+            foreach(Miembro unMiembro in this._listaDeAmigos)
+            {
+                if(id == unMiembro.Id)
+                {
+                    esAmigo = true;
+                    break;
+                }
+            }
+            return esAmigo;
+        }
+
         public void AgregarAmigo(Miembro miembro)
         {
             this._listaDeAmigos.Add(miembro);
