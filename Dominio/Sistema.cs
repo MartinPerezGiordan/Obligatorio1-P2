@@ -422,38 +422,6 @@ namespace Dominio
             return this._publicaciones[id];
         }
 
-        public double CalcularVA(int idPublicacion)
-        {
-            Publicacion publicacion = GetPublicacionById(idPublicacion);
-            double VA = 0;
-            int likes = 0;
-            int dislikes = 0;
-            
-            foreach(Reaccion reaccion in publicacion.GetReacciones())
-            {
-                if (reaccion.Like)
-                {
-                    likes++;
-                }
-                else
-                {
-                    dislikes++;
-                }
-            }
-
-            VA = (likes * 5) + (dislikes * -2);
-
-            if(publicacion is Post)
-            {
-                Post post = (Post) publicacion;
-                if (post.Publico)
-                {
-                    VA += 10;
-                }
-            }
-
-            return VA;
-        }
 
         #endregion
         #region Precargas

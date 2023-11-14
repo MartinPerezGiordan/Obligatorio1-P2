@@ -87,6 +87,9 @@ namespace Dominio
             return dislikes;
         }
 
+        public abstract double CalcularVA();
+
+
 
 
         public int CompareTo(Object? obj)

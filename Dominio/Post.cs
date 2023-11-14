@@ -70,6 +70,25 @@ namespace Dominio
             }
         }
 
+
+        public override double CalcularVA()
+        {
+            double VA = 0;
+            int likes = this.CalcularLikes();
+            int dislikes = this.CalcularDislikes();
+
+            VA = (likes* 5) + (dislikes* -2);
+
+            if (this.Publico)
+            {
+                VA += 10;
+            }
+            return VA;
+        }
+                
+        
+
+
         #endregion
 
         #region Override
