@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -79,6 +80,53 @@ namespace Dominio
             }
             return esAmigo;
         }
+
+        //Devuelve los miembros que no son amigos del usuario y que tampoco tienen una invitacion pendiente
+        public List<Miembro> ObtenerNoAmigos()
+        {
+            List<Miembro> noAmigos = new List<Miembro>();
+
+            foreach (Miembro unMiembro in Sistema.Instancia.GetMiembros())
+            {
+                if (!this.esAmigoById(unMiembro.Id))
+                {
+
+                    bool estaPendiente = false;
+
+                    foreach (Invitacion invitacion in this.GetInvitacionesEnviadas())
+                    {
+                        if (invitacion.GetIdMiembroSolicitado() == unMiembro.Id)
+                        {
+                            estaPendiente = true;
+                        }
+                    }
+                    if (!estaPendiente)
+                    {
+                        noAmigos.Add(unMiembro);
+                    }
+                }
+            }
+            return noAmigos;
+        }
+
+        public List<Miembro> ObtenerInvitacionesPendientesEnviadas()
+        {
+            List<Miembro> pendientes = new List<Miembro>();
+
+            foreach (Miembro unMiembro in Sistema.Instancia.GetMiembros())
+            {
+                foreach (Invitacion invitacion in this.GetInvitacionesEnviadas())
+                {
+                    if (invitacion.GetIdMiembroSolicitado() == unMiembro.Id)
+                    {
+                        pendientes.Add(unMiembro);
+                    }
+                }
+            }
+            return pendientes;
+        }
+
+  
 
         public void AgregarAmigo(Miembro miembro)
         {
