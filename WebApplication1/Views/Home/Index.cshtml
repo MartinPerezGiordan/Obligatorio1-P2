@@ -8,13 +8,9 @@
 
 Mi nombre es @ViewBag.Nombre
 
-@foreach (Publicacion publicacion in ViewBag.Publicaciones)
+@foreach (Post post in ViewBag.Posts)
 {
-    if(publicacion is Post)
-    {
-       Post post = publicacion as Post;
-        if (post.Publico)
-        {
+
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">@post.Titulo</h5>
@@ -43,10 +39,5 @@ Mi nombre es @ViewBag.Nombre
                         </ul>
                 </div>
             </div>
-        }
 
-
-
-
-    }
 }
