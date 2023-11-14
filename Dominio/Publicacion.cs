@@ -60,6 +60,34 @@ namespace Dominio
             }
         }
 
+        public int CalcularLikes()
+        {
+            int likes = 0;
+            foreach (Reaccion reaccion in this._reacciones)
+            {
+                if (reaccion.Like)
+                {
+                    likes++;
+                }
+            }
+            return likes;
+        }
+
+        public int CalcularDislikes()
+        {
+            int dislikes = 0;
+
+            foreach (Reaccion reaccion in this._reacciones)
+            {
+                if (!reaccion.Like)
+                {
+                    dislikes++;
+                }
+            }
+            return dislikes;
+        }
+
+
 
         public int CompareTo(Object? obj)
         {

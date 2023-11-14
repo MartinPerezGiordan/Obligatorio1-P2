@@ -38,6 +38,10 @@ namespace Dominio
             this._invitaciones = new List<Invitacion>();
             this._publicaciones = new List<Publicacion>();
             precargarUsuarios();
+            precargarPosts();
+            precargarComentarios();
+            precargarReacciones();
+            
         }
         #endregion
 
@@ -468,8 +472,74 @@ namespace Dominio
             AgregarMiembro(new Miembro("correo9@example.com", "contrasenia10", "Jose", "Fernandez", new DateTime(1998, 11, 15), false));
         }
 
-        #endregion
-        #endregion
 
+        private void precargarPosts()
+        {
+            AgregarPostMiembro(0, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg", true);
+            AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg", true);
+            AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg", true);
+            AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg", true);
+            AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg", true);
+            AgregarPostMiembro(9, "Post privado", "Privado!!", "soloamigoscomentan.jpg", false);
+        }
+
+        private void precargarComentarios()
+        {
+            AgregarComentarioPost(0, 8,"Este es el titulo 1", "Este es el comentario");
+            AgregarComentarioPost(0, 1,"Este es el titulo 2", "Comentario 2 post 1");
+            AgregarComentarioPost(0, 2,"Este es el titulo 3", "Comentario 3 post 1");
+            AgregarComentarioPost(1, 0,"Este es el titulo 4", "Comentario 1 post 2");
+            AgregarComentarioPost(1, 1,"Este es el titulo 5", "Comentario 2 post 2");
+            AgregarComentarioPost(1, 8,"Este es el titulo 6", "Comentario 3 post 3");
+            AgregarComentarioPost(2, 8,"Este es el titulo 7", "Comentario 1 post 3");
+            AgregarComentarioPost(2, 8,"Este es el titulo 8", "Comentario 2 post 3");
+            AgregarComentarioPost(2, 2,"Este es el titulo 9", "Comentario 3 post 3");
+            AgregarComentarioPost(3, 2,"Este es el titulo 10", "Comentario 1 post 4");
+            AgregarComentarioPost(3, 3,"Este es el titulo 11", "Comentario 2 post 4");
+            AgregarComentarioPost(3, 8,"Este es el titulo 12", "Comentario 3 post 4");
+            AgregarComentarioPost(4, 6,"Este es el titulo 13", "Comentario 1 post 5");
+            AgregarComentarioPost(4, 5,"Este es el titulo 14", "Comentario 2 post 5");
+            AgregarComentarioPost(4, 8,"Este es el titulo 15", "Comentario 3 post 5");
+        } 
+
+        private void precargarReacciones()
+        {
+            LikearUnaPublicacion(1, 0, true);
+            LikearUnaPublicacion(2, 0, false);
+            LikearUnaPublicacion(3, 0, true);
+            LikearUnaPublicacion(4, 0, true);
+            LikearUnaPublicacion(5, 0, true);
+            LikearUnaPublicacion(1, 0, true);
+            LikearUnaPublicacion(2, 0, true);
+            LikearUnaPublicacion(3, 0, true);
+            LikearUnaPublicacion(1, 1, true);
+            LikearUnaPublicacion(2, 1, false);
+            LikearUnaPublicacion(3, 1, true);
+            LikearUnaPublicacion(4, 1, true);
+            LikearUnaPublicacion(5, 1, true);
+            LikearUnaPublicacion(1, 1, true);
+            LikearUnaPublicacion(2, 1, true);
+            LikearUnaPublicacion(3, 1, false);
+            LikearUnaPublicacion(1, 5, true);
+            LikearUnaPublicacion(2, 5, false);
+            LikearUnaPublicacion(3, 5, true);
+            LikearUnaPublicacion(4, 5, true);
+            LikearUnaPublicacion(5, 5, true);
+            LikearUnaPublicacion(1, 5, true);
+            LikearUnaPublicacion(2, 5, true);
+            LikearUnaPublicacion(3, 5, true);
+            LikearUnaPublicacion(1, 6, true);
+            LikearUnaPublicacion(2, 6, false);
+            LikearUnaPublicacion(3, 6, true);
+            LikearUnaPublicacion(4, 6, true);
+            LikearUnaPublicacion(5, 6, true);
+            LikearUnaPublicacion(1, 6, true);
+            LikearUnaPublicacion(2, 6, true);
+        LikearUnaPublicacion(3, 6, false);
+
+        }
     }
 }
+#endregion
+#endregion
+

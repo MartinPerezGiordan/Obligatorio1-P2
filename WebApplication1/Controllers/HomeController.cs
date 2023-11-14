@@ -14,7 +14,13 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Login", "Login", new { mensaje = "no tienes acceso" });
             }
 
-            ViewBag.nombre = "Pedro Paez";
+
+            //Puede ver: SUYOS -- PUBLICOS -- AMIGOS
+
+            List<Publicacion> publicaciones = Sistema.Instancia.GetPublicaciones();
+
+            ViewBag.Nombre = HttpContext.Session.GetString("usuario");
+            ViewBag.Publicaciones = publicaciones;
             return View();
         }
     }

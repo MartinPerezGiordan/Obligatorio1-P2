@@ -11,4 +11,8 @@
     <ProjectReference Include="..\Obligatorio1-P2\Obligatorio1-P2.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Images\Prueba.jpg" />
+  </ItemGroup>
+
 </Project>
