@@ -1,0 +1,38 @@
+﻿
+
+
+@if (!String.IsNullOrEmpty(ViewBag.Mensaje))
+{
+    <div class="alert alert-danger">
+        @ViewBag.Mensaje
+    </div>
+}
+
+
+<div class="container">
+    <h2>Registro</h2>
+    <form method="post" class="needs-validation" novalidate>
+
+        <div class="mb-3">
+            <label for="titulo">Titulo</label>
+            <input type="text" class="form-control" id="titulo" name="Titulo" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="image">Elige una imagen</label>
+            <input type="file" class="form-control" id="image" name="Image" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="texto">Escribe una descripcion...</label>
+            <input type="text" class="form-control" id="texto" name="Texto" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-check-label" for="publico">Publico</label>
+            <input class="form-check-input" type="checkbox" value="Publico" id="publico" name="Publico">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear Post</button>
+    </form>
+</div>
