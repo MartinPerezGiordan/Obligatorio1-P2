@@ -123,6 +123,8 @@ namespace Dominio
         //En caso opuesto se procede a crear la Invitacion y se agrega a la lista de invitaciones del sistema
         public void EnviarInvitacion(int idMiembroSolicitante, int idMiembroSolicitado)
         {
+
+            //NO DEJAR QUE UN MISMO USUARIO RECIBA MAS DE UNA INVITACION DE LA MISMA PERSONA
             foreach(Invitacion invitacion in this.GetMiembroById(idMiembroSolicitado).GetInvitacionesRecibidas())
             {
                 if(invitacion.GetIdMiembroSolicitante() == idMiembroSolicitante)
@@ -130,6 +132,18 @@ namespace Dominio
                     throw new Exception("Ya se ha enviado una solicitud a ese Miembro");
                 }
             }
+
+            //Si ya tiene una invitacion de ese miembro, no debe poder mandar una al mismo
+            foreach(Invitacion invitacion in this.GetMiembroById(idMiembroSolicitante).GetInvitacionesRecibidas())
+            {
+                if (invitacion.GetIdMiembroSolicitado() == idMiembroSolicitado)
+                {
+                    throw new Exception("Ya existe una solicitud de ese Miembro");
+                }
+            }
+
+
+
             if (!GetMiembroById(idMiembroSolicitante).Bloqueado )
             {
                 Invitacion nuevaInvitacion = new Invitacion(idMiembroSolicitante, idMiembroSolicitado, DateTime.Now);
@@ -162,13 +176,11 @@ namespace Dominio
             {
                 solicitado.AgregarAmigo(solicitante);
                 solicitante.AgregarAmigo(solicitado);
-
                 invitacion.SetEstadoSolicitud(EstadoSolicitud.APROBADA);
             }
             else
             {
                 throw new Exception("El miembro esta bloqueado, no puede aceptar una invitacion");
-
             }
         }
 
@@ -523,40 +535,13 @@ namespace Dominio
             EnviarInvitacion(0,1);
             EnviarInvitacion(0,2);
             EnviarInvitacion(0,3);
-            EnviarInvitacion(0,4);
-            EnviarInvitacion(1,5);
             EnviarInvitacion(1,2);
             EnviarInvitacion(1,3);
-            EnviarInvitacion(1,4);
-            EnviarInvitacion(2,1);
-            EnviarInvitacion(2,3);
-            EnviarInvitacion(2,4);
-            EnviarInvitacion(3,5);
-            EnviarInvitacion(3,1);
-            EnviarInvitacion(3,2);
-            EnviarInvitacion(4,3);
-            EnviarInvitacion(5,4);
-            EnviarInvitacion(6,1);
-            EnviarInvitacion(7,1);
-            EnviarInvitacion(8,1);
-            EnviarInvitacion(9,1);
+            EnviarInvitacion(4,1);
+            EnviarInvitacion(5,1);
 
 
 
-
-            // foreach (Invitacion invitacion in GetMiembroById(1).GetInvitacionesRecibidas())
-            // {
-            //     AceptarInvitacion(invitacion);
-            // }
-            // foreach (Invitacion invitacion in GetMiembroById(3).GetInvitacionesRecibidas())
-            // {
-            //     AceptarInvitacion(invitacion);
-            // }
-            //
-            // foreach (Invitacion invitacion in GetMiembroById(4).GetInvitacionesRecibidas())
-            // {
-            //    RechazarInvitacion(invitacion);
-            // }
         }
     }
 }

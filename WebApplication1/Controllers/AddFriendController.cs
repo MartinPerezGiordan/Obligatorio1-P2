@@ -18,8 +18,8 @@ namespace WebApplication1.Controllers
             }
 
             Miembro miembroLogeado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
+            ViewBag.Pendientes = miembroLogeado.ObtenerMiembrosConInvitacionesPendientes();
             List<Miembro> noAmigos = miembroLogeado.ObtenerNoAmigos();
-            ViewBag.Pendientes = miembroLogeado.ObtenerInvitacionesPendientesEnviadas();
 			return View("AddFriend", noAmigos);
 		}
 
@@ -31,7 +31,7 @@ namespace WebApplication1.Controllers
             Sistema.Instancia.EnviarInvitacion(miembroLogeado.Id, noAmigoId);
             ViewBag.Mensaje = "Se ha enviado la solicitud a " + Sistema.Instancia.GetMiembroById(noAmigoId).Nombre +" "+ Sistema.Instancia.GetMiembroById(noAmigoId).Apellido + " con exito.";
             List<Miembro> noAmigos = miembroLogeado.ObtenerNoAmigos();
-            ViewBag.Pendientes = miembroLogeado.ObtenerInvitacionesPendientesEnviadas();
+            ViewBag.Pendientes = miembroLogeado.ObtenerMiembrosConInvitacionesPendientes();
             return View("AddFriend", noAmigos);
         }
     }

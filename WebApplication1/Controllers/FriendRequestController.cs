@@ -14,7 +14,7 @@ namespace WebApplication1.Controllers
             }
 
             Miembro miembroLogeado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
-            List<Miembro> invitacionesPendientes = miembroLogeado.ObtenerInvitacionesPendientesRecibidas();
+            List<Miembro> invitacionesPendientes = miembroLogeado.ObtenerMiembrosConInvitacionesPendientesRecibidas();
 
             return View("FriendRequest", invitacionesPendientes);
         }
@@ -31,7 +31,7 @@ namespace WebApplication1.Controllers
                     Sistema.Instancia.AceptarInvitacion(unaInvitacion);
                 }
             }
-            List<Miembro> invitacionesPendientes = miembroLogeado.ObtenerInvitacionesPendientesRecibidas();
+            List<Miembro> invitacionesPendientes = miembroLogeado.ObtenerMiembrosConInvitacionesPendientesRecibidas();
 
 
             return View("FriendRequest", invitacionesPendientes);

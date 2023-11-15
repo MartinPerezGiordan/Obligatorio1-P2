@@ -67,7 +67,7 @@ namespace Dominio
 
         #region Metodos
 
-        public bool esAmigoById(int id)
+        private bool esAmigoById(int id)
         {
             bool esAmigo = false;
             foreach(Miembro unMiembro in this._listaDeAmigos)
@@ -81,6 +81,28 @@ namespace Dominio
             return esAmigo;
         }
 
+        private bool esPendienteById(int id)
+        {
+            bool esPendiente = false;
+            foreach(Invitacion invitacion in this.GetInvitacionesEnviadas())
+            {
+                if(invitacion.GetIdMiembroSolicitado() == id && invitacion.GetEstadoSolicitud() == EstadoSolicitud.PENDIENTE_APROBACION)
+                {
+                    esPendiente = true;
+                    break;
+                }
+            }
+            foreach (Invitacion invitacion in this.GetInvitacionesRecibidas())
+            {
+                if(invitacion.GetIdMiembroSolicitante() == id && invitacion.GetEstadoSolicitud() == EstadoSolicitud.PENDIENTE_APROBACION)
+                {
+                    esPendiente = true;
+                    break;
+                }
+            }
+            return esPendiente;
+        }
+
         //Devuelve los miembros que no son amigos del usuario y que tampoco tienen una invitacion pendiente
         public List<Miembro> ObtenerNoAmigos()
         {
@@ -88,60 +110,40 @@ namespace Dominio
 
             foreach (Miembro unMiembro in Sistema.Instancia.GetMiembros())
             {
-                if (!this.esAmigoById(unMiembro.Id) && unMiembro.Id != this.Id)
+                if (!this.esAmigoById(unMiembro.Id) && unMiembro.Id != this.Id && !this.esPendienteById(unMiembro.Id))
                 {
-
-                    bool estaPendiente = false;
-
-                    foreach (Invitacion invitacion in this.GetInvitacionesEnviadas())
-                    {
-                        if (invitacion.GetIdMiembroSolicitado() == unMiembro.Id)
-                        {
-                            estaPendiente = true;
-                        }
-                    }
-                    if (!estaPendiente)
-                    {
                         noAmigos.Add(unMiembro);
-                    }
                 }
             }
             return noAmigos;
         }
 
-        public List<Miembro> ObtenerInvitacionesPendientesEnviadas()
+        public List<Miembro> ObtenerMiembrosConInvitacionesPendientes()
         {
             List<Miembro> pendientes = new List<Miembro>();
 
-            foreach (Miembro unMiembro in Sistema.Instancia.GetMiembros())
+            foreach(Miembro miembro in Sistema.Instancia.GetMiembros())
             {
-                foreach (Invitacion invitacion in this.GetInvitacionesEnviadas())
+                if (this.esPendienteById(miembro.Id))
                 {
-                    if (invitacion.GetIdMiembroSolicitado() == unMiembro.Id && invitacion.GetEstadoSolicitud() == EstadoSolicitud.PENDIENTE_APROBACION)
-                    {
-                        pendientes.Add(unMiembro);
-                    }
+                    pendientes.Add(miembro);
                 }
             }
             return pendientes;
         }
 
-        public List<Miembro> ObtenerInvitacionesPendientesRecibidas()
+        public List<Miembro> ObtenerMiembrosConInvitacionesPendientesRecibidas()
         {
             List<Miembro> pendientes = new List<Miembro>();
-
-            foreach (Miembro unMiembro in Sistema.Instancia.GetMiembros())
+            foreach(Invitacion invitacion in this.GetInvitacionesRecibidas())
             {
-                foreach (Invitacion invitacion in this.GetInvitacionesRecibidas())
+                if(invitacion.GetEstadoSolicitud() == EstadoSolicitud.PENDIENTE_APROBACION)
                 {
-                    if (invitacion.GetIdMiembroSolicitante() == unMiembro.Id  && invitacion.GetEstadoSolicitud() == EstadoSolicitud.PENDIENTE_APROBACION)
-                    {
-                        pendientes.Add(unMiembro);
-                    }
+                    pendientes.Add(Sistema.Instancia.GetMiembroById(invitacion.GetIdMiembroSolicitante()));
                 }
             }
             return pendientes;
-    }
+        }
 
   
 
