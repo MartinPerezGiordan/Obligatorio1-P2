@@ -121,7 +121,14 @@ namespace Dominio
         //En caso opuesto se procede a crear la Invitacion y se agrega a la lista de invitaciones del sistema
         public void EnviarInvitacion(int idMiembroSolicitante, int idMiembroSolicitado)
         {
-            if (!GetMiembroById(idMiembroSolicitante).Bloqueado)
+            foreach(Invitacion invitacion in this.GetMiembroById(idMiembroSolicitado).GetInvitacionesRecibidas())
+            {
+                if(invitacion.GetIdMiembroSolicitante() == idMiembroSolicitante)
+                {
+                    throw new Exception("Ya se ha enviado una solicitud a ese Miembro");
+                }
+            }
+            if (!GetMiembroById(idMiembroSolicitante).Bloqueado )
             {
                 Invitacion nuevaInvitacion = new Invitacion(idMiembroSolicitante, idMiembroSolicitado, DateTime.Now);
                 this.AgregarInvitacion(nuevaInvitacion);

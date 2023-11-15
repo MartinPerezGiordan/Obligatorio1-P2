@@ -88,7 +88,7 @@ namespace Dominio
 
             foreach (Miembro unMiembro in Sistema.Instancia.GetMiembros())
             {
-                if (!this.esAmigoById(unMiembro.Id))
+                if (!this.esAmigoById(unMiembro.Id) && unMiembro.Id != this.Id)
                 {
 
                     bool estaPendiente = false;
@@ -125,6 +125,23 @@ namespace Dominio
             }
             return pendientes;
         }
+
+        public List<Miembro> ObtenerInvitacionesPendientesRecibidas()
+        {
+            List<Miembro> pendientes = new List<Miembro>();
+
+            foreach (Miembro unMiembro in Sistema.Instancia.GetMiembros())
+            {
+                foreach (Invitacion invitacion in this.GetInvitacionesRecibidas())
+                {
+                    if (invitacion.GetIdMiembroSolicitante() == unMiembro.Id)
+                    {
+                        pendientes.Add(unMiembro);
+                    }
+                }
+            }
+            return pendientes;
+    }
 
   
 
