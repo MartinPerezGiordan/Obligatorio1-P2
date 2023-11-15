@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Dominio
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -36,7 +37,11 @@
                         }
                     </ul>
                 </div>
-                <h2>@ViewBag.Nombre</h2>
+                @if (!string.IsNullOrEmpty(Context.Session.GetString("usuario")))
+                {
+                    Miembro usuario = Sistema.Instancia.GetMiembroByEmail(Context.Session.GetString("usuario"));
+                    <h2>@usuario.Nombre @usuario.Apellido</h2>
+                }
             </div>
         </nav>
     </header>
