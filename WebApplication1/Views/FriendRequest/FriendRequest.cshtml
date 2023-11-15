@@ -12,10 +12,13 @@
             <div class="col-md-4 mb-3">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">@pendiente.Nombre</h5>
-                        <form asp-controller="AddFriend" asp-action="AgregarAmigo" method="post">
-                            <input type="hidden" name="noAmigoId" value="@pendiente.Id" />
+                        <h5 class="card-title">@pendiente.Nombre @pendiente.Apellido</h5>
+                        <form asp-controller="FriendRequest" asp-action="Aceptar" method="post">
+                            <input type="hidden" name="pendienteId" value="@pendiente.Id" />
                             <button type="submit" class="btn btn-primary">Aceptar</button>
+                        </form>
+                        <form asp-controller="FriendRequest" asp-action="Rechazar" method="post">
+                            <input type="hidden" name="pendienteId" value="@pendiente.Id" />
                             <button type="submit" class="btn btn btn-warning">Rechazar</button>
                         </form>
                     </div>

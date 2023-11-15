@@ -16,7 +16,7 @@ namespace WebApplication1.Controllers
 
 
             Miembro miembroLogeado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
-            ViewBag.Nombre = miembroLogeado.Nombre;
+            ViewBag.Nombre = miembroLogeado.Nombre +" "+ miembroLogeado.Apellido;
             List<Publicacion> publicaciones = Sistema.Instancia.GetPublicaciones();
             List<Post> postsAMostrar = new List<Post>();
 

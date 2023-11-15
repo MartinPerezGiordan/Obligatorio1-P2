@@ -117,7 +117,7 @@ namespace Dominio
             {
                 foreach (Invitacion invitacion in this.GetInvitacionesEnviadas())
                 {
-                    if (invitacion.GetIdMiembroSolicitado() == unMiembro.Id)
+                    if (invitacion.GetIdMiembroSolicitado() == unMiembro.Id && invitacion.GetEstadoSolicitud() == EstadoSolicitud.PENDIENTE_APROBACION)
                     {
                         pendientes.Add(unMiembro);
                     }
@@ -134,7 +134,7 @@ namespace Dominio
             {
                 foreach (Invitacion invitacion in this.GetInvitacionesRecibidas())
                 {
-                    if (invitacion.GetIdMiembroSolicitante() == unMiembro.Id)
+                    if (invitacion.GetIdMiembroSolicitante() == unMiembro.Id  && invitacion.GetEstadoSolicitud() == EstadoSolicitud.PENDIENTE_APROBACION)
                     {
                         pendientes.Add(unMiembro);
                     }
@@ -212,6 +212,8 @@ namespace Dominio
                 throw new Exception("Para registrarse debe ser mayor a 13 años");
             }
         }
+
+
         #endregion
 
         #region Override

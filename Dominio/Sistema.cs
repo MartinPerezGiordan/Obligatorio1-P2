@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Dominio
 {
@@ -41,6 +42,7 @@ namespace Dominio
             precargarPosts();
             precargarComentarios();
             precargarReacciones();
+            precargarInvitaciones();
             
         }
         #endregion
@@ -146,6 +148,8 @@ namespace Dominio
         //Recibe un objeto invitacion y verifica que el solicitado no este bloqueado en cuyo caso manda un error.
         //Si no esta bloqueado agrega al solicitante de la invitacion a la lista de amigos
         //Cambia el estado de la invitacion a aceptada.
+
+        //POSIBLEMENTE HAY QUE BORRARLA
         public void AceptarInvitacion(Invitacion invitacion)
         {
             int idSolicitante = invitacion.GetIdMiembroSolicitante();
@@ -510,8 +514,49 @@ namespace Dominio
             LikearUnaPublicacion(5, 6, true);
             LikearUnaPublicacion(1, 6, true);
             LikearUnaPublicacion(2, 6, true);
-        LikearUnaPublicacion(3, 6, false);
+            LikearUnaPublicacion(3, 6, false);
 
+        }
+
+        private void precargarInvitaciones()
+        {
+            EnviarInvitacion(0,1);
+            EnviarInvitacion(0,2);
+            EnviarInvitacion(0,3);
+            EnviarInvitacion(0,4);
+            EnviarInvitacion(1,5);
+            EnviarInvitacion(1,2);
+            EnviarInvitacion(1,3);
+            EnviarInvitacion(1,4);
+            EnviarInvitacion(2,1);
+            EnviarInvitacion(2,3);
+            EnviarInvitacion(2,4);
+            EnviarInvitacion(3,5);
+            EnviarInvitacion(3,1);
+            EnviarInvitacion(3,2);
+            EnviarInvitacion(4,3);
+            EnviarInvitacion(5,4);
+            EnviarInvitacion(6,1);
+            EnviarInvitacion(7,1);
+            EnviarInvitacion(8,1);
+            EnviarInvitacion(9,1);
+
+
+
+
+            // foreach (Invitacion invitacion in GetMiembroById(1).GetInvitacionesRecibidas())
+            // {
+            //     AceptarInvitacion(invitacion);
+            // }
+            // foreach (Invitacion invitacion in GetMiembroById(3).GetInvitacionesRecibidas())
+            // {
+            //     AceptarInvitacion(invitacion);
+            // }
+            //
+            // foreach (Invitacion invitacion in GetMiembroById(4).GetInvitacionesRecibidas())
+            // {
+            //    RechazarInvitacion(invitacion);
+            // }
         }
     }
 }

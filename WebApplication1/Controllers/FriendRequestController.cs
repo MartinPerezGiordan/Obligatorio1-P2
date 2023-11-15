@@ -19,5 +19,23 @@ namespace WebApplication1.Controllers
             return View("FriendRequest", invitacionesPendientes);
         }
 
+        [HttpPost]
+        public IActionResult Aceptar(int pendienteId)
+        {
+            Miembro miembroLogeado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
+
+            foreach(Invitacion unaInvitacion in Sistema.Instancia.GetInvitaciones())
+            {
+                if(unaInvitacion.GetIdMiembroSolicitante() == pendienteId && unaInvitacion.GetIdMiembroSolicitado() == miembroLogeado.Id)
+                {
+                    Sistema.Instancia.AceptarInvitacion(unaInvitacion);
+                }
+            }
+            List<Miembro> invitacionesPendientes = miembroLogeado.ObtenerInvitacionesPendientesRecibidas();
+
+
+            return View("FriendRequest", invitacionesPendientes);
+        }
+
     }
 }

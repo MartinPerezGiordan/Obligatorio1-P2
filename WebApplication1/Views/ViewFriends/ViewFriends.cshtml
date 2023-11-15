@@ -1,0 +1,22 @@
+﻿@using Dominio
+@model List<Miembro>
+
+
+<div class="container mt-4">
+    <h2>Lista de Amigos</h2>
+
+    <div class="row justify-content-center">
+
+        @foreach (Miembro amigo in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">@amigo.Nombre @amigo.Apellido</h5>
+                        <h5 class="btn btn-success">Amigo</h5>
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
+</div>

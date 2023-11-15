@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
 		}
 
         [HttpPost]
-        public IActionResult AgregarAmigo(int noAmigoId)
+        public IActionResult AddFriend(int noAmigoId)
         {
 
             Miembro miembroLogeado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
