@@ -32,7 +32,7 @@ sistema.AgregarMiembro(Jose);
 
 #region Administradores
 
-Administrador Lucas = new Administrador("correo@admin.com", "adminContrasenia1");
+Administrador Lucas = new Administrador("correo@admin.com", "adminContrasenia1", "Lucas", "Lopez");
 
 sistema.AgregarAdministrador(Lucas);
 

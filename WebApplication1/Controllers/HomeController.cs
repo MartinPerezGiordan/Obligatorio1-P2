@@ -14,36 +14,59 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Login", "Login", new { mensaje = "no tienes acceso" });
             }
 
+            Administrador administradorLogeado = Sistema.Instancia.GetAdministradorByEmail(HttpContext.Session.GetString("usuario"));
 
             Miembro miembroLogeado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
-            ViewBag.Nombre = miembroLogeado.Nombre +" "+ miembroLogeado.Apellido;
+
+            if(miembroLogeado is Miembro)
+            {
+                ViewBag.Nombre = miembroLogeado.Nombre + " " + miembroLogeado.Apellido;
+            } else if(administradorLogeado is Administrador)
+            {
+                ViewBag.Nombre = administradorLogeado.Nombre + " " + administradorLogeado.Apellido;
+            }
+
             List<Publicacion> publicaciones = Sistema.Instancia.GetPublicaciones();
             List<Post> postsAMostrar = new List<Post>();
-
-            foreach(Publicacion publicacion in publicaciones)
+            if(miembroLogeado is Miembro)
             {
-                if (publicacion is Post)
+                foreach (Publicacion publicacion in publicaciones)
                 {
-                    Post post = publicacion as Post;
-                    if (post.Publico)
+                    if (publicacion is Post)
                     {
-                        postsAMostrar.Add(post);
-                    }
-                    else if(post.Autor == miembroLogeado)
-                    {
-                        postsAMostrar.Add(post);
-                    }
-                    foreach(Miembro amigo in miembroLogeado.GetListaDeAmigos())
-                    {
-                        if(amigo == post.Autor)
+                        Post post = publicacion as Post;
+                        if (post.Publico)
                         {
                             postsAMostrar.Add(post);
                         }
+                        else if (post.Autor == miembroLogeado)
+                        {
+                            postsAMostrar.Add(post);
+                        }
+                        foreach (Miembro amigo in miembroLogeado.GetListaDeAmigos())
+                        {
+                            if (amigo == post.Autor)
+                            {
+                                postsAMostrar.Add(post);
+                            }
+                        }
+                    }
+
+                }
+            }
+            else if(administradorLogeado is Administrador)
+            {
+                foreach(Publicacion publicacion in publicaciones)
+                {
+                    if(publicacion is Post)
+                    {
+                        Post post = publicacion as Post;
+                        postsAMostrar.Add(post);
                     }
                 }
-
             }
-                    ViewBag.Posts = postsAMostrar;
+           
+            ViewBag.Posts = postsAMostrar;
             return View();
         }
     }

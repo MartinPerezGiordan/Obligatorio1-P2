@@ -39,6 +39,7 @@ namespace Dominio
             this._invitaciones = new List<Invitacion>();
             this._publicaciones = new List<Publicacion>();
             precargarUsuarios();
+            precargarAdmins();
             precargarPosts();
             precargarComentarios();
             precargarReacciones();
@@ -207,6 +208,7 @@ namespace Dominio
             }
             return null;
         }
+  
 
         //Esta funcion permite tanto Likear una publicacion como dislikearla.
         //Acepta 3 parametros, el miembro que likea, la publicacion y si es un like(true) o dislike(false)
@@ -241,6 +243,33 @@ namespace Dominio
         public void AgregarAdministrador(Administrador administrador)
         {
             this._administradores.Add(administrador);
+        }
+
+
+        public bool ValidarLoginAdministrador(string email, string contrasenia)
+        {
+            bool seEncontro = false;
+            foreach (Administrador unAdministrador in this.GetAdministradores())
+            {
+                if (unAdministrador.Email == email && unAdministrador.Contrasena == contrasenia)
+                {
+                    seEncontro = true; break;
+                }
+            }
+
+            return seEncontro;
+        }
+
+        public Administrador GetAdministradorByEmail(string email)
+        {
+            foreach (Administrador unAdministrador in this.GetAdministradores())
+            {
+                if (unAdministrador.Email == email)
+                {
+                    return unAdministrador;
+                }
+            }
+            return null;
         }
 
 
@@ -461,6 +490,10 @@ namespace Dominio
             AgregarMiembro(new Miembro("correo7@example.com", "contrasenia8", "Carlos", "Gonzalez", new DateTime(1975, 4, 2), false));
             AgregarMiembro(new Miembro("correo8@example.com", "contrasenia9", "Marta", "Ramirez", new DateTime(1982, 7, 12), false));
             AgregarMiembro(new Miembro("correo9@example.com", "contrasenia10", "Jose", "Fernandez", new DateTime(1998, 11, 15), false));
+        }
+        private void precargarAdmins()
+        {
+            AgregarAdministrador(new Administrador("correo@admin.com", "adminContrasenia1", "Lucas", "Lopez"));
         }
 
 

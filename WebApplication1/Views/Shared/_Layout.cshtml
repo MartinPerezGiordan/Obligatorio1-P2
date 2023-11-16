@@ -40,7 +40,15 @@
                 @if (!string.IsNullOrEmpty(Context.Session.GetString("usuario")))
                 {
                     Miembro usuario = Sistema.Instancia.GetMiembroByEmail(Context.Session.GetString("usuario"));
-                    <h2>@usuario.Nombre @usuario.Apellido</h2>
+                    Administrador usuario2 = Sistema.Instancia.GetAdministradorByEmail(Context.Session.GetString("usuario"));
+                    if (usuario is Miembro)
+                    {
+                        <h2>@usuario.Nombre @usuario.Apellido</h2>
+                    }
+                    else if (usuario2 is Administrador)
+                    {
+                        <h2>@usuario2.Nombre @usuario2.Apellido</h2>
+                    }
                 }
             </div>
         </nav>

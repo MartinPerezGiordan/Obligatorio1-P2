@@ -15,12 +15,14 @@ namespace WebApplication1.Controllers
 
         public IActionResult Login(string email, string password)
         {
-            if (Sistema.Instancia.ValidarLogin(email, password))
+            if (Sistema.Instancia.ValidarLogin(email, password) || Sistema.Instancia.ValidarLoginAdministrador(email, password))
             {
                 HttpContext.Session.SetString("usuario", email);
                 return RedirectToAction("Index", "Home");
-            }
+            }          
             return RedirectToAction("Login", new { mensaje = "Nombre de usuario o contraseña incorrecta." });
+            
+
         }
 
         public IActionResult Logout()
