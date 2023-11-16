@@ -7,7 +7,14 @@ namespace WebApplication1.Controllers
     {
         public IActionResult Login(string mensaje)
         {
-            ViewBag.Mensaje = mensaje;
+            if (mensaje == "Usuario creado con exito")
+            {
+                ViewBag.MensajeExito = mensaje;
+            }
+            else
+            {
+                ViewBag.Mensaje = mensaje;
+            }
             return View();
         }
 
@@ -17,7 +24,9 @@ namespace WebApplication1.Controllers
         {
             if (Sistema.Instancia.ValidarLogin(email, password))
             {
+                Miembro usuario = Sistema.Instancia.GetMiembroByEmail(email);
                 HttpContext.Session.SetString("usuario", email);
+                HttpContext.Session.SetString("nombreUsuario", usuario.Nombre+" "+usuario.Apellido);
                 return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Login", new { mensaje = "Nombre de usuario o contraseña incorrecta." });
@@ -41,7 +50,7 @@ namespace WebApplication1.Controllers
             try
             {
                 Sistema.Instancia.AgregarMiembro(miembro);
-                return RedirectToAction("Login", new { mensajeExito = "Usuario creado con exito" });
+                return RedirectToAction("Login", new { mensaje = "Usuario creado con exito" });
             }
             catch (Exception ex)
             {

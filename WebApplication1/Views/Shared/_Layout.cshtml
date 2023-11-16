@@ -41,8 +41,7 @@
                 </div>
                 @if (!string.IsNullOrEmpty(Context.Session.GetString("usuario")))
                 {
-                    Miembro usuario = Sistema.Instancia.GetMiembroByEmail(Context.Session.GetString("usuario"));
-                    <h2>@usuario.Nombre @usuario.Apellido</h2>
+                    <h2>@Context.Session.GetString("nombreUsuario")</h2>
                 }
             </div>
         </nav>
