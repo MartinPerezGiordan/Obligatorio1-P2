@@ -50,6 +50,10 @@
     <button type="submit" class="btn @(hayDislike ? "btn-dark" : "btn-light")"><h6>💔 @post.CalcularDislikes()</h6></button>
 </form>
                     <h6>Valor de Aceptacion: @post.CalcularVA()</h6>
+            <form asp-controller="AddComment" asp-action="Comment" method="get">
+                <input type="hidden" name="postId" value="@post.Id" />
+                <button type="submit" class="btn btn-outline-light"><h6>💬 Comentar</h6></button>
+            </form>
 
   
                     <h6 class="mt-4">Comentarios:</h6>

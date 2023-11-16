@@ -1,0 +1,16 @@
+﻿
+@using Dominio
+@model Post
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Titulo</h5>
+        <p class="card-text">@Model.Autor.Nombre @Model.Autor.Apellido</p>
+        <p class="card-text">@Model.Fecha</p>
+        <img src="/Images/Prueba.jpg" alt="Imagen del post" class="img-fluid mb-3" />
+        <p class="card-text">@Model.Texto</p>
+        <form asp-controller="AddComment" asp-action="Comment" method="post">
+            <input type="text" name="commentTitle" id="commentTitle" />
+            <textarea name="comment" id="comment"></textarea>
+            <button type="submit" class="btn btn-primary">Comentar</button>
+        </form>
