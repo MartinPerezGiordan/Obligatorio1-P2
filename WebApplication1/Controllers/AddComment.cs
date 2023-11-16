@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Dominio;
 using static System.Net.Mime.MediaTypeNames;
+using Microsoft.Extensions.Hosting;
 
 namespace WebApplication1.Controllers
 {
@@ -20,12 +21,14 @@ namespace WebApplication1.Controllers
             {
                 int idMiembroLogueado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario")).Id;
                 Sistema.Instancia.AgregarComentarioPost(postId, idMiembroLogueado, commentTitle, comment);
-                return RedirectToAction("Index", "Home", new { mensajeExito = "Comentario creado con exito" });
+                ViewBag.MensajeExito = "Comentario creado con exito";
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
                 ViewBag.Mensaje = ex.Message;
-                return View();
+                Post post = (Post)Sistema.Instancia.GetPublicacionById(postId);
+                return View("AddComment", post);
             }
         }
     }

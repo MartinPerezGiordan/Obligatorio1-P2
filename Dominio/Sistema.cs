@@ -278,26 +278,33 @@ namespace Dominio
         // Agregar un comentario con id de post y id de miembro que comenta verifica si es privado(y deja agregar un comentario de un amigo) o publico y Suma la cantidad de posts que realizo el miembro
         public void AgregarComentarioPost(int idPublicacion, int idMiembro, string titulo, string texto)
         {
-            Miembro miembro = GetMiembroById(idMiembro);
-            Miembro miembroPublicacion = this.GetPublicacionById(idPublicacion).Autor;           
-            Comentario nuevoComentario = new Comentario(idPublicacion, miembro, titulo, texto);
-            if (this.GetPublicacionById(idPublicacion) is Post)
+            if(string.IsNullOrWhiteSpace(titulo) || string.IsNullOrWhiteSpace(texto))
             {
-                Post post = (Post)this.GetPublicacionById(idPublicacion);
-                if(post.Publico == true || (post.Publico == false && miembroPublicacion.GetListaDeAmigos().Contains(miembro)))
-                {
-                    post.AgregarComentario(nuevoComentario);
-                    miembro.CantidadDePublicaciones++;
-                    this.AgregarPublicacion(nuevoComentario);
-                }
-                else
-                {
-                    throw new Exception("El post es privado");
-                }
+                throw new Exception("El titulo o el comentario no pueden estar vacios");
             }
             else
             {
-                throw new Exception("El id de publicacion no corresponde a un post");
+                Miembro miembro = GetMiembroById(idMiembro);
+                Miembro miembroPublicacion = this.GetPublicacionById(idPublicacion).Autor;           
+                Comentario nuevoComentario = new Comentario(idPublicacion, miembro, titulo, texto);
+                if (this.GetPublicacionById(idPublicacion) is Post)
+                {
+                    Post post = (Post)this.GetPublicacionById(idPublicacion);
+                    if(post.Publico == true || (post.Publico == false && miembroPublicacion.GetListaDeAmigos().Contains(miembro)))
+                    {
+                        post.AgregarComentario(nuevoComentario);
+                        miembro.CantidadDePublicaciones++;
+                        this.AgregarPublicacion(nuevoComentario);
+                    }
+                    else
+                    {
+                        throw new Exception("El post es privado");
+                    }
+                }
+                else
+                {
+                    throw new Exception("El id de publicacion no corresponde a un post");
+                }
             }
         }
 

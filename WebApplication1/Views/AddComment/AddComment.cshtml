@@ -2,6 +2,13 @@
 @using Dominio
 @model Post
 
+@if (!String.IsNullOrEmpty(ViewBag.Mensaje))
+{
+    <div class="alert alert-danger">
+        @ViewBag.Mensaje
+    </div>
+}
+
 <div class="card mb-4">
     <div class="card-body">
         <h5 class="card-title">@Model.Titulo</h5>
@@ -14,3 +21,5 @@
             <textarea name="comment" id="comment"></textarea>
             <button type="submit" class="btn btn-primary">Comentar</button>
         </form>
+    </div>
+</div>

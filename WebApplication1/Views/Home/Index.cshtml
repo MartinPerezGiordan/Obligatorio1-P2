@@ -2,14 +2,14 @@
 
 @using Dominio
 
+
+
 @if (!String.IsNullOrEmpty(ViewBag.MensajeExito))
 {
     <div class="alert alert-success">
         @ViewBag.MensajeExito
     </div>
 }
-
-
 
 @foreach (Post post in ViewBag.Posts)
 {
