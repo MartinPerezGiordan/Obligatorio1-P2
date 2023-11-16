@@ -27,6 +27,7 @@ namespace WebApplication1.Controllers
                 Miembro usuario = Sistema.Instancia.GetMiembroByEmail(email);
                 HttpContext.Session.SetString("usuario", email);
                 HttpContext.Session.SetString("nombreUsuario", usuario.Nombre+" "+usuario.Apellido);
+
                 return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Login", new { mensaje = "Nombre de usuario o contraseña incorrecta." });

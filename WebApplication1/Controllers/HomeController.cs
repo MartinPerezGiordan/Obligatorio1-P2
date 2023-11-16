@@ -17,6 +17,7 @@ namespace WebApplication1.Controllers
 
             Miembro miembroLogeado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
             ViewBag.Nombre = miembroLogeado.Nombre + " " + miembroLogeado.Apellido;
+            ViewBag.IdUsuario = miembroLogeado.Id;
             List<Publicacion> publicaciones = Sistema.Instancia.GetPublicaciones();
             List<Post> postsAMostrar = new List<Post>();
 
@@ -47,10 +48,19 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public IActionResult Like(bool like, int postId)
+        public IActionResult LikePost(bool like, int postId)
         {
             int idUsuario = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario")).Id;
             Sistema.Instancia.LikearUnaPublicacion(idUsuario, postId, like);
+
+
+            return RedirectToAction("Index", "Home");
+        }
+        
+        public IActionResult LikeComentario(bool like, int comentarioId)
+        {
+            int idUsuario = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario")).Id;
+            Sistema.Instancia.LikearUnaPublicacion(idUsuario, comentarioId, like);
 
 
             return RedirectToAction("Index", "Home");
