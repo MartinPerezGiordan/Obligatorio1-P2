@@ -3,8 +3,8 @@
 
     <div class="input-group">
         <form asp-controller="Search" asp-action="SearchPublicacion" method="post">
-            <input type="search" name="textoBuscado" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <input type="number" name="va" placeholder="Valor de Aceptacion" />
+            <input type="search" name="textoBuscado" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" required/>
+            <input type="number" name="va" placeholder="Valor de Aceptacion" required/>
             <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init>Search</button>
         </form>
     </div>
