@@ -34,7 +34,12 @@ namespace WebApplication1.Controllers
                     {
                         postsAMostrar.Add(post);
                     }
-                    foreach (Miembro amigo in miembroLogeado.GetListaDeAmigos())
+                    List<Miembro> amigos = miembroLogeado.GetListaDeAmigos();
+                    if (amigos == null)
+                    {
+                        amigos = new List<Miembro>();
+                    }
+                    foreach (Miembro amigo in amigos)
                     {
                         if (amigo == post.Autor)
                         {

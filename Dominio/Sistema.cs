@@ -39,10 +39,11 @@ namespace Dominio
             this._invitaciones = new List<Invitacion>();
             this._publicaciones = new List<Publicacion>();
             precargarUsuarios();
+            precargarInvitaciones();
+            precargarAmistades();
             precargarPosts();
             precargarComentarios();
             precargarReacciones();
-            precargarInvitaciones();
             
         }
         #endregion
@@ -267,12 +268,19 @@ namespace Dominio
         #region Post y Comentario
 
         // Agregar un post con id de miembro y Suma la cantidad de posts que realizo el miembro
-        public void AgregarPostMiembro(int idMiembro,string titulo, string texto, string nombreImagen, bool privado)
+        public void AgregarPostMiembro(int idMiembro,string titulo, string texto, string nombreImagen, bool publico)
         {
             Miembro miembro = GetMiembroById(idMiembro);
-            miembro.CantidadDePublicaciones++;
-            Post nuevoPost = new Post(this.GetMiembroById(idMiembro), titulo, texto, nombreImagen, privado);
-            this.AgregarPublicacion(nuevoPost);
+            if (!miembro.Bloqueado)
+            {
+                miembro.CantidadDePublicaciones++;
+                Post nuevoPost = new Post(this.GetMiembroById(idMiembro), titulo, texto, nombreImagen, publico);
+                this.AgregarPublicacion(nuevoPost);
+            }
+            else
+            {
+                throw new Exception("No puedes realizar un post estando bloqueado.");
+            }
         }
 
         // Agregar un comentario con id de post y id de miembro que comenta verifica si es privado(y deja agregar un comentario de un amigo) o publico y Suma la cantidad de posts que realizo el miembro
@@ -290,11 +298,18 @@ namespace Dominio
                 if (this.GetPublicacionById(idPublicacion) is Post)
                 {
                     Post post = (Post)this.GetPublicacionById(idPublicacion);
-                    if(post.Publico == true || (post.Publico == false && miembroPublicacion.GetListaDeAmigos().Contains(miembro)))
+                    if(post.Publico == true || (post.Publico == false && miembroPublicacion.GetListaDeAmigos().Contains(miembro)) || (post.Publico == false && miembro == miembroPublicacion))
                     {
-                        post.AgregarComentario(nuevoComentario);
-                        miembro.CantidadDePublicaciones++;
-                        this.AgregarPublicacion(nuevoComentario);
+                        if (!miembro.Bloqueado)
+                        {
+                            post.AgregarComentario(nuevoComentario);
+                            miembro.CantidadDePublicaciones++;
+                            this.AgregarPublicacion(nuevoComentario);
+                        }
+                        else
+                        {
+                            throw new Exception("No puedes realizar un comentario estando bloqueado.");
+                        }
                     }
                     else
                     {
@@ -468,36 +483,57 @@ namespace Dominio
             AgregarMiembro(new Miembro("correo7@example.com", "contrasenia8", "Carlos", "Gonzalez", new DateTime(1975, 4, 2), false));
             AgregarMiembro(new Miembro("correo8@example.com", "contrasenia9", "Marta", "Ramirez", new DateTime(1982, 7, 12), false));
             AgregarMiembro(new Miembro("correo9@example.com", "contrasenia10", "Jose", "Fernandez", new DateTime(1998, 11, 15), false));
+            AgregarMiembro(new Miembro("bloque@gmail.com", "bloque1234", "Juan", "Bloque", new DateTime(1990, 1, 1), true));
+
         }
 
 
         private void precargarPosts()
         {
-            AgregarPostMiembro(0, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg", true);
-            AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg", true);
-            AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg", true);
-            AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg", true);
+            AgregarPostMiembro(0, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg", false);
+            AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg", false);
+            AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg", false);
+            AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg", false);
             AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg", true);
-            AgregarPostMiembro(9, "Post privado", "Privado!!", "soloamigoscomentan.jpg", false);
+            AgregarPostMiembro(9, "Post privado", "Privado!!", "soloamigoscomentan.jpg", true);
         }
 
-        private void precargarComentarios()
+        private void precargarInvitaciones()
         {
-            AgregarComentarioPost(0, 8,"Este es el titulo 1", "Este es el comentario");
-            AgregarComentarioPost(0, 1,"Este es el titulo 2", "Comentario 2 post 1");
-            AgregarComentarioPost(0, 2,"Este es el titulo 3", "Comentario 3 post 1");
-            AgregarComentarioPost(1, 0,"Este es el titulo 4", "Comentario 1 post 2");
-            AgregarComentarioPost(1, 1,"Este es el titulo 5", "Comentario 2 post 2");
-            AgregarComentarioPost(1, 8,"Este es el titulo 6", "Comentario 3 post 3");
-            AgregarComentarioPost(2, 8,"Este es el titulo 7", "Comentario 1 post 3");
-            AgregarComentarioPost(2, 8,"Este es el titulo 8", "Comentario 2 post 3");
-            AgregarComentarioPost(2, 2,"Este es el titulo 9", "Comentario 3 post 3");
-            AgregarComentarioPost(3, 2,"Este es el titulo 10", "Comentario 1 post 4");
-            AgregarComentarioPost(3, 3,"Este es el titulo 11", "Comentario 2 post 4");
-            AgregarComentarioPost(3, 8,"Este es el titulo 12", "Comentario 3 post 4");
-            AgregarComentarioPost(4, 6,"Este es el titulo 13", "Comentario 1 post 5");
-            AgregarComentarioPost(4, 5,"Este es el titulo 14", "Comentario 2 post 5");
-            AgregarComentarioPost(4, 8,"Este es el titulo 15", "Comentario 3 post 5");
+            EnviarInvitacion(0, 1);
+            EnviarInvitacion(0, 2);
+            EnviarInvitacion(0, 3);
+            EnviarInvitacion(1, 2);
+            EnviarInvitacion(1, 3);
+            EnviarInvitacion(4, 1);
+            EnviarInvitacion(5, 1);
+        }
+
+        private void precargarAmistades()
+        {
+            foreach(Invitacion invitacion in this._invitaciones)
+            {
+                AceptarInvitacion(invitacion);
+            } 
+        }
+
+            private void precargarComentarios()
+        {
+            AgregarComentarioPost(0, 0,"Este es el titulo 1", "Este es el comentario");
+            //AgregarComentarioPost(0, 1,"Este es el titulo 2", "Comentario 2 post 1");
+            //AgregarComentarioPost(0, 2,"Este es el titulo 3", "Comentario 3 post 1");
+            //AgregarComentarioPost(1, 0,"Este es el titulo 4", "Comentario 1 post 2");
+            //AgregarComentarioPost(1, 1,"Este es el titulo 5", "Comentario 2 post 2");
+            //AgregarComentarioPost(1, 8,"Este es el titulo 6", "Comentario 3 post 3");
+            //AgregarComentarioPost(2, 8,"Este es el titulo 7", "Comentario 1 post 3");
+            //AgregarComentarioPost(2, 8,"Este es el titulo 8", "Comentario 2 post 3");
+            //AgregarComentarioPost(2, 2,"Este es el titulo 9", "Comentario 3 post 3");
+            //AgregarComentarioPost(3, 2,"Este es el titulo 10", "Comentario 1 post 4");
+            //AgregarComentarioPost(3, 3,"Este es el titulo 11", "Comentario 2 post 4");
+            //AgregarComentarioPost(3, 8,"Este es el titulo 12", "Comentario 3 post 4");
+            //AgregarComentarioPost(4, 6,"Este es el titulo 13", "Comentario 1 post 5");
+            //AgregarComentarioPost(4, 5,"Este es el titulo 14", "Comentario 2 post 5");
+            //AgregarComentarioPost(4, 8,"Este es el titulo 15", "Comentario 3 post 5");
         } 
 
         private void precargarReacciones()
@@ -537,19 +573,7 @@ namespace Dominio
 
         }
 
-        private void precargarInvitaciones()
-        {
-            EnviarInvitacion(0,1);
-            EnviarInvitacion(0,2);
-            EnviarInvitacion(0,3);
-            EnviarInvitacion(1,2);
-            EnviarInvitacion(1,3);
-            EnviarInvitacion(4,1);
-            EnviarInvitacion(5,1);
 
-
-
-        }
     }
 }
 #endregion
