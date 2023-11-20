@@ -14,7 +14,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Views\ListMembers\" />
+    <None Remove="Views\Search\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="wwwroot\Images\Prueba.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\ListMembers\" />
+    <Folder Include="Views\Search\" />
+  </ItemGroup>
 </Project>

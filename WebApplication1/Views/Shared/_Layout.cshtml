@@ -1,72 +1,110 @@
 ﻿@using Dominio
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApplication1</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Obligatorio 2</a>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        @if (!string.IsNullOrEmpty(Context.Session.GetString("usuario")))
-                        {
+@{
+    bool ActiveSession = false;
+    bool isAdmin = false;
+    bool isUsuario = false;
+    Miembro usuario = new Miembro();
+    Administrador admin = new Administrador();
+
+    if (!string.IsNullOrEmpty(Context.Session.GetString("usuario")))
+    {
+        admin = Sistema.Instancia.GetAdministradorByEmail(Context.Session.GetString("usuario"));
+        usuario = Sistema.Instancia.GetMiembroByEmail(Context.Session.GetString("usuario"));
+        ActiveSession = true;
+        if (admin is Administrador)
+        {
+            isAdmin = true;
+        }
+        if(usuario is Miembro)
+        {
+            isUsuario = true;
+        }
+        
+    }
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - WebApplication1</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Obligatorio 2</a>
+
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link text-dark dropdown-toggle" href="#" id="friendsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Friends</a>
-                                <div class="dropdown-menu" aria-labelledby="friendsDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="ViewFriends" asp-action="ViewFriends">Friends</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="AddFriend" asp-action="AddFriend">Add Friends</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="FriendRequest" asp-action="FriendRequest">Follow Requests</a>
+                            @if (ActiveSession == true)
+                            {
+                                if(isUsuario == true)
+                                    {
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link text-dark dropdown-toggle" href="#" id="friendsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Friends</a>
+                                            <div class="dropdown-menu" aria-labelledby="friendsDropdown">
+                                                <a class="dropdown-item" asp-area="" asp-controller="ViewFriends" asp-action="ViewFriends">Friends</a>
+                                                <a class="dropdown-item" asp-area="" asp-controller="AddFriend" asp-action="AddFriend">Add Friends</a>
+                                                <a class="dropdown-item" asp-area="" asp-controller="FriendRequest" asp-action="FriendRequest">Follow Requests</a>
 
-                                </div>
-                            </li>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Search" asp-action="Search">Search</a>
+                                        </li>
+                                    }
+                                if(isAdmin == true)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="ListMembers" asp-action="ListMembers">List Members</a>
+                                    </li>
+                                }
+                               
+                            }
+
+                        </ul>
+                    </div>
+                    @if (ActiveSession == true)
+                     { 
+                        if (isUsuario == true)
+                        {
+                            <h2>@usuario.Nombre @usuario.Apellido</h2>
                         }
-                    </ul>
+                        else if (isAdmin == true)
+                        {
+                            <h2>@admin.Nombre @admin.Apellido Admin</h2>
+                        }
+                    }
                 </div>
-                @if (!string.IsNullOrEmpty(Context.Session.GetString("usuario")))
-                {
-                    Miembro usuario = Sistema.Instancia.GetMiembroByEmail(Context.Session.GetString("usuario"));
-                    Administrador usuario2 = Sistema.Instancia.GetAdministradorByEmail(Context.Session.GetString("usuario"));
-                    if (usuario is Miembro)
-                    {
-                        <h2>@usuario.Nombre @usuario.Apellido</h2>
-                    }
-                    else if (usuario2 is Administrador)
-                    {
-                        <h2>@usuario2.Nombre @usuario2.Apellido</h2>
-                    }
-                }
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
+            </nav>
+        </header>
         <div class="container">
-            &copy; 2023 - WebApplication1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2023 - WebApplication1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
 </html>
+
+}

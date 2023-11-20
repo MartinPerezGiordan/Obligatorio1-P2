@@ -208,7 +208,18 @@ namespace Dominio
             }
             return null;
         }
-  
+        public Miembro GetMiembroId(int id)
+        {
+            foreach (Miembro unMiembro in this.GetMiembros())
+            {
+                if (unMiembro.Id == id)
+                {
+                    return unMiembro;
+                }
+            }
+            return null;
+        }
+
 
         //Esta funcion permite tanto Likear una publicacion como dislikearla.
         //Acepta 3 parametros, el miembro que likea, la publicacion y si es un like(true) o dislike(false)
@@ -276,7 +287,7 @@ namespace Dominio
         // Metod que permite bloquear o desbloquear a un miembro
         public void BloquearMiembro(int idMiembro, bool bloquear)
         {
-            this.GetMiembroById(idMiembro).Bloqueado = bloquear;
+            this.GetMiembroId(idMiembro).Bloqueado = bloquear;
         }
 
         //Metod que permite cambiar el valor del atributo censurado de un post
@@ -474,6 +485,24 @@ namespace Dominio
             return this._publicaciones[id];
         }
 
+        public List<Publicacion> BuscarPublicacionPorString(string texto, double va)
+        {
+            List<Publicacion> publicaciones = new List<Publicacion>();
+            foreach(Publicacion publicacion in this.GetPublicaciones())
+            {
+                if (publicacion.Titulo.ToUpper().Contains(texto.ToUpper()) || publicacion.Texto.ToUpper().Contains(texto.ToUpper()))
+                {
+                    if(publicacion.CalcularVA() > va)
+                    {
+                        publicaciones.Add(publicacion);
+                    }
+                }
+            }
+            return publicaciones;
+        }
+
+
+
 
         #endregion
         #region Precargas
@@ -483,13 +512,13 @@ namespace Dominio
             AgregarMiembro(new Miembro("correo0@example.com", "contrasenia1", "Juan", "Perez", new DateTime(1990, 1, 1), false));
             AgregarMiembro(new Miembro("correo1@example.com", "contrasenia2", "Ana",  "Gomez", new DateTime(1985, 3, 15), false));
             AgregarMiembro(new Miembro("correo2@example.com", "contrasenia3", "Luis", "Rodriguez", new DateTime(1995, 5, 20), false));
-            AgregarMiembro(new Miembro("correo3@example.com", "contrasenia4", "Maria", "Lopez", new DateTime(1980, 10, 10), false));
+            AgregarMiembro(new Miembro("correo3@example.com", "contrasenia4", "Maria", "Lopez", new DateTime(1980, 10, 10), true));
             AgregarMiembro(new Miembro("correo4@example.com", "contrasenia5", "Sofia", "Torres", new DateTime(1988, 6, 5), false));
             AgregarMiembro(new Miembro("correo5@example.com", "contrasenia6", "Pedro", "Martinez", new DateTime(1992, 12, 30), false));
-            AgregarMiembro(new Miembro("correo6@example.com", "contrasenia7", "Laura", "Sanchez", new DateTime(1993, 8, 25), false));
+            AgregarMiembro(new Miembro("correo6@example.com", "contrasenia7", "Laura", "Sanchez", new DateTime(1993, 8, 25), true));
             AgregarMiembro(new Miembro("correo7@example.com", "contrasenia8", "Carlos", "Gonzalez", new DateTime(1975, 4, 2), false));
             AgregarMiembro(new Miembro("correo8@example.com", "contrasenia9", "Marta", "Ramirez", new DateTime(1982, 7, 12), false));
-            AgregarMiembro(new Miembro("correo9@example.com", "contrasenia10", "Jose", "Fernandez", new DateTime(1998, 11, 15), false));
+            AgregarMiembro(new Miembro("correo9@example.com", "contrasenia10", "Jose", "Fernandez", new DateTime(1998, 11, 15), true));
         }
         private void precargarAdmins()
         {

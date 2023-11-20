@@ -23,7 +23,7 @@ namespace Dominio
             this.Nombre = nombre;
             this.Apellido = apellido;
         }
-
+        public Administrador() { }
         #endregion
 
         #region Metodos
