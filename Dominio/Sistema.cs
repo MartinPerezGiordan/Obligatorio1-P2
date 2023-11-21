@@ -40,7 +40,7 @@ namespace Dominio
             this._publicaciones = new List<Publicacion>();
             precargarUsuarios();
             precargarInvitaciones();
-            precargarAmistades();
+           // precargarAmistades();
             precargarAdmins();
             precargarPosts();
             precargarComentarios();
@@ -195,6 +195,10 @@ namespace Dominio
             if (!solicitado.Bloqueado)
             { 
                 invitacion.SetEstadoSolicitud(EstadoSolicitud.RECHAZADA);
+            }
+            else
+            {
+                throw new Exception("El miembro esta bloqueado, no puede rechazar una invitacion");
             }
         }
 

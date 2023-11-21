@@ -44,5 +44,31 @@ namespace WebApplication1.Controllers
             return View("FriendRequest", invitacionesPendientes);
         }
 
+        [HttpPost]
+        public IActionResult Rechazar(int pendienteId)
+        {
+
+            Miembro miembroLogeado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
+
+            foreach (Invitacion unaInvitacion in Sistema.Instancia.GetInvitaciones())
+            {
+                if (unaInvitacion.GetIdMiembroSolicitante() == pendienteId && unaInvitacion.GetIdMiembroSolicitado() == miembroLogeado.Id)
+                {
+                    try
+                    {
+                        Sistema.Instancia.RechazarInvitacion(unaInvitacion);
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.MensajeError = ex.Message;
+                    }
+                }
+            }
+            List<Miembro> invitacionesPendientes = miembroLogeado.ObtenerMiembrosConInvitacionesPendientesRecibidas();
+
+
+            return View("FriendRequest", invitacionesPendientes);
+        }
+
     }
 }
