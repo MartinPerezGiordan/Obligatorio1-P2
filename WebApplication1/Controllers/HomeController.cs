@@ -22,14 +22,16 @@ namespace WebApplication1.Controllers
             {
                 ViewBag.Nombre = miembroLogeado.Nombre + " " + miembroLogeado.Apellido;
                 ViewBag.IsAdmin = false;
-            } else if(administradorLogeado is Administrador)
+                ViewBag.IdUsuario = miembroLogeado.Id;
+
+            }
+            else if(administradorLogeado is Administrador)
             {
                 ViewBag.Nombre = administradorLogeado.Nombre + " " + administradorLogeado.Apellido;
                 ViewBag.IsAdmin = true;
             }
 
-            ViewBag.Nombre = miembroLogeado.Nombre + " " + miembroLogeado.Apellido;
-            ViewBag.IdUsuario = miembroLogeado.Id;
+
             List<Publicacion> publicaciones = Sistema.Instancia.GetPublicaciones();
             List<Post> postsAMostrar = new List<Post>();
             if(miembroLogeado is Miembro)
@@ -76,6 +78,9 @@ namespace WebApplication1.Controllers
             ViewBag.Posts = postsAMostrar;
             return View();
         }
+
+
+
         [HttpPost]
         public IActionResult Censurar(int postId)
         {
@@ -148,6 +153,10 @@ namespace WebApplication1.Controllers
             
             return View("Index");
         }
+
+
+
+
         [HttpPost]
         public IActionResult Descensurar(int postId)
         {
@@ -205,8 +214,9 @@ namespace WebApplication1.Controllers
             }
             ViewBag.Posts = postsAMostrar;
             return View();
-                }
             }
+            
+
             else if (administradorLogeado is Administrador)
             {
                 foreach (Publicacion publicacion in publicaciones)

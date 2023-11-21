@@ -26,13 +26,24 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult AddFriend(int noAmigoId)
         {
+            try
+            {
+                Miembro miembroLogueado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
+                Sistema.Instancia.EnviarInvitacion(miembroLogueado.Id, noAmigoId);
+                ViewBag.Mensaje = "Se ha enviado la solicitud a " + Sistema.Instancia.GetMiembroById(noAmigoId).Nombre +" "+ Sistema.Instancia.GetMiembroById(noAmigoId).Apellido + " con exito.";
+                List<Miembro> noAmigos = miembroLogueado.ObtenerNoAmigos();
+                ViewBag.Pendientes = miembroLogueado.ObtenerMiembrosConInvitacionesPendientes();
+                return View("AddFriend", noAmigos);
+            }
+            catch (Exception ex)
+            {
+                Miembro miembroLogueado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
+                List<Miembro> noAmigos = miembroLogueado.ObtenerNoAmigos();
+                ViewBag.Pendientes = miembroLogueado.ObtenerMiembrosConInvitacionesPendientes();
 
-            Miembro miembroLogueado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
-            Sistema.Instancia.EnviarInvitacion(miembroLogueado.Id, noAmigoId);
-            ViewBag.Mensaje = "Se ha enviado la solicitud a " + Sistema.Instancia.GetMiembroById(noAmigoId).Nombre +" "+ Sistema.Instancia.GetMiembroById(noAmigoId).Apellido + " con exito.";
-            List<Miembro> noAmigos = miembroLogueado.ObtenerNoAmigos();
-            ViewBag.Pendientes = miembroLogueado.ObtenerMiembrosConInvitacionesPendientes();
-            return View("AddFriend", noAmigos);
+                ViewBag.MensajeError = ex.Message;
+                return View("AddFriend", noAmigos);
+            }
         }
     }
 }

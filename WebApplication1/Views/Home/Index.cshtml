@@ -22,70 +22,50 @@
                 <img src="/Images/Prueba.jpg" alt="Imagen del post" class="img-fluid mb-3" />
                 <p class="card-text">@post.Texto</p>
                 <h6 class="mt-4">Reacciones:</h6>
-                <h6>❤ @post.CalcularLikes()</h6>
-                <h6>💔 @post.CalcularDislikes()</h6>
+
+                <form asp-controller="Home" asp-action="LikePost" method="post">
+                    <input type="hidden" name="postId" value="@post.Id" />
+                    <input type="hidden" name="like" value="true" />
+                    <button type="submit" class="btn btn-light"><h6>❤ @post.CalcularLikes()</h6></button>
+                </form>
+
+                <form asp-controller="Home" asp-action="LikePost" method="post">
+                    <input type="hidden" name="postId" value="@post.Id" />
+                    <input type="hidden" name="like" value="false" />
+                    <button type="submit" class="btn btn-light"><h6>💔 @post.CalcularDislikes()</h6></button>
+                </form>
                 <h6>Valor de Aceptacion: @post.CalcularVA()</h6>
+                <form asp-controller="AddComment" asp-action="Comment" method="get">
+                    <input type="hidden" name="postId" value="@post.Id" />
+                    <button type="submit" class="btn btn-outline-light"><h6>💬 Comentar</h6></button>
+                </form>
+
+            </div>
+        </div>
 
 
-                <h6 class="mt-4">Comentarios:</h6>
-                <ul class="list-group">
-                    @foreach (Comentario comentario in post.GetComentarios())
-                    {
-                        <li class="list-group-item">
-                            <p>@comentario.Autor.Nombre @comentario.Autor.Apellido</p>
+
+        <h6 class="mt-4">Comentarios:</h6>
+        <ul class="list-group">
+            @foreach (Comentario comentario in post.GetComentarios())
+            {
+                <li class="list-group-item">
+                    <p>@comentario.Autor.Nombre @comentario.Autor.Apellido</p>
                             <p>Fecha: @comentario.Fecha</p>
                             <p>@comentario.Texto</p>
                             <h6 class="mt-4">Reacciones:</h6>
                             <h6>❤ @comentario.CalcularLikes()</h6>
                             <h6>💔 @comentario.CalcularDislikes()</h6>
                             <h6>Valor de Aceptacion: @comentario.CalcularVA()</h6>
-
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">@post.Titulo</h5>
-                    <p class="card-text">@post.Autor.Nombre @post.Autor.Apellido</p>
-                    <p class="card-text">@post.Fecha</p>
-                    <img src="/Images/Prueba.jpg" alt="Imagen del post" class="img-fluid mb-3" />
-                    <p class="card-text">@post.Texto</p>
-                    <h6 class="mt-4">Reacciones:</h6>
-
- @{
-    bool hayLike = false;
-    bool hayDislike = false;
-
-    foreach (Reaccion reaccion in post.GetReacciones())
-    {
-        if (reaccion.IdMiembro == ViewBag.IdUsuario)
-        {
-            hayLike = reaccion.Like;
-            hayDislike = !reaccion.Like;
-            break;
-        }
-    }
-}
-
-<form asp-controller="Home" asp-action="LikePost" method="post">
-    <input type="hidden" name="postId" value="@post.Id" />
-    <input type="hidden" name="like" value="true" />
-    <button type="submit" class="btn @(hayLike ? "btn-dark" : "btn-light")"><h6>❤ @post.CalcularLikes()</h6></button>
-</form>
-
-<form asp-controller="Home" asp-action="LikePost" method="post">
-    <input type="hidden" name="postId" value="@post.Id" />
-    <input type="hidden" name="like" value="false" />
-    <button type="submit" class="btn @(hayDislike ? "btn-dark" : "btn-light")"><h6>💔 @post.CalcularDislikes()</h6></button>
-</form>
-                    <h6>Valor de Aceptacion: @post.CalcularVA()</h6>
-            <form asp-controller="AddComment" asp-action="Comment" method="get">
-                <input type="hidden" name="postId" value="@post.Id" />
-                <button type="submit" class="btn btn-outline-light"><h6>💬 Comentar</h6></button>
-            </form>
-                        </li>
-                    }
+                </li>
+                }
                 </ul>
-            </div>
-        </div>
     }
+
+
+
+
+    
     else if (post.Censurado == true)
     {
 
@@ -110,48 +90,33 @@
                 <h6>Valor de Aceptacion: @post.CalcularVA()</h6>
 
   
-                    <h6 class="mt-4">Comentarios:</h6>
-                        <ul class="list-group">
-                            @foreach (Comentario comentario in post.GetComentarios())
-                            {
-                                <li class="list-group-item">
-                                    <p>@comentario.Autor.Nombre @comentario.Autor.Apellido</p>
-                                    <p>Fecha: @comentario.Fecha</p>
-                                    <p>@comentario.Texto</p>
-                                    <h6 class="mt-4">Reacciones:</h6>
-                        @{
-                            bool hayLikeCo = false;
-                            bool hayDislikeCo = false;
+                <h6 class="mt-4">Comentarios:</h6>
+                    <ul class="list-group">
+                        @foreach (Comentario comentario in post.GetComentarios())
+                        {
+                            <li class="list-group-item">
+                                <p>@comentario.Autor.Nombre @comentario.Autor.Apellido</p>
+                                <p>Fecha: @comentario.Fecha</p>
+                                <p>@comentario.Texto</p>
+                                <h6 class="mt-4">Reacciones:</h6>
+                                @{
+                                    bool hayLikeCo = false;
+                                    bool hayDislikeCo = false;
 
-                            foreach (Reaccion reaccion in comentario.GetReacciones())
-                            {
-                                if (reaccion.IdMiembro == ViewBag.IdUsuario)
-                                {
-                                    hayLikeCo = reaccion.Like;
-                                    hayDislikeCo = !reaccion.Like;
-                                    break;
+                                    foreach (Reaccion reaccion in comentario.GetReacciones())
+                                    {
+                                        if (reaccion.IdMiembro == ViewBag.IdUsuario)
+                                        {
+                                            hayLikeCo = reaccion.Like;
+                                            hayDislikeCo = !reaccion.Like;
+                                            break;
+                                        }
+                                    }
                                 }
-                            }
+                                <h6>Valor de Aceptacion: @comentario.CalcularVA()</h6>
+                            </li>
                         }
-
-                        <form asp-controller="Home" asp-action="LikeComentario" method="post">
-                            <input type="hidden" name="ComentarioId" value="@comentario.Id" />
-                            <input type="hidden" name="like" value="true" />
-                            <button type="submit" class="btn @(hayLikeCo ? "btn-dark" : "btn-light")"><h6>❤ @comentario.CalcularLikes()</h6></button>
-                        </form>
-
-                        <form asp-controller="Home" asp-action="LikeComentario" method="post">
-                            <input type="hidden" name="ComentarioId" value="@comentario.Id" />
-                            <input type="hidden" name="like" value="false" />
-                            <button type="submit" class="btn @(hayDislikeCo ? "btn-dark" : "btn-light")"><h6>💔 @comentario.CalcularDislikes()</h6></button>
-                        </form>
-                                    
-                                    
-                                    <h6>Valor de Aceptacion: @comentario.CalcularVA()</h6>
-
-                        </li>
-                    }
-                </ul>
+                    </ul>
             </div>
         </div>
     }

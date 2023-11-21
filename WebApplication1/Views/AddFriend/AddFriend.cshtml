@@ -9,6 +9,13 @@
     </div>
 }
 
+@if (!String.IsNullOrEmpty(ViewBag.MensajeError))
+{
+    <div class="alert alert-danger">
+        @ViewBag.MensajeError
+    </div>
+}
+
 <div class="container mt-4">
     <h2>Agregar un amigo</h2>
 

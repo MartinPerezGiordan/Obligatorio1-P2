@@ -22,13 +22,20 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Aceptar(int pendienteId)
         {
+
             Miembro miembroLogeado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
 
             foreach(Invitacion unaInvitacion in Sistema.Instancia.GetInvitaciones())
             {
                 if(unaInvitacion.GetIdMiembroSolicitante() == pendienteId && unaInvitacion.GetIdMiembroSolicitado() == miembroLogeado.Id)
                 {
-                    Sistema.Instancia.AceptarInvitacion(unaInvitacion);
+                    try
+                    {
+                        Sistema.Instancia.AceptarInvitacion(unaInvitacion);
+                    }catch(Exception ex)
+                    {
+                        ViewBag.MensajeError = ex.Message;
+                    }
                 }
             }
             List<Miembro> invitacionesPendientes = miembroLogeado.ObtenerMiembrosConInvitacionesPendientesRecibidas();

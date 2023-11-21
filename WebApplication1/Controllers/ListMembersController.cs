@@ -8,6 +8,12 @@ namespace WebApplication1.Controllers
 
         public IActionResult ListMembers()
         {
+
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("usuario")))
+            {
+                return RedirectToAction("Login", "Login", new { mensaje = "no tienes acceso" });
+            }
+
             List<Miembro> miembros = Sistema.Instancia.GetMiembros();
             miembros.Sort();
             return View("ListMembers", miembros);

@@ -25,8 +25,17 @@ namespace WebApplication1.Controllers
             if (Sistema.Instancia.ValidarLogin(email, password) || Sistema.Instancia.ValidarLoginAdministrador(email, password))
             {
                 Miembro usuario = Sistema.Instancia.GetMiembroByEmail(email);
-                HttpContext.Session.SetString("usuario", email);
-                HttpContext.Session.SetString("nombreUsuario", usuario.Nombre+" "+usuario.Apellido);
+                Administrador usuarioAdmin = Sistema.Instancia.GetAdministradorByEmail(email);
+                if(usuario is Miembro)
+                {
+                    HttpContext.Session.SetString("usuario", email);
+                    HttpContext.Session.SetString("nombreUsuario", usuario.Nombre + " " + usuario.Apellido);
+                }
+                if(usuarioAdmin is Administrador)
+                {
+                    HttpContext.Session.SetString("usuario", email);
+                    HttpContext.Session.SetString("nombreUsuario", usuarioAdmin.Nombre + " " + usuarioAdmin.Apellido);
+                }
 
                 return RedirectToAction("Index", "Home");
             }          

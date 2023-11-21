@@ -1,6 +1,12 @@
 ﻿@using Dominio
 @model List<Miembro>
 
+@if (!String.IsNullOrEmpty(ViewBag.MensajeError))
+{
+    <div class="alert alert-danger">
+        @ViewBag.MensajeError
+    </div>
+}
 
 <div class="container mt-4">
     <h2>Solicitudes de Amistad</h2>
