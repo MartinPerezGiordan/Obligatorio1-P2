@@ -42,9 +42,9 @@ namespace Dominio
             precargarInvitaciones();
            // precargarAmistades();
             precargarAdmins();
-            precargarPosts();
-            precargarComentarios();
-            precargarReacciones();
+           // precargarPosts();
+           // precargarComentarios();
+           // precargarReacciones();
             
         }
         #endregion
