@@ -1,0 +1,50 @@
+﻿@using Dominio
+@model List<Miembro>
+
+
+<div class="container mt-4">
+    <h2>Miembros Activos y Bloqueados</h2>
+    @if (!String.IsNullOrEmpty(ViewBag.Mensaje))
+    {
+        <div class="alert alert-success">
+            @ViewBag.Mensaje
+        </div>
+    }
+
+    <div class="row justify-content-center">
+
+        @foreach (Miembro unMiembro in Model)
+        {
+            if (unMiembro.Bloqueado == false)
+            {
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">@unMiembro.Nombre @unMiembro.Apellido</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@unMiembro.CantidadDePublicaciones Publicaciones</h5>
+                        <p class="card-text">Miembro Activo</p>
+                        <p class="card-text">Bloquear?</p>
+                        <form asp-controller="ListMembers" asp-action="Block" method="post">
+                            <input type="hidden" name="unMiembroId" value="@unMiembro.Id" />
+                            <button type="submit" class="btn btn-danger">Bloquear</button>
+                        </form>
+                    </div>
+                </div>
+            }
+            else if(unMiembro.Bloqueado == true)
+            {
+                <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                    <div class="card-header">@unMiembro.Nombre @unMiembro.Apellido</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@unMiembro.CantidadDePublicaciones Publicaciones</h5>
+                        <p class="card-text">Miembro Bloqueado</p>
+                        <p class="card-text">Desbloquear?</p>
+                        <form asp-controller="ListMembers" asp-action="UnBlock" method="post">
+                            <input type="hidden" name="unMiembroId" value="@unMiembro.Id" />
+                            <button type="submit" class="btn btn-primary">Desbloquear</button>
+                        </form>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

@@ -22,15 +22,17 @@ namespace WebApplication1.Controllers
 
         public IActionResult Login(string email, string password)
         {
-            if (Sistema.Instancia.ValidarLogin(email, password))
+            if (Sistema.Instancia.ValidarLogin(email, password) || Sistema.Instancia.ValidarLoginAdministrador(email, password))
             {
                 Miembro usuario = Sistema.Instancia.GetMiembroByEmail(email);
                 HttpContext.Session.SetString("usuario", email);
                 HttpContext.Session.SetString("nombreUsuario", usuario.Nombre+" "+usuario.Apellido);
 
                 return RedirectToAction("Index", "Home");
-            }
+            }          
             return RedirectToAction("Login", new { mensaje = "Nombre de usuario o contraseña incorrecta." });
+            
+
         }
 
         public IActionResult Logout()

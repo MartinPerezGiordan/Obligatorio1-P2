@@ -1,0 +1,53 @@
+﻿@using Dominio
+@model List<Publicacion>
+
+    <div class="input-group">
+        <form asp-controller="Search" asp-action="SearchPublicacion" method="post">
+            <input type="search" name="textoBuscado" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" required/>
+            <input type="number" name="va" placeholder="Valor de Aceptacion" required/>
+            <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init>Search</button>
+        </form>
+    </div>
+
+    <div class="container mt-4">
+        <h2>@ViewBag.Mensaje</h2> 
+
+
+        @foreach (Publicacion publicacion in Model)
+        {
+            if (publicacion is Post)
+            {
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4>Post</h4>
+                        <h5 class="card-title">@publicacion.Titulo</h5>
+                        <p class="card-text">@publicacion.Autor.Nombre @publicacion.Autor.Apellido</p>
+                        <p class="card-text">@publicacion.Fecha</p>
+                        <img src="/Images/Prueba.jpg" alt="Imagen del post" class="img-fluid mb-3" />
+                        <p class="card-text">@publicacion.Texto</p>
+                        <h6 class="mt-4">Reacciones:</h6>
+                        <h6>❤ @publicacion.CalcularLikes()</h6>
+                        <h6>💔 @publicacion.CalcularDislikes()</h6>
+
+                    </div>
+                </div>
+            }
+            if(publicacion is Comentario)
+            {
+            <ul class="list-group">
+            <li class="list-group-item">
+                <h4>Comentario</h4>
+                <p>@publicacion.Autor.Nombre @publicacion.Autor.Apellido</p>
+                <p>Fecha: @publicacion.Fecha</p>
+                <p>@publicacion.Texto</p>
+                <h6 class="mt-4">Reacciones:</h6>
+                <h6>❤ @publicacion.CalcularLikes()</h6>
+                <h6>💔 @publicacion.CalcularDislikes()</h6>
+                <h6>Valor de Aceptacion: @publicacion.CalcularVA()</h6>
+
+            </li>
+            </ul>
+            }
+        }
+
+    </div>

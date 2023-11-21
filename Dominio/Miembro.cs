@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Miembro
+    public class Miembro: IComparable
     {
         #region Atributos
 
@@ -225,6 +225,21 @@ namespace Dominio
             return $"ID: {Id}, Nombre: {Nombre}, Apellido: {Apellido}, Email: {Email}, Contraseña: {Contrasenia}," +
                 $" Fecha de Nacimiento: {FechaDeNacimiento}, Bloqueado: {Bloqueado}," +
                 $" Cantidad de Publicaciones: {CantidadDePublicaciones}";
+        }
+
+
+
+        public int CompareTo(Object? obj)
+        {
+            if (obj == null)
+            {
+                throw new Exception("obj es null");
+            }
+
+            Miembro otro = obj as Miembro;
+
+            return this.Apellido.CompareTo(otro.Apellido);
+
         }
 
         #endregion

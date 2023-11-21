@@ -3,7 +3,7 @@ using Dominio;
 
 Sistema sistema = Sistema.Instancia;
 #region Precarga de Datos
-
+sistema.GetMiembros().Sort();
 #region Miembros
 
 Miembro Juan = new Miembro("correo0@example.com", "contrasenia1", "Juan", "Perez", new DateTime(1990, 1, 1), false);
@@ -32,7 +32,7 @@ sistema.AgregarMiembro(Jose);
 
 #region Administradores
 
-Administrador Lucas = new Administrador("correo@admin.com", "adminContrasenia1");
+Administrador Lucas = new Administrador("correo@admin.com", "adminContrasenia1", "Lucas", "Lopez");
 
 sistema.AgregarAdministrador(Lucas);
 
