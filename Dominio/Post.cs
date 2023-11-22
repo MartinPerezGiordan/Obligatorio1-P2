@@ -72,6 +72,7 @@ namespace Dominio
         }
 
 
+
         public override double CalcularVA()
         {
             double VA = 0;
@@ -88,7 +89,7 @@ namespace Dominio
         }
                 
         
-
+       
 
         #endregion
 

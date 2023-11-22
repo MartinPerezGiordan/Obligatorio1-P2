@@ -19,8 +19,6 @@ namespace Dominio
 
         public Publicacion(Miembro autor, string texto, string titulo)
         {
-
-
             this.Id = s_ultimoId++;
             this.Autor = autor;
             this.Titulo = titulo;
@@ -58,6 +56,35 @@ namespace Dominio
             {
                 throw new Exception("El contenido no puede estar vacio!!");
             }
+        }
+
+
+        public bool HaDadoLike(int idMiembro)
+        {
+            bool haDadoLike = false;
+            foreach (Reaccion reaccion in this.GetReacciones())
+            {
+                if (reaccion.IdMiembro == idMiembro && reaccion.Like)
+                {
+                    haDadoLike = true;
+                    break;
+                }
+            }
+            return haDadoLike;
+        }
+
+        public bool HaDadoDislike(int idMiembro)
+        {
+            bool haDadoDislike = false;
+            foreach (Reaccion reaccion in this.GetReacciones())
+            {
+                if (reaccion.IdMiembro == idMiembro && !reaccion.Like)
+                {
+                    haDadoDislike = true;
+                    break;
+                }
+            }
+            return haDadoDislike;
         }
 
         public int CalcularLikes()
