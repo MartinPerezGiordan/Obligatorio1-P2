@@ -232,22 +232,32 @@ namespace Dominio
         //En caso contrario crea la reaccion con el constructor de reacciones y luego lo agrega a la lista de reacciones de la publicacion.
         public void LikearUnaPublicacion(int idMiembro, int idPublicacion, bool like)
         {
-            bool noHayReaccion = true;
             Publicacion publicacion = this.GetPublicacionById(idPublicacion);
+            Reaccion reaccionDelUsuario = null;
 
-            foreach(Reaccion unaReaccion in publicacion.GetReacciones())
+            foreach (Reaccion unaReaccion in publicacion.GetReacciones())
             {
-                if(unaReaccion.IdMiembro == idMiembro)
+                if (unaReaccion.IdMiembro == idMiembro)
                 {
-                    unaReaccion.Like = like;
-                    noHayReaccion = false;
+                    reaccionDelUsuario = unaReaccion;
+
+                    if (reaccionDelUsuario.Like != like)
+                    {
+                        reaccionDelUsuario.Like = like;
+                    }
+                    else
+                    {
+                        publicacion.QuitarReaccion(reaccionDelUsuario);
+                    }
+
+                    break;
                 }
             }
 
-            if(noHayReaccion)
+            if (reaccionDelUsuario == null)
             {
-            Reaccion reaccion = new Reaccion(like,idMiembro);
-            publicacion.AgregarReaccion(reaccion);
+                Reaccion nuevaReaccion = new Reaccion(like, idMiembro);
+                publicacion.AgregarReaccion(nuevaReaccion);
             }
         }
 

@@ -50,6 +50,11 @@ namespace Dominio
             this._reacciones.Add(reaccion);
         }
 
+        public void QuitarReaccion(Reaccion reaccion)
+        {
+            this._reacciones.Remove(reaccion);
+        }
+
         public void ValidarContenido()
         {
             if (this.Texto == null)

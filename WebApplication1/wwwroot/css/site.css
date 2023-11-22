@@ -21,6 +21,10 @@ body {
   margin-bottom: 60px;
 }
 
-main {
-    max-width: 1000px !important;
+
+
+#intro {
+    background-image: url(/Images/Untitled.jpg);
+    height: 100vh;
 }
+

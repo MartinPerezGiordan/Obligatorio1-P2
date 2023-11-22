@@ -2,8 +2,8 @@
 
 @foreach (Post post in ViewBag.Posts)
 {
-    <div class="card mb-4 @(post.Censurado ? "bg-danger" : "")">
-        <div class="card-body">
+    <div class="card mb-4 justify-content-center  @(post.Censurado ? "bg-danger" : "")">
+        <div class="card-body justify-content-center">
             @if (post.Censurado && ViewBag.IsAdmin)
             {
                 <form asp-controller="Home" asp-action="Descensurar" method="post">
@@ -26,6 +26,7 @@
                 <img src="/Images/@post.NombreImagen" alt="@post.NombreImagen" class="img-fluid mb-3" />
                 <p class="card-text">@post.Texto</p>
                 <h6 class="mt-4">Reacciones:</h6>
+                <div class="d-flex justify-content-center g-1">
                 <form asp-controller="Home" asp-action="LikePost" method="post">
                     <input type="hidden" name="postId" value="@post.Id" />
                     <input type="hidden" name="like" value="true" />
@@ -37,6 +38,7 @@
                     <input type="hidden" name="like" value="false" />
                     <button type="submit" class="btn btn-light @(post.HaDadoDislike(ViewBag.IdUsuario) ? "btn-dark" : "")"><h6>💔 @post.CalcularDislikes()</h6></button>
                 </form>
+                </div>
                 <h6>Valor de Aceptacion: @post.CalcularVA()</h6>
 
                 <h6 class="mt-4">Comentarios:</h6>
@@ -48,6 +50,7 @@
                             <p>Fecha: @comentario.Fecha</p>
                             <p>@comentario.Texto</p>
                             <h6 class="mt-4">Reacciones:</h6>
+                            <div class="d-flex justify-content-center g-1">
                             <form asp-controller="Home" asp-action="LikeComentario" method="post">
                                 <input type="hidden" name="ComentarioId" value="@comentario.Id" />
                                 <input type="hidden" name="like" value="true" />
@@ -59,6 +62,7 @@
                                 <input type="hidden" name="like" value="false" />
                                 <button type="submit" class="btn btn-light @(comentario.HaDadoDislike(ViewBag.IdUsuario) ? "btn-dark" : "")"><h6>💔 @comentario.CalcularDislikes()</h6></button>
                             </form>
+                            </div>
                             <h6>Valor de Aceptacion: @comentario.CalcularVA()</h6>
                         </li>
                     }
