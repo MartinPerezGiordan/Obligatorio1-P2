@@ -51,12 +51,13 @@
             {
                 <li class="list-group-item">
                     <p>@comentario.Autor.Nombre @comentario.Autor.Apellido</p>
-                            <p>Fecha: @comentario.Fecha</p>
-                            <p>@comentario.Texto</p>
-                            <h6 class="mt-4">Reacciones:</h6>
-                            <h6>❤ @comentario.CalcularLikes()</h6>
-                            <h6>💔 @comentario.CalcularDislikes()</h6>
-                            <h6>Valor de Aceptacion: @comentario.CalcularVA()</h6>
+                    <p>Fecha: @comentario.Fecha</p>
+                    <p>Titulo: @comentario.Titulo</p>
+                    <p>@comentario.Texto</p>
+                    <h6 class="mt-4">Reacciones:</h6>
+                    <h6>❤ @comentario.CalcularLikes()</h6>
+                    <h6>💔 @comentario.CalcularDislikes()</h6>
+                    <h6>Valor de Aceptacion: @comentario.CalcularVA()</h6>
                 </li>
                 }
                 </ul>

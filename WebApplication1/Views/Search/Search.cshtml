@@ -35,17 +35,18 @@
             if(publicacion is Comentario)
             {
             <ul class="list-group">
-            <li class="list-group-item">
-                <h4>Comentario</h4>
-                <p>@publicacion.Autor.Nombre @publicacion.Autor.Apellido</p>
-                <p>Fecha: @publicacion.Fecha</p>
-                <p>@publicacion.Texto</p>
-                <h6 class="mt-4">Reacciones:</h6>
-                <h6>❤ @publicacion.CalcularLikes()</h6>
-                <h6>💔 @publicacion.CalcularDislikes()</h6>
-                <h6>Valor de Aceptacion: @publicacion.CalcularVA()</h6>
+                <li class="list-group-item">
+                    <h4>Comentario</h4>
+                    <p>@publicacion.Autor.Nombre @publicacion.Autor.Apellido</p>
+                    <p>Fecha: @publicacion.Fecha</p>
+                    <p>@publicacion.Texto</p>
+                    <p>Titulo: @publicacion.Titulo</p>
+                    <h6 class="mt-4">Reacciones:</h6>
+                    <h6>❤ @publicacion.CalcularLikes()</h6>
+                    <h6>💔 @publicacion.CalcularDislikes()</h6>
+                    <h6>Valor de Aceptacion: @publicacion.CalcularVA()</h6>
 
-            </li>
+                </li>
             </ul>
             }
         }
