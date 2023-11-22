@@ -40,11 +40,11 @@ namespace Dominio
             this._publicaciones = new List<Publicacion>();
             precargarUsuarios();
             precargarInvitaciones();
-           // precargarAmistades();
+            precargarAmistades();
             precargarAdmins();
-           // precargarPosts();
-           // precargarComentarios();
-           // precargarReacciones();
+            precargarPosts();
+            precargarComentarios();
+            precargarReacciones();
             
         }
         #endregion
@@ -555,12 +555,12 @@ namespace Dominio
 
         private void precargarPosts()
         {
-            AgregarPostMiembro(0, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "vacaciones_playa.jpg", false);
-            AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter' de Martin Perez, ¡altamente recomendado!", "HarryPotter.jpg", false);
-            AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "receta_lasana.jpg", false);
-            AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone_15.jpg", false);
-            AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "Sarna.jpg", true);
-            AgregarPostMiembro(9, "Post privado", "Privado!!", "soloamigoscomentan.jpg", true);
+            AgregarPostMiembro(0, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "diaPlaya.png", false);
+            AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter', ¡altamente recomendado!", "libro.png", false);
+            AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "lasagna.jpg", false);
+            AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone.png", false);
+            AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "perro.jpg", true);
+            AgregarPostMiembro(9, "Post privado", "Privado!!", "privado.png", true);
         }
 
         private void precargarInvitaciones()
