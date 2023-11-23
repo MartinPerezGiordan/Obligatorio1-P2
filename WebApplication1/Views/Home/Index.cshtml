@@ -54,7 +54,7 @@
                     @foreach (Comentario comentario in post.GetComentarios())
                     {
                         <li class="list-group-item">
-                            <h2>@comentario.Titulo</h2>
+                            <h5>@comentario.Titulo</h5>
                             <p>@comentario.Autor.Nombre @comentario.Autor.Apellido</p>
                             <p>Fecha: @comentario.Fecha</p>
                             <p>@comentario.Texto</p>
