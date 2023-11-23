@@ -570,9 +570,9 @@ namespace Dominio
         private void precargarPosts()
         {
             AgregarPostMiembro(0, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "diaPlaya.png", false);
-            AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter', ¡altamente recomendado!", "libro.png", false);
+            AgregarPostMiembro(1, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter', ¡altamente recomendado!", "libro.png", false);
             AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "lasagna.jpg", false);
-            AgregarPostMiembro(2, "Post privado", "Privado!!", "privado.png", false);
+            AgregarPostMiembro(3, "Post privado", "Privado!!", "privado.png", false);
             AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "perro.jpg", true);
             AgregarPostMiembro(8, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone.png", true);
         }
@@ -582,10 +582,19 @@ namespace Dominio
             EnviarInvitacion(0, 1);
             EnviarInvitacion(0, 2);
             EnviarInvitacion(0, 3);
+            EnviarInvitacion(0, 4);
+            EnviarInvitacion(0, 5);
+            EnviarInvitacion(0, 6);
+            EnviarInvitacion(0, 7);
+            EnviarInvitacion(0, 8);
             EnviarInvitacion(1, 2);
             EnviarInvitacion(1, 3);
-            EnviarInvitacion(4, 1);
-            EnviarInvitacion(5, 1);
+            EnviarInvitacion(1, 4);
+            EnviarInvitacion(1, 5);
+            EnviarInvitacion(1, 6);
+            EnviarInvitacion(1, 7);
+            EnviarInvitacion(1, 8);
+            
         }
 
         private void precargarAmistades()
@@ -599,20 +608,20 @@ namespace Dominio
             private void precargarComentarios()
         {
             AgregarComentarioPost(0, 0,"Este es el titulo 1", "Este es el comentario");
-            //AgregarComentarioPost(0, 1,"Este es el titulo 2", "Comentario 2 post 1");
-            //AgregarComentarioPost(0, 2,"Este es el titulo 3", "Comentario 3 post 1");
-            //AgregarComentarioPost(1, 0,"Este es el titulo 4", "Comentario 1 post 2");
-            //AgregarComentarioPost(1, 1,"Este es el titulo 5", "Comentario 2 post 2");
-            //AgregarComentarioPost(1, 8,"Este es el titulo 6", "Comentario 3 post 3");
-            //AgregarComentarioPost(2, 8,"Este es el titulo 7", "Comentario 1 post 3");
-            //AgregarComentarioPost(2, 8,"Este es el titulo 8", "Comentario 2 post 3");
-            //AgregarComentarioPost(2, 2,"Este es el titulo 9", "Comentario 3 post 3");
-            //AgregarComentarioPost(3, 2,"Este es el titulo 10", "Comentario 1 post 4");
-            //AgregarComentarioPost(3, 3,"Este es el titulo 11", "Comentario 2 post 4");
-            //AgregarComentarioPost(3, 8,"Este es el titulo 12", "Comentario 3 post 4");
-            //AgregarComentarioPost(4, 6,"Este es el titulo 13", "Comentario 1 post 5");
-            //AgregarComentarioPost(4, 5,"Este es el titulo 14", "Comentario 2 post 5");
-            //AgregarComentarioPost(4, 8,"Este es el titulo 15", "Comentario 3 post 5");
+            AgregarComentarioPost(0, 1, "Este es el titulo 2", "Comentario 2 post 1");
+            AgregarComentarioPost(0, 2, "Este es el titulo 3", "Comentario 3 post 1");
+            AgregarComentarioPost(1, 1, "Este es el titulo 4", "Comentario 1 post 2");
+            AgregarComentarioPost(1, 1, "Este es el titulo 5", "Comentario 2 post 2");
+            AgregarComentarioPost(1, 1, "Este es el titulo 6", "Comentario 3 post 3");
+            AgregarComentarioPost(2, 1, "Este es el titulo 7", "Comentario 1 post 3");
+            AgregarComentarioPost(2, 0, "Este es el titulo 8", "Comentario 2 post 3");
+            AgregarComentarioPost(2, 1, "Este es el titulo 9", "Comentario 3 post 3");
+            AgregarComentarioPost(3, 0, "Este es el titulo 10", "Comentario 1 post 4");
+            AgregarComentarioPost(3, 1, "Este es el titulo 11", "Comentario 2 post 4");
+            AgregarComentarioPost(3, 0, "Este es el titulo 12", "Comentario 3 post 4");
+            AgregarComentarioPost(4, 1, "Este es el titulo 13", "Comentario 1 post 5");
+            AgregarComentarioPost(4, 0, "Este es el titulo 14", "Comentario 2 post 5");
+            AgregarComentarioPost(4, 1, "Este es el titulo 15", "Comentario 3 post 5");
         } 
 
         private void precargarReacciones()
