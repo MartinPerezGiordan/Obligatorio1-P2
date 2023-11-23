@@ -18,6 +18,7 @@
         <p class="card-text">@Model.Texto</p>
         <form asp-controller="AddComment" asp-action="Comment" method="post">
             <input type="text" name="commentTitle" id="commentTitle" />
+            <input type="hidden" name="postId" id="postId" value="@Model.Id" />
             <textarea name="comment" id="comment"></textarea>
             <button type="submit" class="btn btn-primary">Comentar</button>
         </form>
