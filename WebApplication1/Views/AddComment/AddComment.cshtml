@@ -9,16 +9,19 @@
     </div>
 }
 
-<div class="card mb-4">
-    <div class="card-body">
+<div class="card mb-4 container d-flex justify-content-center align-items-center">
+    <div class="card-body gradient-right bg-white rounded rounded-5 shadow p-5 d-flex flex-column justify-content-center align-items-center ">
         <h5 class="card-title">@Model.Titulo</h5>
         <p class="card-text">@Model.Autor.Nombre @Model.Autor.Apellido</p>
         <p class="card-text">@Model.Fecha</p>
-        <img src="/Images/Prueba.jpg" alt="Imagen del post" class="img-fluid mb-3" />
+        <img src="/Images/@Model.NombreImagen" alt="Imagen del post" class="img-fluid mb-3" />
         <p class="card-text">@Model.Texto</p>
-        <form asp-controller="AddComment" asp-action="Comment" method="post">
+        <form asp-controller="AddComment" asp-action="Comment" class="d-flex flex-column" method="post">
+            <label for="commentTitle">Titulo</label>
             <input type="text" name="commentTitle" id="commentTitle" />
             <input type="hidden" name="postId" id="postId" value="@Model.Id" />
+            <label for="comment">Comentario</label>
+
             <textarea name="comment" id="comment"></textarea>
             <button type="submit" class="btn btn-primary">Comentar</button>
         </form>

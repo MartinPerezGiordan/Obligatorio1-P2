@@ -1,29 +1,32 @@
 ﻿@using Dominio
 @model List<Publicacion>
 
-    <div class="input-group">
-        <form asp-controller="Search" asp-action="SearchPublicacion" method="post">
+<div class="container d-flex flex-column justify-content-center align-items-center">
+    <div class="input-group container d-flex flex-column justify-content-center align-items-center">
+        <form asp-controller="Search" class="gradient-right bg-white rounded rounded-5 shadow p-5 d-flex flex-column justify-content-center align-items-center " asp-action="SearchPublicacion" method="post">
+    <h2>Buscar un Post</h2>
             <input type="search" name="textoBuscado" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" required/>
             <input type="number" name="va" placeholder="Valor de Aceptacion" required/>
             <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init>Search</button>
         </form>
     </div>
 
-    <div class="container mt-4">
-        <h2>@ViewBag.Mensaje</h2> 
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+        <h2 class="my-2">@ViewBag.Mensaje</h2> 
 
 
         @foreach (Publicacion publicacion in Model)
         {
             if (publicacion is Post)
             {
+                Post post = publicacion as Post;
                 <div class="card mb-4">
-                    <div class="card-body">
+                        <div class="card-body justify-content-center d-flex flex-column align-items-center gradient-right " style="max-width:650px;width:650px;">
                         <h4>Post</h4>
                         <h5 class="card-title">@publicacion.Titulo</h5>
                         <p class="card-text">@publicacion.Autor.Nombre @publicacion.Autor.Apellido</p>
                         <p class="card-text">@publicacion.Fecha</p>
-                        <img src="/Images/Prueba.jpg" alt="Imagen del post" class="img-fluid mb-3" />
+                        <img src="/Images/@post.NombreImagen" alt="Imagen del post" class="img-fluid mb-3" />
                         <p class="card-text">@publicacion.Texto</p>
                         <h6 class="mt-4">Reacciones:</h6>
                         <h6>❤ @publicacion.CalcularLikes()</h6>
@@ -34,6 +37,7 @@
             }
             if(publicacion is Comentario)
             {
+                <div class="card-body justify-content-center d-flex flex-column align-items-center gradient-right " style="max-width:650px;width:650px;">
             <ul class="list-group">
                 <li class="list-group-item">
                     <h4>Comentario</h4>
@@ -48,7 +52,9 @@
 
                 </li>
             </ul>
+            </div>
             }
         }
 
     </div>
+</div>
