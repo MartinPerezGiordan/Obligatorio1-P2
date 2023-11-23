@@ -14,20 +14,21 @@
 
 
         @foreach (Publicacion publicacion in Model)
-        {
-            if (publicacion is Post)
             {
+                if (publicacion is Post)
+                {
+                Post post = publicacion as Post;
                 <div class="card mb-4">
                     <div class="card-body">
                         <h4>Post</h4>
-                        <h5 class="card-title">@publicacion.Titulo</h5>
-                        <p class="card-text">@publicacion.Autor.Nombre @publicacion.Autor.Apellido</p>
-                        <p class="card-text">@publicacion.Fecha</p>
-                        <img src="/Images/Prueba.jpg" alt="Imagen del post" class="img-fluid mb-3" />
-                        <p class="card-text">@publicacion.Texto</p>
+                        <h5 class="card-title">@post.Titulo</h5>
+                        <p class="card-text">@post.Autor.Nombre @post.Autor.Apellido</p>
+                        <p class="card-text">@post.Fecha</p>
+                        <img src="/Images/@post.NombreImagen" alt="Imagen del post" class="img-fluid mb-3" />
+                        <p class="card-text">@post.Texto</p>
                         <h6 class="mt-4">Reacciones:</h6>
-                        <h6>❤ @publicacion.CalcularLikes()</h6>
-                        <h6>💔 @publicacion.CalcularDislikes()</h6>
+                        <h6>❤ @post.CalcularLikes()</h6>
+                        <h6>💔 @post.CalcularDislikes()</h6>
 
                     </div>
                 </div>

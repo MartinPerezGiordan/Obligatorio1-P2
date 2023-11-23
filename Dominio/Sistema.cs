@@ -525,20 +525,20 @@ namespace Dominio
             return null;
         }
 
-        public List<Publicacion> BuscarPublicacionPorString(string texto, double va)
+        public List<Publicacion> BuscarPublicacionPorString(List<Publicacion> publicaciones, string texto, double va)
         {
-            List<Publicacion> publicaciones = new List<Publicacion>();
-            foreach(Publicacion publicacion in this.GetPublicaciones())
+            List<Publicacion> publicacionesEncontradas = new List<Publicacion>();
+            foreach(Publicacion publicacion in publicaciones)
             {
                 if (publicacion.Titulo.ToUpper().Contains(texto.ToUpper()) || publicacion.Texto.ToUpper().Contains(texto.ToUpper()))
                 {
                     if(publicacion.CalcularVA() > va)
                     {
-                        publicaciones.Add(publicacion);
+                        publicacionesEncontradas.Add(publicacion);
                     }
                 }
             }
-            return publicaciones;
+            return publicacionesEncontradas;
         }
 
 
