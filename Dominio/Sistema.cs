@@ -82,6 +82,7 @@ namespace Dominio
         public void AgregarMiembro(Miembro miembro)
         {
             miembro.Validar();
+            this.validarEmailRegistro(miembro.Email);
             this._miembros.Add(miembro);
         }
 
@@ -514,7 +515,14 @@ namespace Dominio
         }
         public Publicacion GetPublicacionById(int id)
         {
-            return this._publicaciones[id];
+            foreach (Publicacion unaPublicacion in this.GetPublicaciones())
+            {
+                if (unaPublicacion.Id == id)
+                {
+                    return unaPublicacion;
+                }
+            }
+            return null;
         }
 
         public List<Publicacion> BuscarPublicacionPorString(string texto, double va)
