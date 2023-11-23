@@ -23,32 +23,33 @@
                 <div class="card mb-4">
                         <div class="card-body justify-content-center d-flex flex-column align-items-center gradient-right " style="max-width:650px;width:650px;">
                         <h4>Post</h4>
-                        <h5 class="card-title">@publicacion.Titulo</h5>
-                        <p class="card-text">@publicacion.Autor.Nombre @publicacion.Autor.Apellido</p>
-                        <p class="card-text">@publicacion.Fecha</p>
+                        <h5 class="card-title">@post.Titulo</h5>
+                        <p class="card-text">@post.Autor.Nombre @post.Autor.Apellido</p>
+                        <p class="card-text">@post.Fecha</p>
                         <img src="/Images/@post.NombreImagen" alt="Imagen del post" class="img-fluid mb-3" />
-                        <p class="card-text">@publicacion.Texto</p>
+                        <p class="card-text">@post.Texto</p>
                         <h6 class="mt-4">Reacciones:</h6>
                         <h6>❤ @post.CalcularLikes()</h6>
                         <h6>💔 @post.CalcularDislikes()</h6>
 
                     </div>
                 </div>
-            }
-            if(publicacion is Comentario)
-            {
+                }
+                if(publicacion is Comentario)
+                {
+                    Comentario comentario = publicacion as Comentario;
                 <div class="card-body justify-content-center d-flex flex-column align-items-center gradient-right " style="max-width:650px;width:650px;">
             <ul class="list-group">
                 <li class="list-group-item">
                     <h4>Comentario</h4>
-                    <p>@publicacion.Autor.Nombre @publicacion.Autor.Apellido</p>
-                    <p>Fecha: @publicacion.Fecha</p>
-                    <p>@publicacion.Texto</p>
-                    <p>Titulo: @publicacion.Titulo</p>
+                    <p>@comentario.Autor.Nombre @comentario.Autor.Apellido</p>
+                    <p>Fecha: @comentario.Fecha</p>
+                    <p>@comentario.Texto</p>
+                    <p>Titulo: @comentario.Titulo</p>
                     <h6 class="mt-4">Reacciones:</h6>
-                    <h6>❤ @publicacion.CalcularLikes()</h6>
-                    <h6>💔 @publicacion.CalcularDislikes()</h6>
-                    <h6>Valor de Aceptacion: @publicacion.CalcularVA()</h6>
+                    <h6>❤ @comentario.CalcularLikes()</h6>
+                    <h6>💔 @comentario.CalcularDislikes()</h6>
+                    <h6>Valor de Aceptacion: @comentario.CalcularVA()</h6>
 
                 </li>
             </ul>
