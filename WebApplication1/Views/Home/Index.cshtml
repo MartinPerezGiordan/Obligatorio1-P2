@@ -1,9 +1,11 @@
 ﻿@using Dominio
 
+
+<div class="container d-flex flex-column justify-content-center align-items-center" >
 @foreach (Post post in ViewBag.Posts)
 {
-    <div class="card mb-4 justify-content-center  @(post.Censurado ? "bg-danger" : "")">
-        <div class="card-body justify-content-center">
+    <div class="card mb-4  justify-content-center  @(post.Censurado ? "bg-danger" : "")">
+            <div class="card-body justify-content-center d-flex flex-column align-items-center gradient-right " style="max-width:650px;width:650px;">
             @if (post.Censurado && ViewBag.IsAdmin)
             {
                 <form asp-controller="Home" asp-action="Descensurar" method="post">
@@ -87,3 +89,4 @@
         </div>
     </div>
 }
+</div>

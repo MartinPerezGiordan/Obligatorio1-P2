@@ -1,6 +1,6 @@
 html {
   font-size: 14px;
-  background-color:red!important;
+
 }
 
 @media (min-width: 768px) {
@@ -13,19 +13,35 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    height: 70vh;
 }
 
 
+input[type="text"], input[type="password"], input[type="email"], input[type="date"], input[type="file"], textarea {
+    width: 400px;
+    margin-bottom: 20px;
+}
+
+img{
+    max-width: 600px;
+    height:auto;
+}
 
 #intro {
     background-image: url(/Images/Untitled.jpg);
     height: 100vh;
 }
 
+.gradient-right {
+    background: linear-gradient(to right, #cfdffa, #98bcfa);
+}
