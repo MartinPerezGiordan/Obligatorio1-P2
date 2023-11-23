@@ -10,6 +10,9 @@
                     <input type="hidden" name="postId" value="@post.Id" />
                     <button type="submit" class="btn btn-primary">Descensurar</button>
                 </form>
+                <h5>@post.Titulo</h5>
+                <h5>@post.Autor.Nombre @post.Autor.Apellido</h5>
+
             }
             else if (!post.Censurado)
             {
@@ -27,17 +30,20 @@
                 <p class="card-text">@post.Texto</p>
                 <h6 class="mt-4">Reacciones:</h6>
                 <div class="d-flex justify-content-center g-1">
-                <form asp-controller="Home" asp-action="LikePost" method="post">
-                    <input type="hidden" name="postId" value="@post.Id" />
-                    <input type="hidden" name="like" value="true" />
-                    <button type="submit" class="btn btn-light @(post.HaDadoLike(ViewBag.IdUsuario) ? "btn-dark" : "")"><h6>❤ @post.CalcularLikes()</h6></button>
-                </form>
+                    @if (!ViewBag.IsAdmin)
+                    {
+                        <form asp-controller="Home" asp-action="LikePost" method="post">
+                            <input type="hidden" name="postId" value="@post.Id" />
+                            <input type="hidden" name="like" value="true" />
+                            <button type="submit" class="btn btn-light @(post.HaDadoLike(ViewBag.IdUsuario) ? "btn-dark" : "")"><h6>❤ @post.CalcularLikes()</h6></button>
+                        </form>
 
-                <form asp-controller="Home" asp-action="LikePost" method="post">
-                    <input type="hidden" name="postId" value="@post.Id" />
-                    <input type="hidden" name="like" value="false" />
-                    <button type="submit" class="btn btn-light @(post.HaDadoDislike(ViewBag.IdUsuario) ? "btn-dark" : "")"><h6>💔 @post.CalcularDislikes()</h6></button>
-                </form>
+                        <form asp-controller="Home" asp-action="LikePost" method="post">
+                            <input type="hidden" name="postId" value="@post.Id" />
+                            <input type="hidden" name="like" value="false" />
+                            <button type="submit" class="btn btn-light @(post.HaDadoDislike(ViewBag.IdUsuario) ? "btn-dark" : "")"><h6>💔 @post.CalcularDislikes()</h6></button>
+                        </form>
+                    }
                 </div>
                 <h6>Valor de Aceptacion: @post.CalcularVA()</h6>
 
@@ -51,27 +57,32 @@
                             <p>@comentario.Texto</p>
                             <h6 class="mt-4">Reacciones:</h6>
                             <div class="d-flex justify-content-center g-1">
-                            <form asp-controller="Home" asp-action="LikeComentario" method="post">
-                                <input type="hidden" name="ComentarioId" value="@comentario.Id" />
-                                <input type="hidden" name="like" value="true" />
-                                <button type="submit" class="btn btn-light @(comentario.HaDadoLike(ViewBag.IdUsuario) ? "btn-dark" : "")"><h6>❤ @comentario.CalcularLikes()</h6></button>
-                            </form>
+                                @if (!ViewBag.IsAdmin)
+                                {
+                                    <form asp-controller="Home" asp-action="LikeComentario" method="post">
+                                        <input type="hidden" name="ComentarioId" value="@comentario.Id" />
+                                        <input type="hidden" name="like" value="true" />
+                                        <button type="submit" class="btn btn-light @(comentario.HaDadoLike(ViewBag.IdUsuario) ? "btn-dark" : "")"><h6>❤ @comentario.CalcularLikes()</h6></button>
+                                    </form>
 
-                            <form asp-controller="Home" asp-action="LikeComentario" method="post">
-                                <input type="hidden" name="ComentarioId" value="@comentario.Id" />
-                                <input type="hidden" name="like" value="false" />
-                                <button type="submit" class="btn btn-light @(comentario.HaDadoDislike(ViewBag.IdUsuario) ? "btn-dark" : "")"><h6>💔 @comentario.CalcularDislikes()</h6></button>
-                            </form>
+                                    <form asp-controller="Home" asp-action="LikeComentario" method="post">
+                                        <input type="hidden" name="ComentarioId" value="@comentario.Id" />
+                                        <input type="hidden" name="like" value="false" />
+                                        <button type="submit" class="btn btn-light @(comentario.HaDadoDislike(ViewBag.IdUsuario) ? "btn-dark" : "")"><h6>💔 @comentario.CalcularDislikes()</h6></button>
+                                    </form>
+                                }
                             </div>
                             <h6>Valor de Aceptacion: @comentario.CalcularVA()</h6>
                         </li>
                     }
                 </ul>
-
-                <form asp-controller="AddComment" asp-action="Comment" method="get">
-                    <input type="hidden" name="postId" value="@post.Id" />
-                    <button type="submit" class="btn btn-outline-light"><h6>💬 Comentar</h6></button>
-                </form>
+                @if (!ViewBag.IsAdmin)
+                {
+                    <form asp-controller="AddComment" asp-action="Comment" method="get">
+                        <input type="hidden" name="postId" value="@post.Id" />
+                        <button type="submit" class="btn btn-outline-light"><h6>💬 Comentar</h6></button>
+                    </form>
+                }
             }
         </div>
     </div>

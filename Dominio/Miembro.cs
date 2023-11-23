@@ -11,7 +11,7 @@ namespace Dominio
     {
         #region Atributos
 
-        private static int s_ultimoId = 0;
+        private static int s_ultimoId = -1;
         public int Id { get; set; }
         public string Email { get; set; }
         public string Contrasenia { get; set; }

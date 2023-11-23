@@ -116,7 +116,14 @@ namespace Dominio
 
         public Miembro GetMiembroById(int id)
         {
-            return this._miembros[id];
+            foreach (Miembro unMiembro in this.GetMiembros())
+            {
+                if (unMiembro.Id == id)
+                {
+                    return unMiembro;
+                }
+            }
+            return null;
         }
 
 
@@ -127,7 +134,7 @@ namespace Dominio
         {
 
             //NO DEJAR QUE UN MISMO USUARIO RECIBA MAS DE UNA INVITACION DE LA MISMA PERSONA
-            foreach(Invitacion invitacion in this.GetMiembroById(idMiembroSolicitado).GetInvitacionesRecibidas())
+            foreach(Invitacion invitacion in this.GetMiembroId(idMiembroSolicitado).GetInvitacionesRecibidas())
             {
                 if(invitacion.GetIdMiembroSolicitante() == idMiembroSolicitante)
                 {
@@ -324,11 +331,11 @@ namespace Dominio
         // Agregar un post con id de miembro y Suma la cantidad de posts que realizo el miembro
         public void AgregarPostMiembro(int idMiembro,string titulo, string texto, string nombreImagen, bool publico)
         {
-            Miembro miembro = GetMiembroById(idMiembro);
+            Miembro miembro = GetMiembroId(idMiembro);
             if (!miembro.Bloqueado)
             {
                 miembro.CantidadDePublicaciones++;
-                Post nuevoPost = new Post(this.GetMiembroById(idMiembro), titulo, texto, nombreImagen, publico);
+                Post nuevoPost = new Post(miembro, titulo, texto, nombreImagen, publico);
                 this.AgregarPublicacion(nuevoPost);
             }
             else
@@ -336,6 +343,7 @@ namespace Dominio
                 throw new Exception("No puedes realizar un post estando bloqueado.");
             }
         }
+
 
         // Agregar un comentario con id de post y id de miembro que comenta verifica si es privado(y deja agregar un comentario de un amigo) o publico y Suma la cantidad de posts que realizo el miembro
         public void AgregarComentarioPost(int idPublicacion, int idMiembro, string titulo, string texto)
