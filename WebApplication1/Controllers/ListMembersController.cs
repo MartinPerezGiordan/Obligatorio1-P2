@@ -22,7 +22,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Block(int unMiembroId)
         {
-            Miembro miembroBloqueado = Sistema.Instancia.GetMiembroId(unMiembroId);
+            Miembro miembroBloqueado = Sistema.Instancia.GetMiembroById(unMiembroId);
             Sistema.Instancia.BloquearMiembro(unMiembroId, true);
             ViewBag.Mensaje = "Se ha bloqueado al miembro con ID " + miembroBloqueado.Id + " " + miembroBloqueado.Nombre + " " + miembroBloqueado.Apellido;
             List<Miembro> miembrosActualizados = Sistema.Instancia.GetMiembros();
@@ -32,7 +32,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult UnBlock(int unMiembroId)
         {
-            Miembro miembroBloqueado = Sistema.Instancia.GetMiembroId(unMiembroId);
+            Miembro miembroBloqueado = Sistema.Instancia.GetMiembroById(unMiembroId);
             Sistema.Instancia.BloquearMiembro(unMiembroId, false);
             ViewBag.Mensaje = "Se ha desbloqueado al miembro con ID " + miembroBloqueado.Id + " " + miembroBloqueado.Nombre + " " + miembroBloqueado.Apellido;
             List<Miembro> miembrosActualizados = Sistema.Instancia.GetMiembros();

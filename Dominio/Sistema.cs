@@ -134,7 +134,7 @@ namespace Dominio
         {
 
             //NO DEJAR QUE UN MISMO USUARIO RECIBA MAS DE UNA INVITACION DE LA MISMA PERSONA
-            foreach(Invitacion invitacion in this.GetMiembroId(idMiembroSolicitado).GetInvitacionesRecibidas())
+            foreach(Invitacion invitacion in this.GetMiembroById(idMiembroSolicitado).GetInvitacionesRecibidas())
             {
                 if(invitacion.GetIdMiembroSolicitante() == idMiembroSolicitante)
                 {
@@ -220,18 +220,6 @@ namespace Dominio
             }
             return null;
         }
-        public Miembro GetMiembroId(int id)
-        {
-            foreach (Miembro unMiembro in this.GetMiembros())
-            {
-                if (unMiembro.Id == id)
-                {
-                    return unMiembro;
-                }
-            }
-            return null;
-        }
-
 
         //Esta funcion permite tanto Likear una publicacion como dislikearla.
         //Acepta 3 parametros, el miembro que likea, la publicacion y si es un like(true) o dislike(false)
@@ -309,7 +297,7 @@ namespace Dominio
         // Metod que permite bloquear o desbloquear a un miembro
         public void BloquearMiembro(int idMiembro, bool bloquear)
         {
-            this.GetMiembroId(idMiembro).Bloqueado = bloquear;
+            this.GetMiembroById(idMiembro).Bloqueado = bloquear;
         }
 
         //Metod que permite cambiar el valor del atributo censurado de un post
@@ -331,7 +319,7 @@ namespace Dominio
         // Agregar un post con id de miembro y Suma la cantidad de posts que realizo el miembro
         public void AgregarPostMiembro(int idMiembro,string titulo, string texto, string nombreImagen, bool publico)
         {
-            Miembro miembro = GetMiembroId(idMiembro);
+            Miembro miembro = GetMiembroById(idMiembro);
             if (!miembro.Bloqueado)
             {
                 miembro.CantidadDePublicaciones++;
