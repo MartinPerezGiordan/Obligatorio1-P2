@@ -7,6 +7,7 @@ namespace WebApplication1.Controllers
     {
         public IActionResult Login(string mensaje)
         {
+            Sistema instancia = Sistema.Instancia;
             if (mensaje == "Usuario creado con exito")
             {
                 ViewBag.MensajeExito = mensaje;

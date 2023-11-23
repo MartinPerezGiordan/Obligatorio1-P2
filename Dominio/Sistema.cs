@@ -564,9 +564,9 @@ namespace Dominio
             AgregarPostMiembro(0, "Foto de mis vacaciones en la playa", "¡Hermoso día en la playa hoy!", "diaPlaya.png", false);
             AgregarPostMiembro(2, "Nuevo libro recomendado", "Acabo de terminar de leer 'Harry Potter', ¡altamente recomendado!", "libro.png", false);
             AgregarPostMiembro(2, "Receta de la semana", "Hoy les comparto mi receta favorita de lasaña casera. ¡Es deliciosa!", "lasagna.jpg", false);
-            AgregarPostMiembro(2, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone.png", false);
+            AgregarPostMiembro(2, "Post privado", "Privado!!", "privado.png", false);
             AgregarPostMiembro(5, "Mi mascota", "Conozcan a mi nuevo cachorro, se llama Sarna <3", "perro.jpg", true);
-            AgregarPostMiembro(9, "Post privado", "Privado!!", "privado.png", true);
+            AgregarPostMiembro(8, "Noticias de tecnología", "Apple anuncia el lanzamiento de su nuevo iPhone 15. ¡Estoy emocionado!", "iphone.png", true);
         }
 
         private void precargarInvitaciones()
