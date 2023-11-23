@@ -22,11 +22,11 @@ namespace WebApplication1.Controllers
         public IActionResult AddPost(string mensaje)
         {
             ViewBag.MensajeExito = mensaje;
-            return View("AddPost");
+            return View(new Post());
         }
 
         [HttpPost]
-        public IActionResult AddPost(string Titulo, string Texto, bool Publico, IFormFile Image)
+        public IActionResult AddPost(Post post, IFormFile Image)
         {
 
             string rutaFisicaWwwRoot = _environment.WebRootPath;
@@ -35,7 +35,7 @@ namespace WebApplication1.Controllers
             Miembro miembroLogeado = Sistema.Instancia.GetMiembroByEmail(HttpContext.Session.GetString("usuario"));
             try
             {
-                Sistema.Instancia.AgregarPostMiembro(miembroLogeado.Id, Titulo, Texto, nombreImagen, Publico);
+                Sistema.Instancia.AgregarPostMiembro(miembroLogeado.Id, post.Titulo, post.Texto, nombreImagen, post.Publico);
                 using(FileStream f = new FileStream(rutaFisicaFoto, FileMode.Create))
                 {
                     Image.CopyTo(f);

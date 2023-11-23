@@ -51,11 +51,14 @@ namespace WebApplication1.Controllers
                             {
                                 postsAMostrar.Add(post);
                             }
-                            foreach (Miembro amigo in miembroLogeado.GetListaDeAmigos())
+                            if (miembroLogeado.GetListaDeAmigos() != null)
                             {
-                                if (amigo == post.Autor)
+                                foreach (Miembro amigo in miembroLogeado.GetListaDeAmigos())
                                 {
-                                    postsAMostrar.Add(post);
+                                    if (amigo == post.Autor)
+                                    {
+                                        postsAMostrar.Add(post);
+                                    }
                                 }
                             }
                         }

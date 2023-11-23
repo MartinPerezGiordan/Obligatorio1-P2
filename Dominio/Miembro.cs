@@ -41,7 +41,12 @@ namespace Dominio
             this.Bloqueado = bloqueado;
             this.CantidadDePublicaciones = 0;
         }
-        public Miembro() { }
+        public Miembro() {
+            this.Id = s_ultimoId++;
+            this._listaDeAmigos = new List<Miembro>(); //Empieza la lista de amigos vacia
+            this._invitacionesEnviadas = new List<Invitacion>();
+            this._invitacionesRecibidas = new List<Invitacion>();
+        }
 
         #endregion
 

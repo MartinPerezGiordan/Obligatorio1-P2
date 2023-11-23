@@ -7,9 +7,9 @@ namespace Dominio
 
         private static int s_ultimoId = 0;
         public int Id { get; set; }
-        public string Titulo;
+        public string Titulo { get; set; }
         public Miembro Autor;
-        public string Texto;
+        public string Texto { get ;set; }
         public DateTime Fecha;
         private List<Reaccion> _reacciones;
 
@@ -26,6 +26,12 @@ namespace Dominio
             this.Fecha = DateTime.Now;
             this._reacciones = new List<Reaccion>();
             ValidarContenido();
+        }
+
+        public Publicacion() {
+            this.Id = s_ultimoId++;
+            this.Fecha = DateTime.Now;
+            this._reacciones = new List<Reaccion>();
         }
 
         #endregion

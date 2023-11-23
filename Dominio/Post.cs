@@ -31,6 +31,10 @@ namespace Dominio
 
         }
 
+        public Post() {
+            this.Censurado = false;
+            this._comentarios = new List<Comentario>();
+        }
 
         #endregion
 
